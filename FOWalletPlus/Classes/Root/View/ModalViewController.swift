@@ -33,7 +33,7 @@ class ModalViewController: UIViewController {
     }
     
     private func makeUI() {
-        view.backgroundColor = UIColor.RGBA(r: 0, g: 0, b: 0, a: 0.7)
+        view.backgroundColor = UIColor.RGBA(r: 0, g: 0, b: 0, a: 0.5)
         let padding: CGFloat = 20
         var _h: CGFloat = 0
         
