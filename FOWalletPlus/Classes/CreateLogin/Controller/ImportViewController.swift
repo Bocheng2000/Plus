@@ -192,9 +192,23 @@ class ImportViewController: FatherViewController, InputItemDelegate, InputItemMu
         PTLoadingHubView.dismiss()
         let pwd = password.textField.text ?? ""
         let promptV = prompt.textField.text ?? ""
+        if accounts.count > 1 {
+            let back: BackModel = BackModel("", _password: pwd, _prompt: promptV, _pubKey: pubKey, _priKey: priKey)
+            let selectAccount = SelectAccountViewController(left: "img|backBlack", title: LanguageHelper.localizedString(key: "SelectAccount"), right: nil)
+            selectAccount.model = back
+            selectAccount.accounts = accounts
+            navigationController?.pushViewController(selectAccount, animated: true)
+            return
+        }
         let manager: WalletManager = WalletManager.shared
         manager.create(accounts, pubKey: pubKey, priKey: priKey, password: pwd, prompt: promptV)
         manager.setCurrent(pubKey: pubKey, account: accounts[0])
+        let importSuccess = LanguageHelper.localizedString(key: "ImportSuccess")
+        let button = ModalButtonModel(LanguageHelper.localizedString(key: "Confirm"), _titleColor: UIColor.white, _titleFont: UIFont(name: medium, size: 14), _backgroundColor: BUTTON_COLOR, _borderColor: BUTTON_COLOR) {
+            ChangeRootVC().changeRootViewController(window: UIApplication.shared.keyWindow!)
+        }
+        let modalModel: ModalModel = ModalModel(false, _imageName: nil, _title: importSuccess, _message: nil, _buttons: [button])
+        ModalViewController(modalModel).show(source: self)
     }
     
     private func showErrorTip(_ err: String) {

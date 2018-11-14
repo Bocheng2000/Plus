@@ -16,6 +16,7 @@ let BACKGROUND_COLOR: UIColor = UIColor.white
 let ERROR_COLOR: UIColor = UIColor.colorWithHexString(hex: "#FF9900")
 let BUTTON_COLOR: UIColor = UIColor.colorWithHexString(hex: "#1199DD")
 let TINT_COLOR: UIColor = UIColor.colorWithHexString(hex: "#7066B0")
+let SEPEAT_COLOR: UIColor = UIColor.colorWithHexString(hex: "#DEDEDE")
 
 let kBounds = UIScreen.main.bounds
 let kSize = kBounds.size

@@ -10,7 +10,7 @@ import UIKit
 
 typealias handlerBlock = () -> Void
 
-class ConfirmButtonModel: NSObject {
+class ModalButtonModel: NSObject {
     var title: String!
     var titleColor: UIColor = BUTTON_COLOR
     var titleFont: UIFont = UIFont.systemFont(ofSize: 16)
@@ -40,16 +40,16 @@ class ConfirmButtonModel: NSObject {
     }
 }
 
-class ConfirmModel: NSObject {
+class ModalModel: NSObject {
     var closeShow: Bool = true
     var imageName: String?
     var title: String!
     var message: String?
-    var buttons: [ConfirmButtonModel]! = []
+    var buttons: [ModalButtonModel]! = []
     override init() {
         super.init()
     }
-    convenience init(_ _closeShow: Bool?, _imageName: String?, _title: String, _message: String?, _buttons: [ConfirmButtonModel]) {
+    convenience init(_ _closeShow: Bool?, _imageName: String?, _title: String, _message: String?, _buttons: [ModalButtonModel]) {
         self.init()
         if _closeShow != nil {
             closeShow = _closeShow!

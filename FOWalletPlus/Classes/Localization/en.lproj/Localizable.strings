@@ -42,6 +42,9 @@
 "PriKeyNotNull" = "The private key cannot be null.";
 "PriKeyInvalid" = "Invalid private key. Please try again.";
 "AccountNotFound" = "Current private key does not have corresponding FO account";
+"ImportSuccess" = "Congratulations!You have imported account successfully.";
+"Confirm" = "Confirm";
+"SelectAccount" = "Select Your Account";
 "Home" = "Home";
 "DApp" = "DApp";
 "Me" = "Me";

@@ -20,6 +20,16 @@ class BackModel: NSObject {
         password = _password
         prompt = _prompt ?? ""
     }
+    
+    init(_ _account: String, _password: String, _prompt: String?, _pubKey: String, _priKey: String) {
+        super.init()
+        account = _account
+        password = _password
+        prompt = _prompt ?? ""
+        pubKey = _pubKey
+        priKey = _priKey
+    }
+    
     override init() {
         super.init()
     }

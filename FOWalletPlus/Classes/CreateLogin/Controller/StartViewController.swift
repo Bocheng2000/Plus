@@ -19,10 +19,6 @@ class StartViewController: FatherViewController {
 
         // Do any additional setup after loading the view.
         makeUI()
-//        let m = ModalViewController()
-//        m.definesPresentationContext = true
-//        m.modalPresentationStyle = .overCurrentContext
-//        present(m, animated: false, completion: nil)
 //        let (pk, pub) = generateRandomKeyPair(enclave: .Secp256k1)
 //        let r = PrivateKey.literalValid(keyString: (pk?.rawPrivateKey())!)
 //        print(r, (pk?.rawPrivateKey())!)

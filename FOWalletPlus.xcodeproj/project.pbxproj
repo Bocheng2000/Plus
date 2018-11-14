@@ -51,7 +51,7 @@
 		91966E86219C06030016F58F /* InputItemMulit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966E85219C06030016F58F /* InputItemMulit.swift */; };
 		91966E8C219C0BD20016F58F /* AutoHeightTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966E8B219C0BD20016F58F /* AutoHeightTextView.swift */; };
 		91966E8E219C30FF0016F58F /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966E8D219C30FF0016F58F /* ModalViewController.swift */; };
-		91966E91219C36B70016F58F /* ConfirmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966E90219C36B70016F58F /* ConfirmModel.swift */; };
+		91966E91219C36B70016F58F /* ModalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966E90219C36B70016F58F /* ModalModel.swift */; };
 		91966E94219C3B390016F58F /* ok@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91966E92219C3B380016F58F /* ok@3x.png */; };
 		91966E95219C3B390016F58F /* ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91966E93219C3B380016F58F /* ok@2x.png */; };
 		91966EA8219C3D050016F58F /* home_high@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91966EA2219C3D040016F58F /* home_high@3x.png */; };
@@ -72,6 +72,13 @@
 		91966EC2219C3D9D0016F58F /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 91966EBD219C3D9D0016F58F /* selected.png */; };
 		91966EC3219C3D9D0016F58F /* FOLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 91966EBE219C3D9D0016F58F /* FOLogo.png */; };
 		91966EC5219C3DC50016F58F /* beginBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 91966EC4219C3DC50016F58F /* beginBg.png */; };
+		91966ECC219C61C60016F58F /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91966ECA219C61C60016F58F /* close@2x.png */; };
+		91966ECD219C61C60016F58F /* close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91966ECB219C61C60016F58F /* close@3x.png */; };
+		91966ED0219C67A70016F58F /* SelectAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966ECE219C67A70016F58F /* SelectAccountViewController.swift */; };
+		91966ED1219C67A70016F58F /* SelectAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91966ECF219C67A70016F58F /* SelectAccountViewController.xib */; };
+		91966ED4219C6AEF0016F58F /* SelectAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966ED2219C6AEF0016F58F /* SelectAccountTableViewCell.swift */; };
+		91966ED5219C6AEF0016F58F /* SelectAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91966ED3219C6AEF0016F58F /* SelectAccountTableViewCell.xib */; };
+		91966ED7219C6B520016F58F /* WhichModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966ED6219C6B520016F58F /* WhichModel.swift */; };
 		91EA938D219998ED0075D801 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA938C219998ED0075D801 /* AppDelegate.swift */; };
 		91EA9394219998EE0075D801 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91EA9393219998EE0075D801 /* Assets.xcassets */; };
 		91EA9397219998EE0075D801 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91EA9395219998EE0075D801 /* LaunchScreen.storyboard */; };
@@ -274,7 +281,7 @@
 		91966E85219C06030016F58F /* InputItemMulit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputItemMulit.swift; sourceTree = "<group>"; };
 		91966E8B219C0BD20016F58F /* AutoHeightTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoHeightTextView.swift; sourceTree = "<group>"; };
 		91966E8D219C30FF0016F58F /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
-		91966E90219C36B70016F58F /* ConfirmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmModel.swift; sourceTree = "<group>"; };
+		91966E90219C36B70016F58F /* ModalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalModel.swift; sourceTree = "<group>"; };
 		91966E92219C3B380016F58F /* ok@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok@3x.png"; sourceTree = "<group>"; };
 		91966E93219C3B380016F58F /* ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok@2x.png"; sourceTree = "<group>"; };
 		91966EA2219C3D040016F58F /* home_high@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_high@3x.png"; sourceTree = "<group>"; };
@@ -295,6 +302,13 @@
 		91966EBD219C3D9D0016F58F /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected.png; sourceTree = "<group>"; };
 		91966EBE219C3D9D0016F58F /* FOLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FOLogo.png; sourceTree = "<group>"; };
 		91966EC4219C3DC50016F58F /* beginBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beginBg.png; sourceTree = "<group>"; };
+		91966ECA219C61C60016F58F /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
+		91966ECB219C61C60016F58F /* close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@3x.png"; sourceTree = "<group>"; };
+		91966ECE219C67A70016F58F /* SelectAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountViewController.swift; sourceTree = "<group>"; };
+		91966ECF219C67A70016F58F /* SelectAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectAccountViewController.xib; sourceTree = "<group>"; };
+		91966ED2219C6AEF0016F58F /* SelectAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountTableViewCell.swift; sourceTree = "<group>"; };
+		91966ED3219C6AEF0016F58F /* SelectAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectAccountTableViewCell.xib; sourceTree = "<group>"; };
+		91966ED6219C6B520016F58F /* WhichModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhichModel.swift; sourceTree = "<group>"; };
 		91EA9389219998ED0075D801 /* FOWalletPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOWalletPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91EA938C219998ED0075D801 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91EA9393219998EE0075D801 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -715,6 +729,8 @@
 		91966E68219BFF770016F58F /* begin */ = {
 			isa = PBXGroup;
 			children = (
+				91966ECA219C61C60016F58F /* close@2x.png */,
+				91966ECB219C61C60016F58F /* close@3x.png */,
 				91966EC4219C3DC50016F58F /* beginBg.png */,
 				91966E93219C3B380016F58F /* ok@2x.png */,
 				91966E92219C3B380016F58F /* ok@3x.png */,
@@ -730,7 +746,7 @@
 		91966E8F219C33380016F58F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				91966E90219C36B70016F58F /* ConfirmModel.swift */,
+				91966E90219C36B70016F58F /* ModalModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1046,6 +1062,8 @@
 				91EA95C2219AD2FD0075D801 /* BackUpViewController.xib */,
 				91966E81219C02E90016F58F /* ImportViewController.swift */,
 				91966E82219C02E90016F58F /* ImportViewController.xib */,
+				91966ECE219C67A70016F58F /* SelectAccountViewController.swift */,
+				91966ECF219C67A70016F58F /* SelectAccountViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1056,6 +1074,8 @@
 				91EA9483219A5C3C0075D801 /* InputItem.swift */,
 				91EA95C5219AE0A60075D801 /* CopyLabel.swift */,
 				91966E85219C06030016F58F /* InputItemMulit.swift */,
+				91966ED2219C6AEF0016F58F /* SelectAccountTableViewCell.swift */,
+				91966ED3219C6AEF0016F58F /* SelectAccountTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1065,6 +1085,7 @@
 			children = (
 				91EA9485219A5C520075D801 /* InputItemModel.swift */,
 				91EA95BF219AC4830075D801 /* BackModel.swift */,
+				91966ED6219C6B520016F58F /* WhichModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1432,14 +1453,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				91966EB9219C3D2E0016F58F /* me@2x.png in Resources */,
+				91966ED1219C67A70016F58F /* SelectAccountViewController.xib in Resources */,
 				91EA9499219AAC8B0075D801 /* ActionSheetCancel@3x.png in Resources */,
 				91966E55219BFC400016F58F /* HomeViewController.xib in Resources */,
 				91966EB7219C3D2E0016F58F /* me_high@3x.png in Resources */,
 				91966EB8219C3D2E0016F58F /* me@3x.png in Resources */,
 				91966EB6219C3D2E0016F58F /* me_high@2x.png in Resources */,
+				91966ECD219C61C60016F58F /* close@3x.png in Resources */,
 				91966EC2219C3D9D0016F58F /* selected.png in Resources */,
 				91EA949A219AAC8B0075D801 /* ActionSheetCancel@2x.png in Resources */,
 				91EA9397219998EE0075D801 /* LaunchScreen.storyboard in Resources */,
+				91966ECC219C61C60016F58F /* close@2x.png in Resources */,
 				9122CEDC219B1F120014F790 /* mode-ctr.js in Resources */,
 				9122CECC219B1F120014F790 /* sha256.js in Resources */,
 				91966EC1219C3D9D0016F58F /* blackBack.png in Resources */,
@@ -1475,6 +1499,7 @@
 				91EA94E2219AACAC0075D801 /* MJRefresh.bundle in Resources */,
 				91966E84219C02E90016F58F /* ImportViewController.xib in Resources */,
 				9122CED6219B1F120014F790 /* mode-ofb.js in Resources */,
+				91966ED5219C6AEF0016F58F /* SelectAccountTableViewCell.xib in Resources */,
 				9122CEDD219B1F120014F790 /* sha224.js in Resources */,
 				91966EAC219C3D050016F58F /* dapp_high@2x.png in Resources */,
 				9122CEDB219B1F120014F790 /* ripemd160.js in Resources */,
@@ -1513,7 +1538,7 @@
 				91EA94F5219AACB30075D801 /* PermissionHelper.swift in Sources */,
 				91966E4D219BFB990016F58F /* RootViewController.swift in Sources */,
 				91EA956F219AACC20075D801 /* SDWebImageCodersManager.m in Sources */,
-				91966E91219C36B70016F58F /* ConfirmModel.swift in Sources */,
+				91966E91219C36B70016F58F /* ModalModel.swift in Sources */,
 				91EA94EA219AACAC0075D801 /* MJRefreshAutoGifFooter.m in Sources */,
 				91EA940F2199990F0075D801 /* Signature.swift in Sources */,
 				91EA94E9219AACAC0075D801 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -1527,11 +1552,13 @@
 				91EA941A2199990F0075D801 /* Error.swift in Sources */,
 				91EA946F2199C1FA0075D801 /* LanguageHelper.swift in Sources */,
 				91EA957F219AACC20075D801 /* UIImageView+WebCache.m in Sources */,
+				91966ED0219C67A70016F58F /* SelectAccountViewController.swift in Sources */,
 				91EA947F2199C51D0075D801 /* CreateViewController.swift in Sources */,
 				91EA94B0219AACA50075D801 /* PTLoadingHubView.m in Sources */,
 				91EA94022199990F0075D801 /* base58.c in Sources */,
 				91EA94E4219AACAC0075D801 /* NSBundle+MJRefresh.m in Sources */,
 				91EA9568219AACC20075D801 /* UIImage+WebP.m in Sources */,
+				91966ED7219C6B520016F58F /* WhichModel.swift in Sources */,
 				91EA94182199990F0075D801 /* PrivateKey.swift in Sources */,
 				91EA94E3219AACAC0075D801 /* UIScrollView+MJExtension.m in Sources */,
 				91EA94162199990F0075D801 /* KeyPair.swift in Sources */,
@@ -1626,6 +1653,7 @@
 				91EA94F2219AACAC0075D801 /* MJRefreshAutoFooter.m in Sources */,
 				91966E48219BE5FF0016F58F /* WalletManager.swift in Sources */,
 				91EA9577219AACC20075D801 /* SDWebImagePrefetcher.m in Sources */,
+				91966ED4219C6AEF0016F58F /* SelectAccountTableViewCell.swift in Sources */,
 				91966E83219C02E90016F58F /* ImportViewController.swift in Sources */,
 				91EA94062199990F0075D801 /* AnyCodable.swift in Sources */,
 				91EA95C8219B063C0075D801 /* Http.swift in Sources */,

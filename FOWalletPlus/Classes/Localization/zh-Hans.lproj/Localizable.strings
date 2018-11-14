@@ -42,6 +42,9 @@
 "PriKeyNotNull" = "私钥不能为空";
 "PriKeyInvalid" = "私钥无效,请重新输入";
 "AccountNotFound" = "当前私钥没有查询到对应的FO账户";
+"ImportSuccess" = "恭喜!已成功导入账户";
+"Confirm" = "确认";
+"SelectAccount" = "请选择你的账户";
 "Home" = "首页";
 "DApp" = "DApp";
 "Me" = "我的";

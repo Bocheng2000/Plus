@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         EOSRPC.endpoint = getEndPoint()
         let account = WalletManager.shared.loadCurrent()
         window = UIWindow(frame: kBounds)
-        if account != nil {
+        if account == nil {
             let start = StartViewController()
             let startRoot = RootNavigationController(rootViewController: start)
             window?.rootViewController = startRoot
