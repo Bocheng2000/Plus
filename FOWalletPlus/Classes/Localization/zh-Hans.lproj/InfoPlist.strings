@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  FOWalletPlus
+
+  Created by Sleep on 2018/11/12.
+  Copyright © 2018 Sleep. All rights reserved.
+*/
+
+CFBundleDisplayName = "FO 钱包";
+NSCameraUsageDescription = "FO 钱包需要启用你的相机以启动扫一扫功能";
+NSPhotoLibraryUsageDescription = "FO 钱包需要访问你的相册以扫描二维码";
+NSPhotoLibraryAddUsageDescription = "FO 钱包需要访问你的相册以保存二维码";

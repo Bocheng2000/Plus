@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  FOWalletPlus
+
+  Created by Sleep on 2018/11/12.
+  Copyright © 2018 Sleep. All rights reserved.
+*/
+
+CFBundleDisplayName = "FO Wallet";
+NSCameraUsageDescription = "FO Wallet wants to access your camera";
+NSPhotoLibraryUsageDescription = "FO Wallet wants to access your album";
+NSPhotoLibraryAddUsageDescription = "FO Wallet wants to save the picture to your album";

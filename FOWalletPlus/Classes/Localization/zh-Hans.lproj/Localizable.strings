@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+  FOWalletPlus
+
+  Created by Sleep on 2018/11/12.
+  Copyright © 2018 Sleep. All rights reserved.
+*/
+
+"NetWorkError" = "网络请求失败";
+"CreateAccount" = "创建 FO 账户";
+"ImportAccount" = "导入 FO 账户";
+"Import" = "导入";
+"CreateNote" = "密码用于保护私钥和交易授权，强度非常重要。FIBOS钱包不保存密码，也无法帮你找回，请务必牢记。";
+"InputAccountName" = "请输入账户名称";
+"AccountPlaceholder" = "由小写字母和1-5数字组成的12位字符";
+"SetPassword" = "设置密码";
+"SetPasswordPlaceholder" = "不少于8位字符";
+"ConfirmPassword" = "确认密码";
+"ConfirmPasswordHolder" = "请重新输入密码";
+"Prompt" = "提示信息";
+"Optional" = "选填";
+"Create" = "创建";
+"AccountNotNull" = "账户名不可为空";
+"AccountInvalid" = "账户名不符合规则";
+"PasswrodNotNull" = "密码不可以为空";
+"PasswordInvalid" = "密码格式不正确";
+"PasswordNotSame" = "密码不一致，请重新输入";
+"AgreeProtocol" = "请同意用户协议";
+"AccountExists" = "该账户已存在";
+"BackUpPrivateKey" = "私钥备份";
+"WritePK" = "抄写下您的私钥";
+"WritePKNote" = "密码用于恢复账户或者重置账户密码，将私钥准确地抄写在纸上，并存放在安全的地方妥善保存。";
+"RegistInHour" = "一小时内仅限注册一个账号";
+"Copy" = "复制";
+"Done" = "完成";
+"RegistFailed" = "创建账号失败";
+"RegistSuccess" = "创建账号成功";
+"ImportAccount" = "导入账户";
+"ImportNote" = "密码用于保护私钥和交易授权，强度非常重要。FIBOS钱包不保存密码，也无法帮你找回，请务必牢记。";
+"PrivateKey" = "私钥";
+"PrivateKeyHolder" = "请输入明文私钥";
+"PriKeyNotNull" = "私钥不能为空";
+"PriKeyInvalid" = "私钥无效,请重新输入";
+"AccountNotFound" = "当前私钥没有查询到对应的FO账户";
+"Home" = "首页";
+"DApp" = "DApp";
+"Me" = "我的";

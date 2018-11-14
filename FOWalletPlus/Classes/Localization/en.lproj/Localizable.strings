@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+  FOWalletPlus
+
+  Created by Sleep on 2018/11/12.
+  Copyright © 2018 Sleep. All rights reserved.
+*/
+
+"NetWorkError" = "Network request failed";
+"CreateAccount" = "Create FO Account";
+"ImportAccount" = "Import Account";
+"Import" = "Import";
+"CreateNote" = "Password is used for protecting private key and authorizing transactions. Its strength is very important. Please mind that this Wallet does not save your password and we also cannot help you retrieve your password if you lost it.";
+"InputAccountName" = "Please input the account name";
+"AccountPlaceholder" = "12 characters: a-z or 1-5";
+"SetPassword" = "Password";
+"SetPasswordPlaceholder" = "It must be not less than 8 characters";
+"ConfirmPassword" = "Confirm Password";
+"ConfirmPasswordHolder" = "Please input your password again";
+"Prompt" = "Prompt Message";
+"Optional" = "Optional";
+"Create" = "Create";
+"AccountNotNull" = "The account name cannot be null.";
+"AccountInvalid" = "Invalid account name.";
+"PasswrodNotNull" = "The password cannot be null.";
+"PasswordInvalid" = "Invalid password.";
+"PasswordNotSame" = "Password mismatched.";
+"AgreeProtocol" = "Agree the protocol.";
+"AccountExists" = "The account already exists.";
+"BackUpPrivateKey" = "Private Key Backup";
+"WritePK" = "Please backup your private key carefully.";
+"WritePKNote" = "The private key is used for recovering your account. We highly recommend that you should write it down on paper and store it in a safe place.";
+"Copy" = "Copy";
+"Done" = "Done";
+"RegistInHour" = "You can only register one account within an hour.";
+"RegistFailed" = "Create account failed.";
+"RegistSuccess" = "Create account success.";
+"ImportAccount" = "Import Account";
+"ImportNote" = "Password is used for protecting private key and authorizing transactions. Its strength is very important. Please mind that this Wallet does not save your password and we also cannot help you retrieve your password if you lost it.";
+"PrivateKey" = "Private Key";
+"PrivateKeyHolder" = "Please input the plaintext of the private key";
+"PriKeyNotNull" = "The private key cannot be null.";
+"PriKeyInvalid" = "Invalid private key. Please try again.";
+"AccountNotFound" = "Current private key does not have corresponding FO account";
+"Home" = "Home";
+"DApp" = "DApp";
+"Me" = "Me";
