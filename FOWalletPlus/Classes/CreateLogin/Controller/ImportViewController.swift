@@ -156,7 +156,7 @@ class ImportViewController: FatherViewController, InputItemDelegate, InputItemMu
         importBtn.isUserInteractionEnabled = false
         importBtn.layer.cornerRadius = 4
         importBtn.layer.masksToBounds = true
-        importBtn.titleLabel?.font = UIFont(name: medium, size: 18)
+        importBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         importBtn.setTitleColor(UIColor.white, for: .normal)
         importBtn.setTitle(LanguageHelper.localizedString(key: "Import"), for: .normal)
         importBtn.addTarget(self, action: #selector(importBtnDidClick), for: .touchUpInside)
@@ -204,7 +204,7 @@ class ImportViewController: FatherViewController, InputItemDelegate, InputItemMu
         manager.create(accounts, pubKey: pubKey, priKey: priKey, password: pwd, prompt: promptV)
         manager.setCurrent(pubKey: pubKey, account: accounts[0])
         let importSuccess = LanguageHelper.localizedString(key: "ImportSuccess")
-        let button = ModalButtonModel(LanguageHelper.localizedString(key: "Confirm"), _titleColor: UIColor.white, _titleFont: UIFont(name: medium, size: 14), _backgroundColor: BUTTON_COLOR, _borderColor: BUTTON_COLOR) {
+        let button = ModalButtonModel(LanguageHelper.localizedString(key: "Confirm"), _titleColor: UIColor.white, _titleFont: UIFont.systemFont(ofSize: 14, weight: .medium), _backgroundColor: BUTTON_COLOR, _borderColor: BUTTON_COLOR) {
             ChangeRootVC().changeRootViewController(window: UIApplication.shared.keyWindow!)
         }
         let modalModel: ModalModel = ModalModel(false, _imageName: nil, _title: importSuccess, _message: nil, _buttons: [button])

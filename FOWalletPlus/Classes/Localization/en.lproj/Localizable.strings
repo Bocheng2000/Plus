@@ -48,3 +48,7 @@
 "Home" = "Home";
 "DApp" = "DApp";
 "Me" = "Me";
+"Transfer" = "Send";
+"Receive" = "Receive";
+"Vote" = "Vote";
+"Resource" = "Resource";

@@ -24,7 +24,7 @@ let safeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets
 let safeBottom = safeAreaInsets?.bottom ?? 0
 let safeTop = safeAreaInsets?.top ?? 0
 let isX = CGFloat(safeBottom) > 0
-let statusHeight:CGFloat = safeTop + 22
+let statusHeight:CGFloat = safeTop + 20
 let tabbarHeight:CGFloat = safeBottom + 49
 let navHeight:CGFloat = statusHeight + 44
 
@@ -33,9 +33,6 @@ var defaultHttpEndPoint = "http://to-rpc.fibos.io:8870"
 let tunnel = "https://tunnel.fibos.io/1.0/app/token/create"
 let salt = "kQkAjnFj8vI="
 
-// MARK: ===== Font ======
-let medium = "SFUIText-Medium"
-let semibold = "SFUIText-Semibold"
 
 // MARK: ===== Cache ======
 let cacheDB = "\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!)/cache.db"

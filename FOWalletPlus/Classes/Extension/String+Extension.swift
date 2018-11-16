@@ -15,7 +15,7 @@ extension String {
         let attributedString = NSMutableAttributedString(string: self)
         let paragraphStye = NSMutableParagraphStyle()
         paragraphStye.lineSpacing = lineSpace
-        let rang = NSMakeRange(0, CFStringGetLength(self as CFString!)); attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStye, range: rang)
+        let rang = NSMakeRange(0, CFStringGetLength(self as CFString?)); attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStye, range: rang)
         return attributedString
     }
     
@@ -63,18 +63,6 @@ extension String {
         return CGSize(width: size.width, height: size.height)
     }
     
-    func firstPy() -> String {
-        let transformContents = CFStringCreateMutableCopy(nil, 0, self as CFString)
-        CFStringTransform(transformContents, nil, kCFStringTransformMandarinLatin, false)
-        let traStr:String = transformContents! as String
-        let firstIndex = traStr.index(traStr.startIndex, offsetBy:1)
-        let first = String(traStr[..<firstIndex]).uppercased()
-        if first.match(regex: "[A-Z]") {
-            return first
-        }
-        return "#"
-    }
-    
     func trim() -> String {
         let characterSet = CharacterSet(charactersIn: " ")
         return self.trimmingCharacters(in: characterSet)
@@ -84,15 +72,8 @@ extension String {
         return self.split(separator: " ").joined(separator: "")
     }
     
-    func isPhone() -> Bool {
-        return self.match(regex: "(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}")
-    }
-    
-    func isEmail() -> Bool {
-        return self.match(regex: "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$")
-    }
-    
-    func isCode() -> Bool {
-        return self.match(regex: "^\\d{6}$")
+    func charAt(index: Int) -> String {
+        let i = self.index(self.startIndex, offsetBy: index)
+        return String(self[i...i])
     }
 }

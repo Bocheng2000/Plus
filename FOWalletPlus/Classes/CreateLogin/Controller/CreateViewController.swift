@@ -157,7 +157,7 @@ class CreateViewController: FatherViewController, InputItemDelegate {
         createBtn.isUserInteractionEnabled = false
         createBtn.layer.cornerRadius = 4
         createBtn.layer.masksToBounds = true
-        createBtn.titleLabel?.font = UIFont(name: medium, size: 18)
+        createBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         createBtn.setTitleColor(UIColor.white, for: .normal)
         createBtn.setTitle(LanguageHelper.localizedString(key: "Create"), for: .normal)
         createBtn.addTarget(self, action: #selector(createBtnDidClick), for: .touchUpInside)

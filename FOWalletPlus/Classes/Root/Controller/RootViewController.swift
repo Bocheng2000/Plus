@@ -26,7 +26,7 @@ class RootViewController: UITabBarController {
     
     private func createChildren() {
         let homeTitle = LanguageHelper.localizedString(key: "Home")
-        let home = HomeViewController(left: nil, title: homeTitle, right: nil)
+        let home = HomeViewController(left: nil, title: nil, right: "img|plus")
         home.tabBarItem.title = homeTitle
         home.tabBarItem.image = UIImage(named: "home")
         home.tabBarItem.selectedImage = UIImage(named: "home_high")

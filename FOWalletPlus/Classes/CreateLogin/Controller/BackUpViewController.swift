@@ -42,7 +42,7 @@ class BackUpViewController: FatherViewController {
     
     private func makeUIHeader(padding: CGFloat) {
         tipLabel = UILabel(frame: CGRect(x: padding, y: 38, width: kSize.width - padding * 2, height: 25))
-        tipLabel.font = UIFont(name: medium, size: 18)
+        tipLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         tipLabel.textColor = UIColor.black
         tipLabel.text = LanguageHelper.localizedString(key: "WritePK")
         tipLabel.textAlignment = .center
@@ -59,7 +59,7 @@ class BackUpViewController: FatherViewController {
     
     private func makeUIPK(padding: CGFloat) {
         privateKeyLabel = CopyLabel(frame: CGRect(x: padding, y: noteLabel.bottom + 20, width: kSize.width - padding * 2, height: 0))
-        privateKeyLabel.font = UIFont(name: semibold, size: 18)
+        privateKeyLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         privateKeyLabel.textColor = FONT_COLOR
         privateKeyLabel.numberOfLines = 0
         privateKeyLabel.text = fmtPrikey()
@@ -114,6 +114,7 @@ class BackUpViewController: FatherViewController {
                 }
                 self?.timer = Timer(timeInterval: 3, target: self!, selector: #selector(self?.checkAccountOnChain), userInfo: nil, repeats: false)
                 RunLoop.main.add((self?.timer)!, forMode: .commonModes)
+                self?.timer?.fire()
             }
         }
     }

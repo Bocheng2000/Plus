@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="zx8-c1-bDD">
-                    <rect key="frame" x="0.0" y="66" width="375" height="521"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="523"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vfl-wo-8aR" customClass="BaseButton" customModule="FOWalletPlus" customModuleProvider="target">
@@ -48,7 +48,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Vfl-wo-8aR" secondAttribute="trailing" constant="20" id="UPz-Pu-ufM"/>
                 <constraint firstItem="zx8-c1-bDD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XSI-87-YGl"/>
                 <constraint firstItem="Vfl-wo-8aR" firstAttribute="top" secondItem="zx8-c1-bDD" secondAttribute="bottom" constant="10" id="XlW-5n-j3N"/>
-                <constraint firstItem="zx8-c1-bDD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="46" id="mTz-t4-rua"/>
+                <constraint firstItem="zx8-c1-bDD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="mTz-t4-rua"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

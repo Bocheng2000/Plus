@@ -53,7 +53,7 @@ class FatherViewController: UIViewController {
         }
         navBar = UIView(frame: CGRect(x: 0, y: 0, width: kSize.width, height: navHeight))
         navBar?.backgroundColor = UIColor.white
-        navBar?.layer.zPosition = 9
+//        navBar?.layer.zPosition = 1
         if _left != nil {
             let array = _left?.split(separator: "|")
             leftBtn = UIButton(frame: CGRect(x: 10, y: statusHeight + 2, width: 40, height: 40))
@@ -74,7 +74,7 @@ class FatherViewController: UIViewController {
         if _title != nil {
             titleLabel = UILabel(frame: CGRect(x: 50, y: statusHeight + 2, width: kSize.width - 100, height: 40))
             titleLabel?.textAlignment = .center
-            titleLabel?.font = UIFont(name: medium, size: 18)
+            titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
             titleLabel?.text = _title
             titleLabel?.textColor = FONT_COLOR
             navBar?.addSubview(titleLabel!)
