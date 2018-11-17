@@ -39,7 +39,7 @@ class ClientManager: NSObject {
     ///   - publicKey: 公钥
     ///   - success: success block
     open func createAccunt(account: String, publicKey: String, success: @escaping (String?) -> Void) {
-        let ts = Int(floor(Date().timeIntervalSince1970 * 1000))
+        let ts = Date.now()
         let hashVal = "\(account)\(publicKey)\(salt)\(ts)".md5String()
         let dict: [String: Any] = [
             "account": account,
@@ -81,4 +81,55 @@ class ClientManager: NSObject {
         }
     }
     
+    
+    /// 获取账户的可用资产
+    ///
+    /// - Parameters:
+    ///   - account: 账户名
+    ///   - lowerBound: 起点
+    ///   - success: success block
+    open func getAccountInfo(_ account: String, lowerBound: Int32, success: @escaping (Error?, TableRowResponse<AssetsModel>?) -> Void) {
+        let params: TableRowRequestParam = TableRowRequestParam(scope: account, code: "eosio.token", table: "accounts", json: true, lowerBound: lowerBound, upperBound: -1, limit: pageSize)
+        EOSRPC.sharedInstance.getTableRows(param: params) { (resp: TableRowResponse<AssetsModel>?, err) in
+                success(err, resp)
+            }
+    }
+    
+    /// 获取我的锁仓通证
+    ///
+    /// - Parameters:
+    ///   - account: 用户名
+    ///   - lowerBound: 起点
+    ///   - success: success block
+    open func getLockTokens(_ account: String, lowerBound: Int32, success: @escaping (Error?, TableRowResponse<AssetsModel>?) -> Void) {
+        let params: TableRowRequestParam = TableRowRequestParam(scope: account, code: "eosio.token", table: "lockaccounts", json: true, lowerBound: lowerBound, upperBound: -1, limit: pageSize)
+        EOSRPC.sharedInstance.getTableRows(param: params) { (resp: TableRowResponse<AssetsModel>?, err) in
+            success(err, resp)
+        }
+    }
+    
+    /// 获取用户的合约钱包
+    ///
+    /// - Parameters:
+    ///   - account: 用户名
+    ///   - lowerBound: 起点
+    ///   - success: success block
+    open func getContractAsset(_ account: String, lowerBound: Int32, success: @escaping (Error?, TableRowResponse<AssetsModel>?) -> Void) {
+        let params: TableRowRequestParam = TableRowRequestParam(scope: account, code: "eosio.token", table: "ctxaccounts", json: true, lowerBound: lowerBound, upperBound: -1, limit: pageSize)
+        EOSRPC.sharedInstance.getTableRows(param: params) { (resp: TableRowResponse<AssetsModel>?, err) in
+            success(err, resp)
+        }
+    }
+    
+    /// 获取合约下的所有通证
+    ///
+    /// - Parameters:
+    ///   - contract: 合约名
+    ///   - success: success block
+    open func getTokenByContract(_ contract: String, success: @escaping (Error?, TableRowResponse<TokenSummary>?) -> Void) {
+        let params: TableRowRequestParam = TableRowRequestParam(scope: contract, code: "eosio.token", table: "stats", json: true, lowerBound: 0, upperBound: -1, limit: pageSize)
+        EOSRPC.sharedInstance.getTableRows(param: params) { (resp: TableRowResponse<TokenSummary>?, err) in
+            success(err, resp)
+        }
+    }
 }

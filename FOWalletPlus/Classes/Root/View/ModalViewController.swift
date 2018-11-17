@@ -62,7 +62,7 @@ class ModalViewController: UIViewController {
         
         let w: CGFloat = container.width - padding * 2
         let titleLabel: UILabel = UILabel(frame: CGRect(x: padding, y: imageView.bottom + 11, width: w, height: 0))
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        titleLabel.font = UIFont.systemFont(ofSize: 20)
         titleLabel.textColor = FONT_COLOR
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center

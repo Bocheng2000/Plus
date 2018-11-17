@@ -76,4 +76,8 @@ extension String {
         let i = self.index(self.startIndex, offsetBy: index)
         return String(self[i...i])
     }
+    
+    func toFloat() -> Float {
+        return Float.init(self) ?? 0
+    }
 }

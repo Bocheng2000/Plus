@@ -28,6 +28,10 @@ extension Date {
         return ""
     }
     
+    public static func now() -> Int {
+        return Int(floor(Date().timeIntervalSince1970 * 1000))
+    }
+    
     public func updateTimeToNow(date: Date) -> String {
         let d = date.timeIntervalSince1970
         let now = Date().timeIntervalSince1970

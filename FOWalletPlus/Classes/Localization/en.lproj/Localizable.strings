@@ -6,6 +6,7 @@
   Copyright © 2018 Sleep. All rights reserved.
 */
 
+"Smart" = "S";
 "NetWorkError" = "Network request failed";
 "CreateAccount" = "Create FO Account";
 "ImportAccount" = "Import Account";
@@ -52,3 +53,4 @@
 "Receive" = "Receive";
 "Vote" = "Vote";
 "Resource" = "Resource";
+"ShowHideToken" = "Show hide token";

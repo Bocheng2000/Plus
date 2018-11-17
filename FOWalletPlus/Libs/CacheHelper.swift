@@ -141,10 +141,117 @@ class CacheHelper: NSObject {
                 resp = AccountModel()
                 resp?.account = result.string(forColumn: "account")
                 resp?.pubKey = result.string(forColumn: "pubKey")
+                resp?.endPoint = result.string(forColumn: "endPoint")
+                resp?.backUp = result.int(forColumn: "backUp") == 1
             }
             return resp
         } catch {
             return Optional.none
         }
     }
+    
+    /// 保存用户的通证资产
+    ///
+    /// - Parameter assets: 通证列表
+    open func saveAccountAssets(_ assets: [AccountAssetModel]) {
+        db.beginTransaction()
+        do {
+            let sql = "REPLACE INTO TAssets ('primary', belong, contract, hide, quantity, lockToken, contractWallet, isSmart, symbol, updateAt) VALUES (?,?,?,?,?,?,?,?,?,?)"
+            for i in 0...(assets.count - 1) {
+                let model = assets[i]
+                try db.executeUpdate(sql, values: [
+                        model.primary,
+                        model.belong,
+                        model.contract,
+                        model.hide ? 1 : 0,
+                        model.quantity,
+                        model.lockToken,
+                        model.contractWallet,
+                        model.isSmart ? 1 : 0,
+                        model.symbol,
+                        Date().timeIntervalSince1970
+                    ])
+            }
+            db.commit()
+        } catch {
+            db.rollback()
+        }
+    }
+
+    /// 设置资产的隐藏
+    ///
+    /// - Parameters:
+    ///   - model: model
+    ///   - isHide: 是否隐藏
+    open func setAssetStatus(_ model: AccountAssetModel, isHide: Bool) {
+        let sql = "UPDATE TAssets SET hide = ?, updateAt = ? WHERE belong = ? AND symbol = ? AND contract = ?"
+        do {
+            try db.executeUpdate(sql, values: [
+                isHide ? 1 : 0,
+                Date().timeIntervalSince1970,
+                model.belong,
+                model.symbol,
+                model.contract
+                ])
+        } catch {
+            
+        }
+    }
+    
+    /// 获取指定用户的通证
+    ///
+    /// - Parameters:
+    ///   - account: 用户名
+    ///   - hide: 是否是隐藏状态的
+    /// - Returns: 资产列表
+    open func getAssetsByAccount(_ account: String, hide: Bool) -> [AccountAssetModel] {
+        let sql = "SELECT * FROM TAssets WHERE belong = ? AND hide = ? ORDER BY updateAt ASC"
+        var resp: [AccountAssetModel] = []
+        do {
+            let result = try db.executeQuery(sql, values: [account, hide ? 1 : 0])
+            while result.next() {
+                let primary = result.int(forColumn: "primary")
+                let belong = result.string(forColumn: "belong")!
+                let contract = result.string(forColumn: "contract")!
+                let hide = result.int(forColumn: "hide") == 1
+                let quantity = result.string(forColumn: "quantity")!
+                let lockToken = result.string(forColumn: "lockToken")!
+                let contractWallet = result.string(forColumn: "contractWallet")!
+                let isSmart = result.int(forColumn: "isSmart") == 1
+                let model = AccountAssetModel(primary, _belong: belong, _contract: contract, _hide: hide, _quantity: quantity, _lockToken: lockToken, _contractWallet: contractWallet, _isSmart: isSmart)
+                resp.append(model)
+            }
+        } catch {
+            
+        }
+        return resp
+    }
+
+    /// 保存通证信息
+    ///
+    /// - Parameter tokens: 通证信息的概要
+    open func saveTokens(_ tokens: [TokenSummary]) {
+        db.beginTransaction()
+        do {
+            let sql = "REPLACE INTO TTokens (connector_balance, connector_weight, issuer, max_exchange, max_supply, reserve_connector_balance, reserve_supply, supply, symbol) VALUES (?,?,?,?,?,?,?,?,?)"
+            for i in 0...(tokens.count - 1) {
+                let model = tokens[i]
+                try db.executeUpdate(sql, values: [
+                        model.connector_balance,
+                        model.connector_weight,
+                        model.issuer,
+                        model.max_exchange,
+                        model.max_supply,
+                        model.reserve_connector_balance,
+                        model.reserve_supply,
+                        model.supply,
+                        model.symbol
+                    ])
+            }
+            db.commit()
+        } catch {
+            db.rollback()
+        }
+    }
+
 }

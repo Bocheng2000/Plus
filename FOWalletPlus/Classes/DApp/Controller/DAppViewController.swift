@@ -14,6 +14,15 @@ class DAppViewController: FatherViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        makeUI()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
+    private func makeUI() {
+        navBar?.setBorderLine(position: .bottom, number: 0.5, color: BORDER_COLOR)
+    }
 }

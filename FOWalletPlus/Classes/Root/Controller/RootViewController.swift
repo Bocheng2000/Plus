@@ -33,7 +33,7 @@ class RootViewController: UITabBarController {
         
         let dappTitle = LanguageHelper.localizedString(key: "DApp")
         let dapp = DAppViewController(left: nil, title: dappTitle, right: nil)
-        dapp.tabBarItem.title = dappTitle
+        dapp.tabBarItem.title = "DApp Store"
         dapp.tabBarItem.image = UIImage(named: "dapp")
         dapp.tabBarItem.selectedImage = UIImage(named: "dapp_high")
         

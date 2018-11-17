@@ -30,7 +30,7 @@ class SelectAccountTableViewCell: UITableViewCell {
     }
     
     private func makeUI() {
-        textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        textLabel?.font = UIFont.systemFont(ofSize: 18)
         textLabel?.textColor = FONT_COLOR
         tintColor = BUTTON_COLOR
     }

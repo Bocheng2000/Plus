@@ -6,6 +6,7 @@
   Copyright © 2018 Sleep. All rights reserved.
 */
 
+"Smart" = "智";
 "NetWorkError" = "网络请求失败";
 "CreateAccount" = "创建 FO 账户";
 "ImportAccount" = "导入 FO 账户";
@@ -52,3 +53,4 @@
 "Receive" = "收款";
 "Vote" = "投票";
 "Resource" = "资源";
+"ShowHideToken" = "显示隐藏通证";

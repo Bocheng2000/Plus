@@ -11,6 +11,8 @@ import UIKit
 class AccountModel: NSObject {
     var account: String!
     var pubKey: String!
+    var endPoint: String?
+    var backUp: Bool?
     convenience init(_ _account: String, _pubKey: String!) {
         self.init()
         account = _account

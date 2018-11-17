@@ -18,7 +18,6 @@ class BackUpViewController: FatherViewController {
     private var privateKeyLabel: CopyLabel!
     private var doneBtn: BaseButton!
     private var checkTime: Int = 0
-    private var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,13 +107,7 @@ class BackUpViewController: FatherViewController {
             if err == nil && info != nil {
                 self?.saveInfoInLocal()
             } else {
-                if self?.timer != nil {
-                    self?.timer?.invalidate()
-                    self?.timer = nil
-                }
-                self?.timer = Timer(timeInterval: 3, target: self!, selector: #selector(self?.checkAccountOnChain), userInfo: nil, repeats: false)
-                RunLoop.main.add((self?.timer)!, forMode: .commonModes)
-                self?.timer?.fire()
+                Timer.scheduledTimer(timeInterval: 3, target: self!, selector: #selector(self?.checkAccountOnChain), userInfo: nil, repeats: false)
             }
         }
     }

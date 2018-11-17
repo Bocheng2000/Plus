@@ -59,6 +59,28 @@ class HomeUtils: NSObject {
         return "\(symbol)@\(contract)"
     }
     
+    /// 获取通证的精度
+    ///
+    /// - Parameter quantity: 数量
+    /// - Returns: 精度的长度
+    open class func getTokenPrecision(_ quantity: String) -> Int {
+        let split = quantity.split(separator: ".")
+        if split.count > 1 {
+            return "\(split[1])".count
+        }
+        return 0
+    }
+    
+    /// 组装Quantity
+    ///
+    /// - Parameters:
+    ///   - value: 值
+    ///   - symbol: 通证
+    /// - Returns: quantity
+    open class func getFullQuantity(_ value: String, symbol: String) -> String {
+        return "\(value) \(symbol)"
+    }
+    
     /// 格式化数量
     ///
     /// - Parameter text: 输入字符串
