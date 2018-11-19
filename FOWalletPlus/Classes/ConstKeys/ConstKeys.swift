@@ -17,6 +17,7 @@ let ERROR_COLOR: UIColor = UIColor.colorWithHexString(hex: "#FF9900")
 let BUTTON_COLOR: UIColor = UIColor.colorWithHexString(hex: "#1199DD")
 let TINT_COLOR: UIColor = UIColor.colorWithHexString(hex: "#7066B0")
 let SEPEAT_COLOR: UIColor = UIColor.colorWithHexString(hex: "#DEDEDE")
+let themeColor: UIColor = UIColor.colorWithHexString(hex: "#6965B3")
 
 let kBounds = UIScreen.main.bounds
 let scale = UIScreen.main.scale

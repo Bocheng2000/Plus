@@ -26,7 +26,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
         let current = WalletManager.shared.getCurrent()
         if current != nil {
             getLocalData(current!)
-            tableView.mj_header.beginRefreshing()
+            getAssetsOnChain(current!)
         }
     }
 
@@ -133,7 +133,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
             btn.setTitle(dict["title"], for: .normal)
             btn.resize()
             btn.tag = index
-                btn.addTarget(self, action: #selector(menuBtnDidClick(sender:)), for: .touchUpInside)
+            btn.addTarget(self, action: #selector(menuBtnDidClick(sender:)), for: .touchUpInside)
             headerView.addSubview(btn)
         }
         return headerView
@@ -202,6 +202,22 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "TokenTableViewCell") as! TokenTableViewCell
         cell.model = dataSource[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let model = dataSource[indexPath.row]
+        let tokenInfo = CacheHelper.shared.getOneToken(model.symbol, contract: model.contract)
+        if tokenInfo == nil {
+            let err = LanguageHelper.localizedString(key: "NoTokenFound")
+            let noticeBar = NoticeBar(title: err, defaultType: .error)
+            noticeBar.show(duration: 1, completed: nil)
+        } else {
+            let summary = TokenSummaryViewController(left: "img|back", title: nil, right: nil)
+            summary.model = model
+            summary.token = tokenInfo!
+            navigationController?.pushViewController(summary, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

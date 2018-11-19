@@ -104,4 +104,20 @@ class HomeUtils: NSObject {
         }
         return String(preStr)
     }
+    
+    open class func getTokenPrice(_ token: TokenSummary?) -> Float {
+        if token == nil {
+            return 0
+        }
+        if token!.connector_weight.toFloat() == 0 {
+            return 0
+        }
+        let supply = getQuantity(token!.supply).toFloat()
+        let reserveSupply = getQuantity(token!.reserve_supply).toFloat()
+        let cw = token!.connector_weight.toFloat()
+        let balance = getQuantity(token!.connector_balance)
+        let reserveConnectorBalance = getQuantity(token!.reserve_connector_balance)
+        let balances = balance.toFloat() + reserveConnectorBalance.toFloat()
+        return balances / (cw * (reserveSupply + supply))
+    }
 }

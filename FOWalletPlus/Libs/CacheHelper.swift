@@ -226,6 +226,35 @@ class CacheHelper: NSObject {
         }
         return resp
     }
+    
+    /// 获取账户的某一个资产
+    ///
+    /// - Parameters:
+    ///   - account: 账户名
+    ///   - symbol: 通证
+    ///   - contract: 合约
+    /// - Returns: model
+    open func getOneAsset(_ account: String, symbol: String, contract: String) -> AccountAssetModel? {
+        let sql = "SELECT * FROM TAssets WHERE belong = ? AND symbol = ? AND contract = ?"
+        do {
+            var resp: AccountAssetModel?
+            let result = try db.executeQuery(sql, values: [account, symbol, contract])
+            while result.next() {
+                let primary = result.int(forColumn: "primary")
+                let belong = result.string(forColumn: "belong")!
+                let contract = result.string(forColumn: "contract")!
+                let hide = result.int(forColumn: "hide") == 1
+                let quantity = result.string(forColumn: "quantity")!
+                let lockToken = result.string(forColumn: "lockToken")!
+                let contractWallet = result.string(forColumn: "contractWallet")!
+                let isSmart = result.int(forColumn: "isSmart") == 1
+                resp = AccountAssetModel(primary, _belong: belong, _contract: contract, _hide: hide, _quantity: quantity, _lockToken: lockToken, _contractWallet: contractWallet, _isSmart: isSmart)
+            }
+            return resp
+        } catch {
+            return Optional.none
+        }
+    }
 
     /// 保存通证信息
     ///
@@ -254,4 +283,31 @@ class CacheHelper: NSObject {
         }
     }
 
+    /// 获取某一个通证的信息
+    ///
+    /// - Parameters:
+    ///   - symbol: 通证
+    ///   - contract: 合约
+    /// - Returns: model
+    open func getOneToken(_ symbol: String, contract: String) -> TokenSummary? {
+        let sql = "SELECT * FROM TTokens WHERE symbol = ? AND issuer = ?"
+        do {
+            var resp: TokenSummary?
+            let result = try db.executeQuery(sql, values: [symbol, contract])
+            while result.next() {
+                resp = TokenSummary()
+                resp?.max_supply = result.string(forColumn: "max_supply")
+                resp?.supply = result.string(forColumn: "supply")
+                resp?.connector_balance = result.string(forColumn: "connector_balance")
+                resp?.connector_weight = result.string(forColumn: "connector_weight")
+                resp?.issuer = result.string(forColumn: "issuer")
+                resp?.max_exchange = result.string(forColumn: "max_exchange")
+                resp?.reserve_connector_balance = result.string(forColumn: "reserve_connector_balance")
+                resp?.reserve_supply = result.string(forColumn: "reserve_supply")
+            }
+            return resp
+        } catch {
+            return Optional.none
+        }
+    }
 }

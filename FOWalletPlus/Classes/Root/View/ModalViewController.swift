@@ -88,7 +88,7 @@ class ModalViewController: UIViewController {
         let _w: CGFloat = w - CGFloat(model.buttons.count - 1) * 20
         for i in 0...(model.buttons.count - 1) {
             let m = model.buttons[i]
-            let btn = BaseButton(frame: CGRect(x: CGFloat(i) * w + 20, y: _h + 20, width: _w, height: 50))
+            let btn = BaseButton(frame: CGRect(x: CGFloat(i) * w + 20, y: _h + 30, width: _w, height: 50))
             btn.setTitle(m.title, for: .normal)
             btn.setTitleColor(m.titleColor, for: .normal)
             btn.titleLabel?.font = m.titleFont
@@ -102,7 +102,7 @@ class ModalViewController: UIViewController {
             container.addSubview(btn)
         }
         
-        let height: CGFloat = _h + 70 + 20
+        let height: CGFloat = _h + 70 + 30
         container.frame = CGRect(x: padding, y: (kSize.height - height) / 2, width: kSize.width - padding * 2, height: height)
     }
     

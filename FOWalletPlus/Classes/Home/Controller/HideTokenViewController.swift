@@ -24,6 +24,11 @@ class HideTokenViewController: FatherViewController, UITableViewDelegate, UITabl
         makeUI()
         createDataSource()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
 
     private func makeUI() {
         navBar?.setBorderLine(position: .bottom, number: 0.5, color: BORDER_COLOR)
@@ -82,6 +87,22 @@ class HideTokenViewController: FatherViewController, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let model = dataSource[indexPath.row]
+        let tokenInfo = CacheHelper.shared.getOneToken(model.symbol, contract: model.contract)
+        if tokenInfo == nil {
+            let err = LanguageHelper.localizedString(key: "NoTokenFound")
+            let noticeBar = NoticeBar(title: err, defaultType: .error)
+            noticeBar.show(duration: 1, completed: nil)
+        } else {
+            let vc = TokenDetailViewController(left: "img|back", title: nil, right: "img|qr")
+            vc.model = tokenInfo!
+            vc.showAddButton = false
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

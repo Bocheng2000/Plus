@@ -17,9 +17,9 @@ class FatherViewController: UIViewController {
     internal var titleLabel: UILabel?
     internal var rightBtn: UIButton?
     
-    private var _left: String?
-    private var _title: String?
-    private var _right: String?
+    var _left: String?
+    var _title: String?
+    var _right: String?
     
     convenience init(left: String?, title: String?, right: String?) {
         self.init()

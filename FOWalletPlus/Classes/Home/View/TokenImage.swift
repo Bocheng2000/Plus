@@ -13,6 +13,7 @@ class TokenImageModel: NSObject {
     var contract: String!
     var isSmart: Bool!
     var wh: CGFloat! = 60
+    var showSmart: Bool = true
     convenience init(_ _symbol: String, _contract: String, _isSmart: Bool, _wh: CGFloat?) {
         self.init()
         symbol = _symbol
@@ -22,17 +23,30 @@ class TokenImageModel: NSObject {
             wh = _wh!
         }
     }
+    convenience init(_ _symbol: String, _contract: String, _isSmart: Bool, _wh: CGFloat?, _showSmart: Bool?) {
+        self.init()
+        symbol = _symbol
+        contract = _contract
+        isSmart = _isSmart
+        if _wh != nil {
+            wh = _wh!
+        }
+        if _showSmart != nil {
+            showSmart = _showSmart!
+        }
+    }
+    
 }
 
 class TokenImage: UIImageView {
     lazy var smartLabel: UILabel = {
-       let label = UILabel(frame: CGRect(x: width - 15, y: 0, width: 20, height: 20))
+       let label = UILabel(frame: CGRect(x: width - (width / 4), y: 0, width: width / 3, height: height / 3))
         label.backgroundColor = UIColor.colorWithHexString(hex: "#1199DD")
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 0.65 * (width / 3), weight: .semibold)
         label.textColor = UIColor.white
         label.text = LanguageHelper.localizedString(key: "Smart")
-        label.layer.cornerRadius = 2
+        label.layer.cornerRadius = 3
         label.layer.masksToBounds = true
         return label
     }()
@@ -64,8 +78,12 @@ class TokenImage: UIImageView {
                 let generator = IconGenerator(size: model.wh * scale, hash: data)
                 image = UIImage(cgImage: generator.render()!)
             }
-            if model.isSmart {
-                smartLabel.isHidden = false
+            if model.showSmart {
+                if model.isSmart {
+                    smartLabel.isHidden = false
+                } else {
+                    smartLabel.isHidden = true
+                }
             } else {
                 smartLabel.isHidden = true
             }
