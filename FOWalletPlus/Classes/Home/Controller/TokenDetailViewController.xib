@@ -24,13 +24,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="swy-j4-gHI">
-                    <rect key="frame" x="0.0" y="64" width="375" height="523"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="555"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKH-Re-mfe" customClass="BaseButton" customModule="FOWalletPlus" customModuleProvider="target">
-                    <rect key="frame" x="20" y="587" width="335" height="60"/>
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="dqd-RG-Pz5"/>
+                        <constraint firstAttribute="height" constant="48" id="dqd-RG-Pz5"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                 </button>
@@ -38,12 +38,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="swy-j4-gHI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="IeA-7G-mTj"/>
-                <constraint firstItem="uKH-Re-mfe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Mhu-Ed-LVL"/>
+                <constraint firstItem="uKH-Re-mfe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Mhu-Ed-LVL"/>
                 <constraint firstItem="swy-j4-gHI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Uu7-bU-KMD"/>
                 <constraint firstItem="uKH-Re-mfe" firstAttribute="top" secondItem="swy-j4-gHI" secondAttribute="bottom" id="Y2J-9m-T9Z"/>
                 <constraint firstItem="swy-j4-gHI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="amt-cx-Wdy"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uKH-Re-mfe" secondAttribute="bottom" constant="20" id="nN7-sh-Vjk"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uKH-Re-mfe" secondAttribute="trailing" constant="20" id="vWJ-kn-e8f"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uKH-Re-mfe" secondAttribute="bottom" id="nN7-sh-Vjk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uKH-Re-mfe" secondAttribute="trailing" id="vWJ-kn-e8f"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="24.5" y="51.5"/>

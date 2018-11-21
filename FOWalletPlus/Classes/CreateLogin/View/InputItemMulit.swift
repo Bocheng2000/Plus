@@ -15,7 +15,7 @@ import UIKit
 class InputItemMulit: UIView, UITextViewDelegate {
     var titleLabel: UILabel!
     var textView: AutoHeightTextView!
-    var delegate: InputItemMulitDelegate?
+    weak var delegate: InputItemMulitDelegate?
     
     public var model: InputItemModel! {
         didSet {

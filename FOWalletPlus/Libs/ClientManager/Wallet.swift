@@ -36,7 +36,7 @@ class Wallet: NSObject {
             priKeyEncode = _priKey
         } else {
             password = _password.md5String()
-            priKeyEncode = AES.encrypt(_priKey, password: password)
+            priKeyEncode = AES.encrypt(_priKey, password: String(password.reversed()))
         }
     }
     
@@ -50,7 +50,7 @@ class Wallet: NSObject {
     open func getPriKey(_ nextPwd: String) -> String? {
         if verifyPassword(nextPwd) {
             let AES = CryptoJS.AES()
-            return AES.decrypt(priKeyEncode, password: password)
+            return AES.decrypt(priKeyEncode, password: String(password.reversed()))
         }
         return nil
     }

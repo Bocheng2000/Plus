@@ -28,6 +28,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
             getLocalData(current!)
             getAssetsOnChain(current!)
         }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {

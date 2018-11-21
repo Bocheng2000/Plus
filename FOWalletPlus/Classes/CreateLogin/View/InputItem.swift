@@ -16,8 +16,8 @@ import UIKit
 class InputItem: UIView, UITextFieldDelegate {
     
     var titleLabel: UILabel!
-    var textField: UITextField!
-    var delegate: InputItemDelegate?
+    var textField: BaseTextField!
+    weak var delegate: InputItemDelegate?
     
     public var model: InputItemModel! {
         didSet {
@@ -45,7 +45,7 @@ class InputItem: UIView, UITextFieldDelegate {
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = UIColor.colorWithHexString(hex: "#666666")
         addSubview(titleLabel)
-        textField = UITextField(frame: CGRect(x: titleLabel.x, y: titleLabel.bottom + 7, width: titleLabel.width, height: 25))
+        textField = BaseTextField(frame: CGRect(x: titleLabel.x, y: titleLabel.bottom + 7, width: titleLabel.width, height: 25))
         textField.borderStyle = .none
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.clearButtonMode = .whileEditing

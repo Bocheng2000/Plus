@@ -73,3 +73,17 @@
 "ExchangeToken" = "兑换";
 "PayToken" = "付款";
 "ReceiveToken" = "收款";
+"SymbolDesc" = "通证";
+"ReceiveAccount" = "收款账户";
+"ReceiveAccountName" = "收款账户名称";
+"NoAssetsFound" = "没有发现该通证";
+"PayAmount" = "付款数量";
+"AvailableBalance" = "余额";
+"InputPayAmount" = "请输入付款数量";
+"Memo" = "备注";
+"Done" = "完成";
+"VerifyPassword" = "验证密码";
+"WalletPassword" = "钱包密码";
+"Cancel" = "取消";
+"PasswordIsError" = "密码错误";
+"Oops" = "哎呀！获取当前账户失败";

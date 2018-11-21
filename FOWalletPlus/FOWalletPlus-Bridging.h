@@ -20,7 +20,7 @@
 
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
-#import "FSActionSheet.h"
+#import "JCAlertController.h"
 #import "ZSProgressHUD.h"
 #import "MJRefresh.h"
 #import "PTLoadingHubView.h"

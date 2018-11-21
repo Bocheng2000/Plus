@@ -32,7 +32,6 @@ var se_iso8601dateFormatterRequest: DateFormatter = {
 }()
 
 func customDateFormatter(_ decoder: Decoder) throws -> Date {
-    print("dddd")
     let dateString = try decoder.singleValueContainer().decode(String.self)
     switch dateString.count {
     case 20..<Int.max:

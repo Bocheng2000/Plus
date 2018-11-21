@@ -68,6 +68,7 @@ class CreateViewController: FatherViewController, InputItemDelegate {
         container.backgroundColor = UIColor.white
         scrollView.addSubview(container)
         account = InputItem(frame: CGRect(x: padding, y: 11, width: kSize.width - padding * 2, height: 70))
+        account.textField.keyboardType = .emailAddress
         let accountModel = InputItemModel(
             LanguageHelper.localizedString(key: "InputAccountName"),
             _placeholder: LanguageHelper.localizedString(key: "AccountOops"),
@@ -101,6 +102,7 @@ class CreateViewController: FatherViewController, InputItemDelegate {
         container.addSubview(confirm)
         
         prompt = InputItem(frame: CGRect(x: account.x, y: confirm.bottom + 9, width: confirm.width, height: confirm.height))
+        prompt.textField.keyboardType = .emailAddress
         let promptModel = InputItemModel(
             LanguageHelper.localizedString(key: "Prompt"),
             _placeholder: LanguageHelper.localizedString(key: "Optional"),

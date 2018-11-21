@@ -74,6 +74,7 @@ class ImportViewController: FatherViewController, InputItemDelegate, InputItemMu
             _defaultValue: nil,
             _regex: createAccountReg,
             _isSecureTextEntry: false)
+        privateKey.textView.keyboardType = .emailAddress
         privateKey.model = privateKeyModel
         container.addSubview(privateKey)
         
