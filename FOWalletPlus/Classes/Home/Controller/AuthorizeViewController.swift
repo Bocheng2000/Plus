@@ -9,7 +9,8 @@
 import UIKit
 
 @objc protocol AuthorizeViewControllerDelegate: NSObjectProtocol {
-    @objc optional func authorizeViewController(sender: AuthorizeViewController, cancel: Bool, transactionId: String?)
+    @objc optional func authorizeViewController(sender: AuthorizeViewController, cancel: Bool)
+    @objc optional func authorizeViewController(sender: AuthorizeViewController, resp: TransactionResult)
 }
 
 class AuthorizeViewController: UIViewController {
@@ -34,7 +35,7 @@ class AuthorizeViewController: UIViewController {
         definesPresentationContext = true
         modalPresentationStyle = .overCurrentContext
         modalTransitionStyle = .crossDissolve
-        source.present(self, animated: true) {
+        source.present(self, animated: false) {
             UIView.animate(withDuration: 0.2, animations: {
                 self.container.y = kSize.height - self.container.height
             })
@@ -70,7 +71,7 @@ class AuthorizeViewController: UIViewController {
         for i in (0...model.items.count - 1) {
             let item = model.items[i]
             let titleSize = item.title.getTextSize(font: font, lineHeight: 0, maxSize: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)))
-            let label = UILabel(frame: CGRect(x: padding, y: line.bottom + CGFloat(i) * 54, width: titleSize.width, height: 54))
+            let label = UILabel(frame: CGRect(x: padding, y: line.bottom + CGFloat(i) * 44, width: titleSize.width, height: 44))
             label.font = font
             label.textColor = color
             label.text = item.title
@@ -85,7 +86,7 @@ class AuthorizeViewController: UIViewController {
             container.addSubview(label)
             container.addSubview(detailLabel)
         }
-        let confirmBtn = BaseButton(frame: CGRect(x: padding, y: line.bottom + CGFloat(model.items.count) * 54 + 20, width: kSize.width - padding * 2, height: 48))
+        let confirmBtn = BaseButton(frame: CGRect(x: padding, y: line.bottom + CGFloat(model.items.count) * 44 + 20, width: kSize.width - padding * 2, height: 48))
         confirmBtn.layer.cornerRadius = 4
         confirmBtn.layer.masksToBounds = true
         confirmBtn.backgroundColor = BUTTON_COLOR
@@ -97,7 +98,7 @@ class AuthorizeViewController: UIViewController {
     
     @objc private func closeBtnDidClick() {
         if delegate != nil {
-            delegate?.authorizeViewController!(sender: self, cancel: true, transactionId: nil)
+            delegate?.authorizeViewController!(sender: self, cancel: true)
         }
         UIView.animate(withDuration: 0.2, animations: {
             self.container.y = kSize.height
@@ -170,7 +171,7 @@ class AuthorizeViewController: UIViewController {
     /// - Parameter value: 密码
     private func confirmDidClick(value: String?) {
         if value == nil || value! == "" {
-            let err = LanguageHelper.localizedString(key: "PasswordInvalid")
+            let err = LanguageHelper.localizedString(key: "PasswordNotNull")
             ZSProgressHUD.showDpromptText(err)
             return
         }
@@ -204,6 +205,94 @@ class AuthorizeViewController: UIViewController {
     ///
     /// - Parameter pkString: 私钥
     private func invokeTransaction(_ pkString: String) {
-        
+        model.params.pkString = pkString
+        PTLoadingHubView.show()
+        switch model.type {
+            case .transfer:
+                ClientManager.shared.transfer(model.params as! ExTransferModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .exchange:
+                ClientManager.shared.exchange(model.params as! ToExchangeModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .unlockToken:
+                ClientManager.shared.unLockToken(model.params as! ToUnLockTokenModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .transferInLock:
+                ClientManager.shared.transferInLock(model.params as! ToTransferInLockModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .rechargeWallet:
+                ClientManager.shared.rechargeWallet(model.params as! ToContractWalletModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .withDrawWallet:
+                ClientManager.shared.withDrawWallet(model.params as! ToContractWalletModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .createForPay:
+                ClientManager.shared.createNewAccount(model.params as! ToCreateAccountModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .delegateRam:
+                ClientManager.shared.delegateRam(model.params as! ToDelegateRamModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .undelegateRam:
+                ClientManager.shared.unDelegateRam(model.params as! ToUnDelegateRamModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .delegateNet:
+                ClientManager.shared.delegateNet(model.params as! ToDelegateBWModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .undelegateNet:
+                ClientManager.shared.unDelegateNet(model.params as! ToUnDelegateBWModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .delegateCpu:
+                ClientManager.shared.delegateCpu(model.params as! ToDelegateBWModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .undelegateCpu:
+                ClientManager.shared.unDelegateCpu(model.params as! ToUnDelegateBWModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            case .vote:
+                ClientManager.shared.vote(model.params as! ToVoteModel) { [weak self] (err, resp) in
+                    self?.handlerTransferResult(err, resp: resp)
+                }
+                break
+            default:
+                PTLoadingHubView.dismiss()
+        }
+    }
+    
+    private func handlerTransferResult(_ error: Error?, resp: TransactionResult?) {
+        PTLoadingHubView.dismiss()
+        if error != nil {
+            let err = LanguageHelper.localizedString(key: "TransactionFailed")
+            ZSProgressHUD.showDpromptText(err)
+        } else {
+            if delegate != nil {
+                delegate?.authorizeViewController!(sender: self, resp: resp!)
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

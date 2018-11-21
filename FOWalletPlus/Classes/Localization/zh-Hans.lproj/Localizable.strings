@@ -87,3 +87,16 @@
 "Cancel" = "取消";
 "PasswordIsError" = "密码错误";
 "Oops" = "哎呀！获取当前账户失败";
+"PasswordNotNull" = "密码不能为空";
+"AccountNameNotNull" = "账户名不可为空";
+"DisableTransferSelf" = "不能给自己的账户转账";
+"QuantityNotNull" = "请输入数量";
+"QuantityNotZero" = "数量不能为0";
+"LeakOfBalance" = "余额不足";
+"Quantity" = "数量";
+"TransactionFailed" = "交易失败";
+"TransactionType" = "交易类型";
+"TransferFrom" = "转出账户";
+"TransferTo" = "转入账户";
+"transactionInfo" = "交易信息";
+"Pay" = "付款";

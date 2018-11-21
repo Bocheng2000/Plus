@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PayViewController: FatherViewController, TokenInputPreviewDelegate {
+class PayViewController: FatherViewController, TokenInputPreviewDelegate, AuthorizeViewControllerDelegate {
 
     open var model: BaseTokenModel!
     
@@ -61,7 +61,6 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate {
                 assetModel = asset!
             }
         }
-        
     }
     
     private func makeUI() {
@@ -117,9 +116,62 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate {
     }
     
     @IBAction func payButtonDidClick(_ sender: BaseButton) {
-        print("dddd")
+        view.endEditing(true)
+        if checkParamsIsValid() {
+            let receiver = (receiveAccount.inputField.text ?? "").trimAll()
+            let amountValue = amount.inputField.text ?? ""
+            let memoValue = memo.inputField.text ?? ""
+            let current = WalletManager.shared.getCurrent()!
+            
+            let quantity = HomeUtils.getQuantity(assetModel.quantity)
+            let precision = HomeUtils.getTokenPrecision(quantity)
+            let quantityFmt = "\(amountValue.toFloat().toFixed(precision)) \(model.symbol!)"
+            let transType = AuthorizeItemModel(LanguageHelper.localizedString(key: "TransactionType"), _detail: LanguageHelper.localizedString(key: "Pay"))
+            let fromItem = AuthorizeItemModel(LanguageHelper.localizedString(key: "TransferFrom"), _detail: current.account)
+            let toItem = AuthorizeItemModel(LanguageHelper.localizedString(key: "TransferTo"), _detail: receiver)
+            let count = AuthorizeItemModel(LanguageHelper.localizedString(key: "Quantity"), _detail: quantityFmt)
+            let memoVal = AuthorizeItemModel(LanguageHelper.localizedString(key: "Memo"), _detail: memoValue)
+            
+            let extranferModel = ExTransferModel(quantityFmt, _from: current.account, _to: receiver, _memo: memoValue, _contract: model.contract)
+            let authModel = AuthorizeModel(LanguageHelper.localizedString(key: "transactionInfo"), _items: [transType, fromItem, toItem, count, memoVal], _type: .transfer, _params: extranferModel)
+            let auth = AuthorizeViewController(authModel)
+            auth.delegate = self
+            auth.show(source: self)
+        }
     }
     
+    private func checkParamsIsValid() -> Bool {
+        let receiver = receiveAccount.inputField.text ?? ""
+        if receiver.trim() == "" {
+            showErrorWithKey("AccountNameNotNull")
+            return false
+        }
+        let current = WalletManager.shared.getCurrent()!
+        if current.account == receiver {
+            showErrorWithKey("DisableTransferSelf")
+            return false
+        }
+        let amountValue = amount.inputField.text ?? ""
+        if amountValue == "" {
+            showErrorWithKey("QuantityNotNull")
+            return false
+        }
+        let amoutValueFloat = amountValue.toFloat()
+        if amoutValueFloat == 0 {
+            showErrorWithKey("QuantityNotZero")
+            return false
+        }
+        if amoutValueFloat > HomeUtils.getQuantity(assetModel.quantity).toFloat() {
+            showErrorWithKey("LeakOfBalance")
+            return false
+        }
+        return true
+    }
+    
+    private func showErrorWithKey(_ key: String) {
+        let err = LanguageHelper.localizedString(key: key)
+        ZSProgressHUD.showDpromptText(err)
+    }
     
     private func addObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(note:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
@@ -157,5 +209,13 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate {
     
     func tokenInputPreviewBlur(sender: TokenInputPreview) {
         
+    }
+    
+    func authorizeViewController(sender: AuthorizeViewController, cancel: Bool) {
+        
+    }
+    
+    func authorizeViewController(sender: AuthorizeViewController, resp: TransactionResult) {
+        print(resp.transactionId)
     }
 }

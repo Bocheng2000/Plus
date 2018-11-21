@@ -70,9 +70,9 @@ enum TransactionType: NSInteger {
 class AuthorizeModel: NSObject {
     var title: String!
     var items: [AuthorizeItemModel]!
-    var type:TransactionType!
-    var params: Any?
-    convenience init(_ _title: String, _items: [AuthorizeItemModel], _type: TransactionType, _params: Any?) {
+    var type: TransactionType!
+    var params: PkStringModel!
+    convenience init(_ _title: String, _items: [AuthorizeItemModel], _type: TransactionType, _params: PkStringModel) {
         self.init()
         title = _title
         items = _items

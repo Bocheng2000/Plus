@@ -8,9 +8,22 @@
 
 import UIKit
 
-class BaseTextField: UITextField {
-    override func draw(_ rect: CGRect) {
-        super.drawText(in: rect)
+class BaseTextField: UITextField, UITextFieldDelegate {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addToolBar()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        addToolBar()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    private func addToolBar() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: kSize.width, height: 40))
         let btn = UIButton(frame: CGRect(x: kSize.width - 60, y: 0, width: 50, height: 40))
         btn.setTitle(LanguageHelper.localizedString(key: "Done"), for: .normal)
@@ -18,8 +31,8 @@ class BaseTextField: UITextField {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         btn.contentHorizontalAlignment = .right
         toolBar.setItems([UIBarButtonItem(customView: btn)], animated: true)
-        inputAccessoryView = toolBar
         btn.addTarget(self, action: #selector(doneBtnDidClick), for: .touchUpInside)
+        inputAccessoryView = toolBar
     }
     
     @objc private func doneBtnDidClick() {

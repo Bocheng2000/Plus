@@ -87,3 +87,16 @@
 "Cancel" = "Cancel";
 "PasswordIsError" = "Password is error.";
 "Oops" = "Oops! no invalid account found";
+"PasswordNotNull" = "Password can't empty";
+"AccountNameNotNull" = "The account name cannot be null.";
+"DisableTransferSelf" = "You can not transfer to the account of yourself";
+"QuantityNotNull" = "Quantity can not null";
+"QuantityNotZero" = "Quantity can not be 0";
+"LeakOfBalance" = "Overdraw balance.";
+"Quantity" = "Quantity";
+"TransactionFailed" = "Transaction failure";
+"TransactionType" = "Transaction type";
+"TransferFrom" = "Transfer from";
+"TransferTo" = "Transfer to";
+"transactionInfo" = "transaction info";
+"Pay" = "Pay";
