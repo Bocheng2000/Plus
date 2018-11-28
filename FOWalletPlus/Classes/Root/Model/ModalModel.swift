@@ -12,9 +12,9 @@ typealias handlerBlock = () -> Void
 
 class ModalButtonModel: NSObject {
     var title: String!
-    var titleColor: UIColor = BUTTON_COLOR
+    var titleColor: UIColor = UIColor.white
     var titleFont: UIFont = UIFont.systemFont(ofSize: 16)
-    var backgroundColor: UIColor = UIColor.white
+    var backgroundColor: UIColor = BUTTON_COLOR
     var borderColor: UIColor = BUTTON_COLOR
     var handler: handlerBlock?
     override init() {

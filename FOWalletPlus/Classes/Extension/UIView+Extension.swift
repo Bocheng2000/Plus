@@ -179,4 +179,12 @@ extension UIView {
         self.layer.addSublayer(layer)
     }
     
+    func setLinearColor(_ colors: [CGColor]) {
+        let nextLayer = CAGradientLayer()
+        nextLayer.frame = bounds
+        nextLayer.colors = colors
+        nextLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        nextLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        layer.addSublayer(nextLayer)
+    }
 }

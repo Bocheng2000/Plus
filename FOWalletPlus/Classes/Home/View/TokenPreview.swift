@@ -31,7 +31,7 @@ class TokenPreview: UIView {
         tokenLabel.font = UIFont.systemFont(ofSize: 18)
         tokenLabel.textColor = FONT_COLOR
         addSubview(tokenLabel)
-        setBorderLine(position: .bottom, number: 0.5, color: UIColor.colorWithHexString(hex: "#0096DD"))
+        setBorderLine(position: .bottom, number: 0.5, color: lineColor)
     }
     
     required init?(coder aDecoder: NSCoder) {

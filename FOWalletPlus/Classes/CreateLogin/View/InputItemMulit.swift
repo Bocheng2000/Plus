@@ -49,7 +49,7 @@ class InputItemMulit: UIView, UITextViewDelegate {
         textView.textContainerInset = .zero
         textView.delegate = self
         addSubview(textView)
-        setBorderLine(position: .bottom, number: 0.5, color: UIColor.colorWithHexString(hex: "#0096DD"))
+        setBorderLine(position: .bottom, number: 0.5, color: lineColor)
     }
     
     required init?(coder aDecoder: NSCoder) {

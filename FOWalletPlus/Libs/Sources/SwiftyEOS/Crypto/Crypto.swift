@@ -58,7 +58,7 @@ func AESCrypt(inData:Data, keyData:Data, ivData:Data, operation:Int) -> Data {
         cryptData.removeSubrange(numBytesEncrypted..<cryptData.count)
         
     } else {
-        print("Error: \(cryptStatus)")
+        
     }
     
     if operation == kCCDecrypt {

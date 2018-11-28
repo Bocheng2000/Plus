@@ -22,7 +22,7 @@ class CommonTableViewCell: UITableViewCell {
         didSet {
             icon.image = UIImage(named: model.icon)
             let titleSize = model.title.getTextSize(font: titleLabel.font, lineHeight: 0, maxSize: CGSize(width: 100, height: CGFloat(MAXFLOAT)))
-            titleLabel.frame = CGRect(x: 64, y: 0, width: titleSize.width, height: height)
+            titleLabel.frame = CGRect(x: 60, y: 0, width: titleSize.width, height: height)
             titleLabel.text = model.title
             valueLabel.frame = CGRect(x: titleLabel.right + 10, y: 0, width: kSize.width - titleLabel.right - 10 - 26, height: height)
             valueLabel.text = model.value

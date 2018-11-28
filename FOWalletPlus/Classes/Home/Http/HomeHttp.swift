@@ -59,7 +59,7 @@ class HomeHttp: NSObject {
             let quantity = HomeUtils.getQuantity(model.balance.quantity)
             let symbol = HomeUtils.getSymbol(model.balance.quantity)
             let precision = HomeUtils.getTokenPrecision(quantity)
-            let zero: Float = 0
+            let zero: Decimal = 0
             let zeroToFix = HomeUtils.getFullQuantity(zero.toFixed(precision), symbol: symbol)
             let extendSymbol = HomeUtils.getExtendSymbol(symbol, contract: model.balance.contract)
             exists[extendSymbol] = true
@@ -72,7 +72,7 @@ class HomeHttp: NSObject {
             let extendSymbol = HomeUtils.getExtendSymbol(symbol, contract: model.balance.contract)
             if exists[extendSymbol] == nil {
                 let symbol = HomeUtils.getSymbol(model.balance.quantity)
-                let zero: Float = 0
+                let zero: Decimal = 0
                 let zeroToFix = HomeUtils.getFullQuantity(zero.toFixed(4), symbol: symbol)
                 let m = AccountAssetModel(model.primary, _belong: account, _contract: model.balance.contract, _hide: false, _quantity: zeroToFix, _lockToken: zeroToFix, _contractWallet: zeroToFix, _isSmart: tokens[extendSymbol]?.isSmart ?? false)
                 nextAsset.append(m)
@@ -109,7 +109,7 @@ class HomeHttp: NSObject {
                 let symbol = HomeUtils.getSymbol(value.balance.quantity)
                 let quantity = HomeUtils.getQuantity(value.balance.quantity)
                 let precision = HomeUtils.getTokenPrecision(quantity)
-                let zero: Float = 0
+                let zero: Decimal = Decimal(0)
                 let zeroToFix = HomeUtils.getFullQuantity(zero.toFixed(precision), symbol: symbol)
                 let m = AccountAssetModel(value.primary, _belong: account, _contract: value.balance.contract, _hide: true, _quantity: zeroToFix, _lockToken: value.balance.quantity, _contractWallet: zeroToFix, _isSmart: tokens[key]?.isSmart ?? false)
                 nextAsset.append(m)
@@ -124,7 +124,7 @@ class HomeHttp: NSObject {
                 let symbol = HomeUtils.getSymbol(value.balance.quantity)
                 let quantity = HomeUtils.getQuantity(value.balance.quantity)
                 let precision = HomeUtils.getTokenPrecision(quantity)
-                let zero: Float = 0
+                let zero: Decimal = Decimal(0)
                 let zeroToFix = HomeUtils.getFullQuantity(zero.toFixed(precision), symbol: symbol)
                 let m = AccountAssetModel(value.primary, _belong: account, _contract: value.balance.contract, _hide: true, _quantity: zeroToFix, _lockToken: zeroToFix, _contractWallet: value.balance.quantity, _isSmart: tokens[key]?.isSmart ?? false)
                 nextAsset.append(m)
@@ -190,7 +190,7 @@ class HomeHttp: NSObject {
                 let defaultQuantity = HomeUtils.getQuantity(dict[extendSymbol]!.balance.quantity)
                 let quantity = HomeUtils.getQuantity(model.balance.quantity)
                 let precision = HomeUtils.getTokenPrecision(defaultQuantity)
-                dict[extendSymbol]!.balance.quantity = "\((defaultQuantity.toFloat() + quantity.toFloat()).toFixed(precision)) \(symbol)"
+                dict[extendSymbol]!.balance.quantity = "\((defaultQuantity.toDecimal() + quantity.toDecimal()).toFixed(precision)) \(symbol)"
             } else {
                 dict[extendSymbol] = model
             }

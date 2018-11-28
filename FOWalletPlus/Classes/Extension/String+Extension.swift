@@ -77,7 +77,7 @@ extension String {
         return String(self[i...i])
     }
     
-    func toFloat() -> Float {
-        return Float.init(self) ?? 0
+    func toDecimal() -> Decimal {
+        return Decimal(string: self) ?? Decimal(0)
     }
 }

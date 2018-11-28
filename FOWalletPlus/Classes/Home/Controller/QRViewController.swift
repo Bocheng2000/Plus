@@ -51,7 +51,7 @@ class QRViewController: UIViewController {
         mask.layer.cornerRadius = 4
         mask.layer.masksToBounds = true
         let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: model.wh, height: model.wh))
-        imageView.image = generateQRCode(model.value, size: CGSize(width: model.wh, height: model.wh), color: model.color)
+        imageView.image = HomeUtils.generateQRCode(model.value, size: CGSize(width: model.wh, height: model.wh), color: model.color)
         mask.addSubview(imageView)
         container.addSubview(mask)
         
@@ -68,23 +68,6 @@ class QRViewController: UIViewController {
         container.addSubview(tipLabel)
         container.frame = CGRect(x: padding, y: (kSize.height - h) / 2, width: kSize.width - padding * 2, height: h)
         view.addSubview(container)
-    }
-    
-    private func generateQRCode(_ value: String, size: CGSize, color: UIColor?) -> UIImage {
-        let contentData = value.data(using: String.Encoding.utf8)
-        let fileter = CIFilter(name: "CIQRCodeGenerator")
-        fileter?.setValue(contentData, forKey: "inputMessage")
-        fileter?.setValue("H", forKey: "inputCorrectionLevel")
-        let ciImage = fileter?.outputImage
-        let colorFilter = CIFilter(name: "CIFalseColor")
-        colorFilter?.setValue(ciImage, forKey: "inputImage")
-        colorFilter?.setValue(CIColor(cgColor: (color ?? UIColor.black).cgColor), forKey: "inputColor0")
-        colorFilter?.setValue(CIColor(cgColor: UIColor.white.cgColor), forKey: "inputColor1")
-        let outImage = colorFilter!.outputImage
-        let scale = size.width / outImage!.extent.size.width
-        let transform = CGAffineTransform(scaleX: scale, y: scale)
-        let transformImage = colorFilter!.outputImage!.transformed(by: transform)
-        return UIImage(ciImage: transformImage)
     }
     
     @objc private func closeBtnDidClick() {

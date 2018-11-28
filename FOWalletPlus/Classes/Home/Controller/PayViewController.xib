@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FS7-4C-MWe" customClass="BaseButton" customModule="FOWalletPlus" customModuleProvider="target">
-                    <rect key="frame" x="20" y="599" width="335" height="48"/>
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="t3e-ob-HPl"/>
                     </constraints>
@@ -32,7 +32,7 @@
                     </connections>
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVS-W4-qfQ">
-                    <rect key="frame" x="0.0" y="64" width="375" height="535"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="555"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,9 +41,9 @@
                 <constraint firstItem="XVS-W4-qfQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="2nb-vX-dNk"/>
                 <constraint firstItem="XVS-W4-qfQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="A8J-sU-0RB"/>
                 <constraint firstItem="FS7-4C-MWe" firstAttribute="top" secondItem="XVS-W4-qfQ" secondAttribute="bottom" id="CI1-30-q0k"/>
-                <constraint firstItem="FS7-4C-MWe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="eoN-hL-WEy"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FS7-4C-MWe" secondAttribute="trailing" constant="20" id="hLo-Dt-n2V"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FS7-4C-MWe" secondAttribute="bottom" constant="20" id="x4I-hS-cyg"/>
+                <constraint firstItem="FS7-4C-MWe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eoN-hL-WEy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FS7-4C-MWe" secondAttribute="trailing" id="hLo-Dt-n2V"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FS7-4C-MWe" secondAttribute="bottom" id="x4I-hS-cyg"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

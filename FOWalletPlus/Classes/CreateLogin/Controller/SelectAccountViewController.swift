@@ -73,7 +73,7 @@ class SelectAccountViewController: FatherViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 48
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

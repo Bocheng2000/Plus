@@ -65,8 +65,7 @@ class TokenDetailViewController: FatherViewController, UITableViewDelegate, UITa
             let fmtConnectorBalance = HomeUtils.fmtQuantity(connectorBalance)
             let connectorBalanceSymbol = HomeUtils.getSymbol(model.connector_balance)
             let connectorBalanceModel = NormalCellModel(LanguageHelper.localizedString(key: "ConnectorBalance"), _value: "\(fmtConnectorBalance) \(connectorBalanceSymbol)")
-            
-            let connectorWeight = roundf(model.connector_weight.toFloat() * 10000) / 100
+            let connectorWeight = model.connector_weight.toDecimal() * Decimal(10000) / Decimal(100)
             let cwModel = NormalCellModel(LanguageHelper.localizedString(key: "ConnectorWeight"), _value: "\(connectorWeight.toFixed(2)) %")
             
             let reserveBalance = HomeUtils.getQuantity(model.reserve_connector_balance)
@@ -94,8 +93,6 @@ class TokenDetailViewController: FatherViewController, UITableViewDelegate, UITa
 
     private func makeUIAddButton() {
         if showAddButton {
-            addButton.layer.cornerRadius = 4
-            addButton.layer.masksToBounds = true
             addButton.setTitleColor(UIColor.white, for: .normal)
             addButton.addTarget(self, action: #selector(addButtonDidClick), for: .touchUpInside)
             if assetModel != nil {
@@ -147,14 +144,14 @@ class TokenDetailViewController: FatherViewController, UITableViewDelegate, UITa
         if assetModel == nil {
             let quantity = HomeUtils.getQuantity(model.supply)
             let precision = HomeUtils.getTokenPrecision(quantity)
-            let zero: Float = 0
+            let zero: Decimal = Decimal(0)
             value = zero.toFixed(precision)
         } else {
             let quantity = HomeUtils.getQuantity(assetModel!.quantity)
             let lock = HomeUtils.getQuantity(assetModel!.lockToken)
             let wallet = HomeUtils.getQuantity(assetModel!.contractWallet)
             let precision = HomeUtils.getTokenPrecision(quantity)
-            let sum = quantity.toFloat() + lock.toFloat() + wallet.toFloat()
+            let sum = quantity.toDecimal() + lock.toDecimal() + wallet.toDecimal()
             value = HomeUtils.fmtQuantity(sum.toFixed(precision))
         }
         let attr = NSMutableAttributedString(string: value)
@@ -205,7 +202,7 @@ class TokenDetailViewController: FatherViewController, UITableViewDelegate, UITa
             let quantity = HomeUtils.getQuantity(model.supply)
             let precision = HomeUtils.getTokenPrecision(quantity)
             let zeroSymbol = HomeUtils.getSymbol(model.supply)
-            let zero: Float = 0
+            let zero: Decimal = Decimal(0)
             let zeroQuantity = "\(zero.toFixed(precision)) \(zeroSymbol)"
             let assetModel = AccountAssetModel(0, _belong: current.account, _contract: model.contract, _hide: false, _quantity: zeroQuantity, _lockToken: zeroQuantity, _contractWallet: zeroQuantity, _isSmart: model.isSmart)
             CacheHelper.shared.saveAccountAssets([assetModel])
@@ -252,7 +249,7 @@ class TokenDetailViewController: FatherViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 48
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

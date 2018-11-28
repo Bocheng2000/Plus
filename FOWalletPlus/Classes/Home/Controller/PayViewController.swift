@@ -12,7 +12,7 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
 
     open var model: BaseTokenModel!
     
-    open var payInfo: PayModel?
+    open var payInfo: SimpleWalletPayModel?
     
     private var y: CGFloat = 0
     
@@ -70,7 +70,10 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
         scrollView.alwaysBounceVertical = true
         
         let padding: CGFloat = 20
-        let tokenPreview = TokenPreview(frame: CGRect(x: padding, y: padding, width: kSize.width - padding * 2, height: 75))
+        
+        let container = UIView(frame: CGRect(x: 0, y: 10, width: kSize.width, height: 0))
+        container.backgroundColor = UIColor.white
+        let tokenPreview = TokenPreview(frame: CGRect(x: padding, y: 10, width: kSize.width - padding * 2, height: 70))
         tokenPreview.titleLabel.text = LanguageHelper.localizedString(key: "SymbolDesc")
         tokenPreview.tokenImageView.model = TokenImageModel(model.symbol, _contract: model.contract, _isSmart: false, _wh: 30)
         if model.contract == "eosio" {
@@ -78,18 +81,18 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
         } else {
             tokenPreview.titleLabel.text = HomeUtils.getExtendSymbol(model.symbol, contract: model.contract)
         }
-        scrollView.addSubview(tokenPreview)
+        container.addSubview(tokenPreview)
         
-        receiveAccount = TokenInputPreview(frame: CGRect(x: padding, y: tokenPreview.bottom + 11, width: tokenPreview.width, height: tokenPreview.height))
+        receiveAccount = TokenInputPreview(frame: CGRect(x: padding, y: tokenPreview.bottom + 5, width: tokenPreview.width, height: 65))
         let receiveModel = TokenInputModel(LanguageHelper.localizedString(key: "ReceiveAccount"), _desc: nil, _maxLength: 12, _defaultValue: nil, _placeholder: LanguageHelper.localizedString(key: "ReceiveAccountName"), _detailValue: nil, _precision: nil)
         if payInfo != nil {
-            receiveModel.defaultValue = payInfo!.account
+            receiveModel.defaultValue = payInfo!.to
         }
         receiveAccount.model = receiveModel
         receiveAccount.inputField.keyboardType = .emailAddress
-        scrollView.addSubview(receiveAccount)
+        container.addSubview(receiveAccount)
         
-        amount = TokenInputPreview(frame: CGRect(x: padding, y: receiveAccount.bottom + 11, width: tokenPreview.width, height: tokenPreview.height))
+        amount = TokenInputPreview(frame: CGRect(x: padding, y: receiveAccount.bottom + 5, width: tokenPreview.width, height: receiveAccount.height))
         amount.inputField.keyboardType = .decimalPad
         let quantity = HomeUtils.getQuantity(assetModel.quantity)
         let amountModel = TokenInputModel(LanguageHelper.localizedString(key: "PayAmount"), _desc: LanguageHelper.localizedString(key: "AvailableBalance"), _maxLength: nil, _defaultValue: nil, _placeholder: LanguageHelper.localizedString(key: "InputPayAmount"), _detailValue: quantity, _precision: HomeUtils.getTokenPrecision(quantity))
@@ -97,22 +100,22 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
             amountModel.defaultValue = payInfo!.amount
         }
         amount.model = amountModel
-        scrollView.addSubview(amount)
+        container.addSubview(amount)
         
-        memo = TokenInputPreview(frame: CGRect(x: padding, y: amount.bottom + 11, width: tokenPreview.width, height: tokenPreview.height))
+        memo = TokenInputPreview(frame: CGRect(x: padding, y: amount.bottom + 5, width: tokenPreview.width, height: receiveAccount.height))
         let memoModel = TokenInputModel(LanguageHelper.localizedString(key: "Memo"), _desc: nil, _maxLength: nil, _defaultValue: nil, _placeholder: LanguageHelper.localizedString(key: "Optional"), _detailValue: nil, _precision: nil)
         if payInfo != nil {
-            memoModel.defaultValue = payInfo!.memo
+            memoModel.defaultValue = payInfo!.desc
         }
         memo.model = memoModel
-        scrollView.addSubview(memo)
-        scrollView.contentSize = CGSize(width: kSize.width, height: memo.bottom + 20)
+        container.addSubview(memo)
+        container.height = memo.bottom + 20
+        scrollView.addSubview(container)
+        scrollView.contentSize = CGSize(width: kSize.width, height: container.bottom)
         
         payButton.setTitle(LanguageHelper.localizedString(key: "PayToken"), for: .normal)
         payButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         payButton.backgroundColor = BUTTON_COLOR
-        payButton.layer.cornerRadius = 4
-        payButton.layer.masksToBounds = true
     }
     
     @IBAction func payButtonDidClick(_ sender: BaseButton) {
@@ -125,7 +128,7 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
             
             let quantity = HomeUtils.getQuantity(assetModel.quantity)
             let precision = HomeUtils.getTokenPrecision(quantity)
-            let quantityFmt = "\(amountValue.toFloat().toFixed(precision)) \(model.symbol!)"
+            let quantityFmt = "\(amountValue.toDecimal().toFixed(precision)) \(model.symbol!)"
             let transType = AuthorizeItemModel(LanguageHelper.localizedString(key: "TransactionType"), _detail: LanguageHelper.localizedString(key: "Pay"))
             let fromItem = AuthorizeItemModel(LanguageHelper.localizedString(key: "TransferFrom"), _detail: current.account)
             let toItem = AuthorizeItemModel(LanguageHelper.localizedString(key: "TransferTo"), _detail: receiver)
@@ -156,12 +159,16 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
             showErrorWithKey("QuantityNotNull")
             return false
         }
-        let amoutValueFloat = amountValue.toFloat()
-        if amoutValueFloat == 0 {
+        let amoutValueFloat = amountValue.toDecimal()
+        if amoutValueFloat.isNaN {
             showErrorWithKey("QuantityNotZero")
             return false
         }
-        if amoutValueFloat > HomeUtils.getQuantity(assetModel.quantity).toFloat() {
+        if amoutValueFloat.isZero {
+            showErrorWithKey("QuantityNotZero")
+            return false
+        }
+        if amoutValueFloat > HomeUtils.getQuantity(assetModel.quantity).toDecimal() {
             showErrorWithKey("LeakOfBalance")
             return false
         }
@@ -175,6 +182,49 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
     
     private func addObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(note:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    
+    //MARK: ===== 右上角按钮点击事件 ======
+    override func rightBtnDidClick() {
+        let album = LanguageHelper.localizedString(key: "Album")
+        let qrScane = QRScaneViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "QRScan"), right: "text|\(album)")
+        qrScane.scanFinish = {[weak self] (result) in
+            self?.handScanResult(result: result)
+        }
+        navigationController?.pushViewController(qrScane, animated: true)
+    }
+    
+    // MARK: ===== 处理扫描结果 ======
+    private func handScanResult(result: String) {
+        do {
+            let dictionary = try JSONSerialization.jsonObject(with: result.data(using: .utf8)!, options: .mutableContainers) as! Dictionary<String, Any>
+            if dictionary["protocol"] as? String == "SimpleWallet" {
+                if dictionary["action"] as? String == "transfer" {
+                    let payModel = SimpleWalletPayModel.deserialize(from: dictionary)!
+                    let payStr: String = LanguageHelper.localizedString(key: "PayToken")
+                    let pay = PayViewController(left: "img|blackBack", title: payStr, right: "img|qrScane")
+                    let tokenModel = BaseTokenModel(payModel.symbol, _contract: payModel.contract)
+                    pay.model = tokenModel
+                    pay.payInfo = payModel
+                    navigationController?.replace(pay, animated: false)
+                } else {
+                    let btn = ModalButtonModel(LanguageHelper.localizedString(key: "OK"), _titleColor: nil, _titleFont: nil, _backgroundColor: nil, _borderColor: nil, _handler: nil)
+                    let modalModel = ModalModel(true, _imageName: "error", _title: LanguageHelper.localizedString(key: "QRCodeUnablePay"), _message: nil, _buttons: [btn])
+                    ModalViewController(modalModel).show(source: self)
+                }
+            } else {
+                scanResultUnknow(result)
+            }
+        } catch {
+            scanResultUnknow(result)
+        }
+    }
+    
+    private func scanResultUnknow(_ result: String) {
+        let unknow = ScanResultViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "ScanResult"), right: nil)
+        unknow.result = result
+        navigationController?.pushViewController(unknow, animated: true)
     }
     
     // MARK: ====== 键盘变化 ============

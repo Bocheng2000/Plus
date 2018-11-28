@@ -122,7 +122,6 @@ struct PrivateKey {
         if result == errSecSuccess {
             return PrivateKey(enclave: enclave, data: keyData)
         } else {
-            print("Problem generating random bytes")
             return nil
         }
     }
@@ -138,7 +137,6 @@ struct PrivateKey {
             })
             return try! (PrivateKey(enclave: enclave, mnemonicString: mnemonic), mnemonic)
         } else {
-            print("Problem generating random bytes")
             return (nil, nil)
         }
     }

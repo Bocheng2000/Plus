@@ -46,7 +46,7 @@ class TokenTableViewCell: UITableViewCell {
             let lock = HomeUtils.getQuantity(model.lockToken)
             let wallet = HomeUtils.getQuantity(model.contractWallet)
             let precision = HomeUtils.getTokenPrecision(quantity)
-            let all = quantity.toFloat() + lock.toFloat() + wallet.toFloat()
+            let all = quantity.toDecimal() + lock.toDecimal() + wallet.toDecimal()
             quantityLabel.frame = CGRect(x: tokenLabel.right + 5, y: 17, width: w - 15 - tokenLabel.right, height: 25)
             quantityLabel.text = HomeUtils.fmtQuantity(all.toFixed(precision))
             moneyLabel.frame = CGRect(x: contractLabel.right + 5, y: quantityLabel.bottom, width: w - 15 - contractLabel.right, height: 20)
@@ -91,8 +91,9 @@ class TokenTableViewCell: UITableViewCell {
         contentView.layer.cornerRadius = 5
         contentView.layer.masksToBounds = true
         layer.shadowColor = UIColor.colorWithHexString(hex: "#816AAF").cgColor
-        layer.shadowOpacity = 0.2
-        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowOpacity = 0.15
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowRadius = 15
         contractLabel.font = UIFont.systemFont(ofSize: 14)
         contractLabel.textColor = UIColor.colorWithHexString(hex: "#999999")
         let color = UIColor.colorWithHexString(hex: "#3092FB")

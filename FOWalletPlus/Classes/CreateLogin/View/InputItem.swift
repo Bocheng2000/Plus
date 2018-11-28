@@ -54,7 +54,7 @@ class InputItem: UIView, UITextFieldDelegate {
         textField.setValue(UIColor.colorWithHexString(hex: "#CCCCCC"), forKeyPath: "_placeholderLabel.textColor")
         textField.delegate = self
         addSubview(textField)
-        setBorderLine(position: .bottom, number: 0.5, color: UIColor.colorWithHexString(hex: "#0096DD"))
+        setBorderLine(position: .bottom, number: 0.5, color: lineColor)
     }
     
     required init?(coder aDecoder: NSCoder) {

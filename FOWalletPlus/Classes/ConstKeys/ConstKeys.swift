@@ -12,12 +12,13 @@ import UIKit
 let FONT_COLOR: UIColor = UIColor.colorWithHexString(hex: "#333333")
 let NAVBAR_COLOR: UIColor = UIColor.white
 let BORDER_COLOR: UIColor = UIColor.colorWithHexString(hex: "#DDDDDD")
-let BACKGROUND_COLOR: UIColor = UIColor.white
+let BACKGROUND_COLOR: UIColor = UIColor.colorWithHexString(hex: "#F6F6F6")
 let ERROR_COLOR: UIColor = UIColor.colorWithHexString(hex: "#FF9900")
-let BUTTON_COLOR: UIColor = UIColor.colorWithHexString(hex: "#1199DD")
+let BUTTON_COLOR: UIColor = UIColor.colorWithHexString(hex: "#0D8FF0")
 let TINT_COLOR: UIColor = UIColor.colorWithHexString(hex: "#7066B0")
 let SEPEAT_COLOR: UIColor = UIColor.colorWithHexString(hex: "#DEDEDE")
-let themeColor: UIColor = UIColor.colorWithHexString(hex: "#6965B3")
+let themeColor: UIColor = UIColor.colorWithHexString(hex: "#3193FC")
+let lineColor: UIColor = UIColor.colorWithHexString(hex: "#0096DD")
 
 let kBounds = UIScreen.main.bounds
 let scale = UIScreen.main.scale
@@ -44,6 +45,7 @@ let cacheDB = "\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDo
 // MARK: ====== REGEX =========
 let createAccountReg = "^[a-z1-5]{12}$"
 let passwordRegex = "^.{8,}"
+let netAddressRegex = "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"
 
 // MARK: ======= IOS Version =======
 func IOS(version: Int) -> Bool {

@@ -105,19 +105,43 @@ class HomeUtils: NSObject {
         return String(preStr)
     }
     
-    open class func getTokenPrice(_ token: TokenSummary?) -> Float {
+    open class func getTokenPrice(_ token: TokenSummary?) -> Decimal {
         if token == nil {
             return 0
         }
-        if token!.connector_weight.toFloat() == 0 {
+        if token!.connector_weight.toDecimal().isZero {
             return 0
         }
-        let supply = getQuantity(token!.supply).toFloat()
-        let reserveSupply = getQuantity(token!.reserve_supply).toFloat()
-        let cw = token!.connector_weight.toFloat()
+        if token!.symbol == "FO" && token!.contract == "eosio" {
+            return Decimal(1)
+        }
+        let supply = getQuantity(token!.supply).toDecimal()
+        let reserveSupply = getQuantity(token!.reserve_supply).toDecimal()
+        let cw = token!.connector_weight.toDecimal()
         let balance = getQuantity(token!.connector_balance)
         let reserveConnectorBalance = getQuantity(token!.reserve_connector_balance)
-        let balances = balance.toFloat() + reserveConnectorBalance.toFloat()
-        return balances / (cw * (reserveSupply + supply))
+        let balances = balance.toDecimal() + reserveConnectorBalance.toDecimal()
+        let price = balances / (cw * (reserveSupply + supply))
+        if token!.symbol == "EOS" && token!.contract == "eosio" {
+            return Decimal(1) / price
+        }
+        return price
+    }
+    
+    open class func generateQRCode(_ value: String, size: CGSize, color: UIColor?) -> UIImage {
+        let contentData = value.data(using: String.Encoding.utf8)
+        let fileter = CIFilter(name: "CIQRCodeGenerator")
+        fileter?.setValue(contentData, forKey: "inputMessage")
+        fileter?.setValue("H", forKey: "inputCorrectionLevel")
+        let ciImage = fileter?.outputImage
+        let colorFilter = CIFilter(name: "CIFalseColor")
+        colorFilter?.setValue(ciImage, forKey: "inputImage")
+        colorFilter?.setValue(CIColor(cgColor: (color ?? UIColor.black).cgColor), forKey: "inputColor0")
+        colorFilter?.setValue(CIColor(cgColor: UIColor.white.cgColor), forKey: "inputColor1")
+        let outImage = colorFilter!.outputImage
+        let scale = size.width / outImage!.extent.size.width
+        let transform = CGAffineTransform(scaleX: scale, y: scale)
+        let transformImage = colorFilter!.outputImage!.transformed(by: transform)
+        return UIImage(ciImage: transformImage)
     }
 }

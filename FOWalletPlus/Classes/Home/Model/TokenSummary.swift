@@ -45,7 +45,7 @@ class TokenSummary: NSObject, Codable {
             if issuer == "eosio" {
                 return symbol == "FO"
             } else {
-                return connector_weight.toFloat() != 0
+                return connector_weight.toDecimal() != 0
             }
         }
     }

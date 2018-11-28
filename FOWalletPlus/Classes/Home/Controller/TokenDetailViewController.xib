@@ -24,13 +24,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="swy-j4-gHI">
-                    <rect key="frame" x="0.0" y="64" width="375" height="555"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKH-Re-mfe" customClass="BaseButton" customModule="FOWalletPlus" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                    <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="dqd-RG-Pz5"/>
+                        <constraint firstAttribute="height" constant="49" id="dqd-RG-Pz5"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                 </button>

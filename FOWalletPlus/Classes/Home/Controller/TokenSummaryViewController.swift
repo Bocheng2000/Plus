@@ -50,6 +50,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
             ]
         } else {
             let payStr: String = LanguageHelper.localizedString(key: "PayToken")
+            let receiveStr: String = LanguageHelper.localizedString(key: "Receive")
             btns = [
                 FunctionMenuModel("payToken", _title: payStr) {
                     [weak self] in
@@ -59,7 +60,10 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
                     self?.navigationController?.pushViewController(pay, animated: true)
                 },
                 FunctionMenuModel("receiveToken", _title: LanguageHelper.localizedString(key: "ReceiveToken")) {
-                    
+                    [weak self] in
+                    let receive = ReceiveViewController(left: "img|blackBack", title: receiveStr, right: "img|more")
+                    receive.model = BaseTokenModel((self?.model.symbol)!, _contract: (self?.model.contract)!)
+                    self?.navigationController?.pushViewController(receive, animated: true)
                 }
             ]
             if token.isSmart {
@@ -76,12 +80,12 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         let available = CommenCellModel("available", _title: LanguageHelper.localizedString(key: "AvailableBalance"), _value: HomeUtils.fmtQuantity(HomeUtils.getQuantity(model.quantity)), _showArrow: false, _target: nil)
         topDataSource.append(available)
         let lockAmount = HomeUtils.getQuantity(model.lockToken)
-        if model.contract != "eosio" && lockAmount.toFloat() != 0 {
+        if !lockAmount.toDecimal().isZero {
             let lock = CommenCellModel("lock", _title: LanguageHelper.localizedString(key: "LockToken"), _value: HomeUtils.fmtQuantity(lockAmount), _showArrow: true, _target: "LockTokenViewController")
             topDataSource.append(lock)
         }
         let contractWallet = HomeUtils.getQuantity(model.contractWallet)
-        if contractWallet.toFloat() != 0 {
+        if model.contract != "eosio" && !contractWallet.toDecimal().isZero {
             let wallet = CommenCellModel("contractWallet", _title: LanguageHelper.localizedString(key: "ContractWallet"), _value: HomeUtils.fmtQuantity(contractWallet), _showArrow: true, _target: "ContractWalletViewController")
             topDataSource.append(wallet)
         }
@@ -98,14 +102,13 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
     }
     
     private func makeUIHeader() {
-        let headerColor: UIColor = themeColor
         bjView = UIView(frame: CGRect(x: 0, y: 0, width: kSize.width, height: menuHeight + navHeight))
-        bjView.backgroundColor = headerColor
+        bjView.backgroundColor = themeColor
         view.insertSubview(bjView, belowSubview: tableView)
         navBar?.backgroundColor = UIColor.clear
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: kSize.width, height: menuHeight))
-        headerView.backgroundColor = headerColor
+        headerView.backgroundColor = themeColor
         tokenLabel = UILabel(frame: CGRect(x: 10, y: 12, width: kSize.width - 20, height: 25))
         tokenLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         tokenLabel.textColor = UIColor.white
@@ -129,7 +132,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         let lock = HomeUtils.getQuantity(model.lockToken)
         let wallet = HomeUtils.getQuantity(model.contractWallet)
         let precision = HomeUtils.getTokenPrecision(quantity)
-        let sum = quantity.toFloat() + lock.toFloat() + wallet.toFloat()
+        let sum = quantity.toDecimal() + lock.toDecimal() + wallet.toDecimal()
         let value = HomeUtils.fmtQuantity(sum.toFixed(precision))
         let attr = NSMutableAttributedString(string: value)
         let fontSize = HomeUtils.getTextSize(value)
@@ -187,7 +190,6 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell") as! TransactionTableViewCell
-            
             return cell
         }
     }
@@ -205,7 +207,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 60
+            return 48
         }
         return 44
     }

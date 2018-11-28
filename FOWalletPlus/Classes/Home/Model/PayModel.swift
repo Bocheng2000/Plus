@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PayModel: NSObject {
+class PayModel: FatherModel {
     var symbol: String!
     var contract: String!
     var account: String!

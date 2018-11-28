@@ -40,10 +40,11 @@ class TokenImageModel: NSObject {
 
 class TokenImage: UIImageView {
     lazy var smartLabel: UILabel = {
-       let label = UILabel(frame: CGRect(x: width - (width / 4), y: 0, width: width / 3, height: height / 3))
+        let wh = floor(width / 3)
+        let label = UILabel(frame: CGRect(x: width - (width / 4), y: 0, width: wh, height: wh))
         label.backgroundColor = UIColor.colorWithHexString(hex: "#1199DD")
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 0.65 * (width / 3), weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 0.65 * (width / 3))
         label.textColor = UIColor.white
         label.text = LanguageHelper.localizedString(key: "Smart")
         label.layer.cornerRadius = 3

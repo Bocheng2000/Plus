@@ -154,6 +154,9 @@ class CacheHelper: NSObject {
     ///
     /// - Parameter assets: 通证列表
     open func saveAccountAssets(_ assets: [AccountAssetModel]) {
+        if assets.count == 0 {
+            return
+        }
         db.beginTransaction()
         do {
             let sql = "REPLACE INTO TAssets ('primary', belong, contract, hide, quantity, lockToken, contractWallet, isSmart, symbol, updateAt) VALUES (?,?,?,?,?,?,?,?,?,?)"

@@ -12,31 +12,31 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="113" id="KGk-i7-Jjw" customClass="CommonTableViewCell" customModule="FOWalletPlus" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="102" id="KGk-i7-Jjw" customClass="CommonTableViewCell" customModule="FOWalletPlus" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="48.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bke-kD-vGe">
-                        <rect key="frame" x="20" y="18" width="24" height="24"/>
+                        <rect key="frame" x="20" y="14" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="4Iz-Y6-7Fu"/>
-                            <constraint firstAttribute="width" constant="24" id="egB-lp-dZF"/>
+                            <constraint firstAttribute="height" constant="20" id="ZXo-le-jTE"/>
+                            <constraint firstAttribute="width" constant="20" id="huc-jq-aHB"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UCG-E8-SIw">
-                        <rect key="frame" x="301" y="22.5" width="9" height="15"/>
+                        <rect key="frame" x="301" y="16.5" width="9" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="9Ev-nv-sDe"/>
-                            <constraint firstAttribute="width" constant="9" id="sA0-9T-ZNo"/>
+                            <constraint firstAttribute="width" constant="9" id="c0p-Te-kxG"/>
+                            <constraint firstAttribute="height" constant="15" id="y6y-Xj-Ran"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5A-Tc-hxb">
                         <rect key="frame" x="48" y="21" width="0.0" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -49,10 +49,10 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="UCG-E8-SIw" secondAttribute="trailing" constant="10" id="JW7-nU-lKG"/>
-                    <constraint firstItem="UCG-E8-SIw" firstAttribute="centerY" secondItem="Bke-kD-vGe" secondAttribute="centerY" id="U61-vT-Tti"/>
-                    <constraint firstItem="Bke-kD-vGe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="k3r-Je-pdo"/>
-                    <constraint firstItem="Bke-kD-vGe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sTS-7b-Lq9"/>
+                    <constraint firstItem="Bke-kD-vGe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="HwH-F2-Stw"/>
+                    <constraint firstItem="Bke-kD-vGe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="JJ9-4m-wLF"/>
+                    <constraint firstItem="UCG-E8-SIw" firstAttribute="centerY" secondItem="Bke-kD-vGe" secondAttribute="centerY" id="Nsj-zI-114"/>
+                    <constraint firstAttribute="trailing" secondItem="UCG-E8-SIw" secondAttribute="trailing" constant="10" id="xey-Kh-z8f"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -62,7 +62,7 @@
                 <outlet property="titleLabel" destination="p5A-Tc-hxb" id="wNf-Pz-MgL"/>
                 <outlet property="valueLabel" destination="kzR-KP-uj3" id="aIh-kB-3Gm"/>
             </connections>
-            <point key="canvasLocation" x="34" y="88"/>
+            <point key="canvasLocation" x="34" y="82.5"/>
         </tableViewCell>
     </objects>
 </document>

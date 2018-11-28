@@ -25,5 +25,7 @@
 #import "MJRefresh.h"
 #import "PTLoadingHubView.h"
 #import "FMDB.h"
+#import "TZImagePickerController.h"
+#import "FSActionSheet.h"
 
 #endif /* FOWalletPlus_Bridging_h */

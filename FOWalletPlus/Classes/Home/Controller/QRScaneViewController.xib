@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QRScaneViewController" customModule="FOWalletPlus" customModuleProvider="target">
+            <connections>
+                <outlet property="heightConst" destination="yVn-Cr-fva" id="Lhp-oQ-Q3L"/>
+                <outlet property="tipLabel" destination="J0A-qi-Zna" id="rNX-Pq-fPB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H32-ei-pgK">
+                    <rect key="frame" x="0.0" y="64" width="50" height="603"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="6Tr-hE-Uq2"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEP-Sa-CIR">
+                    <rect key="frame" x="325" y="64" width="50" height="603"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="XNT-nA-C3h"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScaneBorder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hys-Au-lUj">
+                    <rect key="frame" x="50" y="228" width="275" height="275"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Hys-Au-lUj" secondAttribute="height" multiplier="1:1" id="Nka-km-NSj"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUJ-O8-1bK">
+                    <rect key="frame" x="50" y="64" width="275" height="164"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoF-Mk-okV">
+                    <rect key="frame" x="50" y="503" width="275" height="164"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0A-qi-Zna">
+                            <rect key="frame" x="0.0" y="10" width="275" height="0.0"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="yVn-Cr-fva"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="J0A-qi-Zna" firstAttribute="leading" secondItem="OoF-Mk-okV" secondAttribute="leading" id="DE3-ev-3OE"/>
+                        <constraint firstAttribute="trailing" secondItem="J0A-qi-Zna" secondAttribute="trailing" id="mD7-iP-H3P"/>
+                        <constraint firstItem="J0A-qi-Zna" firstAttribute="top" secondItem="OoF-Mk-okV" secondAttribute="top" constant="10" id="qgd-wH-rQU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vEP-Sa-CIR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="70f-Gl-wTh"/>
+                <constraint firstItem="Hys-Au-lUj" firstAttribute="leading" secondItem="H32-ei-pgK" secondAttribute="trailing" id="8Fv-9m-3in"/>
+                <constraint firstItem="H32-ei-pgK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="G2m-iM-AM7"/>
+                <constraint firstItem="Hys-Au-lUj" firstAttribute="centerY" secondItem="H32-ei-pgK" secondAttribute="centerY" id="J01-e3-jpM"/>
+                <constraint firstItem="vEP-Sa-CIR" firstAttribute="leading" secondItem="CUJ-O8-1bK" secondAttribute="trailing" id="Um7-wG-pTY"/>
+                <constraint firstItem="CUJ-O8-1bK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="VBq-gn-FoQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="H32-ei-pgK" secondAttribute="bottom" id="WhF-pp-eUD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vEP-Sa-CIR" secondAttribute="bottom" id="bLy-wp-ugx"/>
+                <constraint firstItem="vEP-Sa-CIR" firstAttribute="leading" secondItem="Hys-Au-lUj" secondAttribute="trailing" id="dhB-OG-gBu"/>
+                <constraint firstItem="Hys-Au-lUj" firstAttribute="top" secondItem="CUJ-O8-1bK" secondAttribute="bottom" id="eCB-U5-Wud"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OoF-Mk-okV" secondAttribute="bottom" id="fNz-Zl-v8e"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vEP-Sa-CIR" secondAttribute="trailing" id="fRw-yp-Cak"/>
+                <constraint firstItem="CUJ-O8-1bK" firstAttribute="leading" secondItem="H32-ei-pgK" secondAttribute="trailing" id="jdo-GG-vcT"/>
+                <constraint firstItem="OoF-Mk-okV" firstAttribute="leading" secondItem="H32-ei-pgK" secondAttribute="trailing" id="qdC-xR-VfT"/>
+                <constraint firstItem="vEP-Sa-CIR" firstAttribute="leading" secondItem="OoF-Mk-okV" secondAttribute="trailing" id="spu-xQ-99V"/>
+                <constraint firstItem="OoF-Mk-okV" firstAttribute="top" secondItem="Hys-Au-lUj" secondAttribute="bottom" id="uVC-qM-nFA"/>
+                <constraint firstItem="H32-ei-pgK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uxV-tj-jPi"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ScaneBorder.png" width="258" height="258"/>
+    </resources>
+</document>

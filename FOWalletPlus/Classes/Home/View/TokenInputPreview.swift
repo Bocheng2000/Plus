@@ -44,6 +44,7 @@ class TokenInputPreview: UIView, UITextFieldDelegate {
         inputField = BaseTextField(frame: .zero)
         inputField.clearButtonMode = .whileEditing
         inputField.autocorrectionType = .no
+        inputField.font = UIFont.systemFont(ofSize: 16)
         inputField.autocapitalizationType = .none
         inputField.setValue(UIColor.colorWithHexString(hex: "#CCCCCC"), forKeyPath: "_placeholderLabel.textColor")
         inputField.delegate = self
@@ -53,12 +54,12 @@ class TokenInputPreview: UIView, UITextFieldDelegate {
         detail.font = font
         detail.textColor = UIColor.colorWithHexString(hex: "#AAB3B3")
         addSubview(detail)
-        setBorderLine(position: .bottom, number: 0.5, color: UIColor.colorWithHexString(hex: "#0096DD"))
+        setBorderLine(position: .bottom, number: 0.5, color: lineColor)
     }
     
     private func setModel() {
         let titleSize = model.title.getTextSize(font: titleLabel.font, lineHeight: 0, maxSize: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)))
-        titleLabel.frame = CGRect(x: 0, y: 10, width: titleSize.width, height: 20)
+        titleLabel.frame = CGRect(x: 0, y: 7, width: titleSize.width, height: 20)
         titleLabel.text = model.title
         if model.desc != nil {
             desc.frame = CGRect(x: titleSize.width + 10, y: titleLabel.top, width: width - titleSize.width - 10, height: titleLabel.height)

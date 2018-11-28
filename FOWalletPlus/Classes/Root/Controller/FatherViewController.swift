@@ -59,12 +59,15 @@ class FatherViewController: UIViewController {
             leftBtn = UIButton(frame: CGRect(x: 10, y: statusHeight + 2, width: 40, height: 40))
             if array![0] == "img" {
                 leftBtn?.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 29)
+                leftBtn?.imageView?.contentMode = .scaleAspectFit
                 let imgName = array![1]
-                leftBtn?.setImage(UIImage(named: String(imgName)), for: .normal)
+                let img = UIImage(named: String(imgName))
+                leftBtn?.setImage(img, for: .normal)
+//                leftBtn?.setImage(img, for: .highlighted)
             } else {
                 leftBtn?.contentHorizontalAlignment = .left
                 let leftTitle = array![1]
-                leftBtn?.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                leftBtn?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
                 leftBtn?.setTitleColor(FONT_COLOR, for: .normal)
                 leftBtn?.setTitle(String(leftTitle), for: .normal)
             }
@@ -74,7 +77,7 @@ class FatherViewController: UIViewController {
         if _title != nil {
             titleLabel = UILabel(frame: CGRect(x: 50, y: statusHeight + 2, width: kSize.width - 100, height: 40))
             titleLabel?.textAlignment = .center
-            titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+            titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             titleLabel?.text = _title
             titleLabel?.textColor = FONT_COLOR
             navBar?.addSubview(titleLabel!)
@@ -85,11 +88,14 @@ class FatherViewController: UIViewController {
             if array![0] == "img" {
                 rightBtn?.imageEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 0)
                 let imgName = array![1]
-                rightBtn?.setImage(UIImage(named: String(imgName)), for: .normal)
+                rightBtn?.imageView?.contentMode = .scaleAspectFit
+                let img = UIImage(named: String(imgName))
+                rightBtn?.setImage(img, for: .normal)
+//                rightBtn?.setImage(img, for: .highlighted)
             } else {
                 rightBtn?.contentHorizontalAlignment = .right
                 let rightTitle = array![1]
-                rightBtn?.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                rightBtn?.titleLabel?.font = UIFont.systemFont(ofSize: 15)
                 rightBtn?.setTitleColor(FONT_COLOR, for: .normal)
                 rightBtn?.setTitle(String(rightTitle), for: .normal)
             }

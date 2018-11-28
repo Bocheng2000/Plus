@@ -23,13 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HME-MG-bCn">
-                    <rect key="frame" x="0.0" y="64" width="375" height="555"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0d-m9-PyX" customClass="FunctionMenuView" customModule="FOWalletPlus" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                    <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="jCr-E6-2lP"/>
+                        <constraint firstAttribute="height" constant="49" id="jCr-E6-2lP"/>
                     </constraints>
                 </view>
             </subviews>
