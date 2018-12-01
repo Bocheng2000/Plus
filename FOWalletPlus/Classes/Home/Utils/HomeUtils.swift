@@ -59,11 +59,37 @@ class HomeUtils: NSObject {
         return "\(symbol)@\(contract)"
     }
     
+    /// 组装通证
+    ///
+    /// - Parameters:
+    ///   - symbol: 通证名
+    ///   - contract: 合约名
+    /// - Returns: 通证全名
+    open class func autoExtendSymbol(_ symbol: String, contract: String) -> String {
+        if contract == "eosio" {
+            return symbol
+        }
+        return "\(symbol)@\(contract)"
+    }
+    
     /// 获取通证的精度
     ///
-    /// - Parameter quantity: 数量
+    /// - Parameter quantity: 数量 (1.0000)
     /// - Returns: 精度的长度
     open class func getTokenPrecision(_ quantity: String) -> Int {
+        let split = quantity.split(separator: ".")
+        if split.count > 1 {
+            return "\(split[1])".count
+        }
+        return 0
+    }
+    
+    /// 获取通证的精度
+    ///
+    /// - Parameter q: 数量 (1.0000 FO)
+    /// - Returns: 精度的长度
+    open class func getTokenPrecisionFull(_ q: String) -> Int {
+        let quantity = String(q.split(separator: " ")[0])
         let split = quantity.split(separator: ".")
         if split.count > 1 {
             return "\(split[1])".count
@@ -111,9 +137,6 @@ class HomeUtils: NSObject {
         }
         if token!.connector_weight.toDecimal().isZero {
             return 0
-        }
-        if token!.symbol == "FO" && token!.contract == "eosio" {
-            return Decimal(1)
         }
         let supply = getQuantity(token!.supply).toDecimal()
         let reserveSupply = getQuantity(token!.reserve_supply).toDecimal()

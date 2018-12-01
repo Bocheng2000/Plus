@@ -17,7 +17,6 @@ class HomeHttp: NSObject {
         return [fo, eos]
     }
     
-    
     /// 获取用户的通证资产以及通证的信息
     ///
     /// - Parameters:
@@ -50,7 +49,7 @@ class HomeHttp: NSObject {
     /// - Returns: 资产列表
     private func processAssetsResult(_ availableAssets: [AssetsModel], lockTokens: [String: AssetsModel], contractWallet: [String: AssetsModel], account: String, misHideList: [AccountAssetModel], tokens: [String: TokenSummary]) -> [AccountAssetModel] {
         if availableAssets.count == 0 {
-            return []
+            return misHideList
         }
         // 将取回来的数据进行格式化
         var exists: [String: Bool] = [:]
@@ -250,6 +249,28 @@ class HomeHttp: NSObject {
         }
     }
     
+    /// 获取锁仓通证
+    ///
+    /// - Parameters:
+    ///   - account: 账户名
+    ///   - lowerBound: 起点
+    ///   - list: 列表
+    ///   - success: success block
+    open func getLockTokenList(_ account: String, lowerBound: Int32, list: [AssetsModel], success: @escaping (Error?, [AssetsModel]) -> Void) {
+        ClientManager.shared.getLockTokens(account, lowerBound: lowerBound) { (err, resp) in
+            var nextList = list
+            if resp != nil {
+                nextList.append(contentsOf: resp!.rows!)
+                if resp!.more {
+                    let lastOne = resp!.rows?.last?.primary
+                    self.getLockTokenList(account, lowerBound: lastOne! + 1, list: nextList, success: success)
+                    return
+                }
+            }
+            success(err, nextList)
+        }
+    }
+    
     /// 获取合约子钱包
     ///
     /// - Parameters:
@@ -297,4 +318,120 @@ class HomeHttp: NSObject {
             }
         }
     }
+
+    
+    /// 构造历史记录schema
+    ///
+    /// - Parameters:
+    ///   - table: 表明
+    ///   - symbol: 通证
+    ///   - contract: 合约名
+    ///   - account: 账户
+    ///   - maxId: 最大的ID
+    /// - Returns: schema
+    private func generateHistorySchema(_ table: String, symbol: String, contract: String, account: String, maxId: Int64) -> String {
+        return """
+        {
+          \(table)(
+            where: {
+                and:[
+                    {
+                        contract: "\(contract)"
+                            symbol: "\(symbol)"
+                        or:[
+                            {
+                                from_account:"\(account)"
+                            },
+                            {
+                                to_account:"\(account)"
+                            }
+                        ]
+                    }
+                ]
+                id: {
+                    lt: \(maxId)
+                }
+            }
+            limit: \(pageSize)
+            order: "-id"
+            ){
+                id
+                block_num
+                from_account
+                to_account
+                symbol
+                contract
+                action
+                data
+                created
+                trx_id
+            }
+        }
+        """
+    }
+
+    
+    /// 处理锁仓的历史记录
+    ///
+    /// - Parameter body: list
+    /// - Returns: resp
+    private func processLockTokenHistory(body: Array<NSDictionary>?, account: String) -> [LockTokenHistoryModel] {
+        var response: [LockTokenHistoryModel] = []
+        if body == nil || body?.count == 0 {
+            return response
+        }
+        for elem: NSDictionary in body! {
+            let model = LockTokenHistoryModel.deserialize(from: elem)
+            if model == nil {
+                continue
+            }
+            let data = elem.object(forKey: "data") as! NSDictionary
+            switch model!.action {
+            case "exlocktrans":
+                model?.data = LockTokenHistoryTransModel.deserialize(from: data)
+                if model?.from_account == account {
+                    model?.isReceive = false
+                } else {
+                    model?.isReceive = true
+                }
+                response.append(model!)
+                break
+            case "exunlock":
+                model?.data = LockTokenHistoryUnLockModel.deserialize(from: data)
+                model?.isReceive = false
+                response.append(model!)
+                break
+            default:
+                break
+            }
+        }
+        return response
+    }
+    
+    /// 获取锁仓的历史记录
+    ///
+    /// - Parameters:
+    ///   - symbol: 通证名称
+    ///   - contract: 合约名
+    ///   - account: 账户名
+    ///   - maxId: 最大ID
+    ///   - success: block
+    open func getLockTokenHistory(symbol: String, contract: String, account: String, maxId: Int64, success: @escaping (Error?, [LockTokenHistoryModel]?) -> Void) {
+        let schema = generateHistorySchema("find_locktransactions", symbol: symbol, contract: contract, account: account, maxId: maxId)
+        Http.shareHttp().graphql(urlStr: graphqlUri, params: schema) { (err, resp) in
+            if err != nil {
+                DispatchQueue.main.async(execute: {
+                    success(err, Optional.none)
+                })
+            } else {
+                let res = resp?.object(forKey: "data") as? NSDictionary
+                let body = res?.object(forKey: "find_locktransactions") as? Array<NSDictionary>
+                let response = self.processLockTokenHistory(body: body, account: account)
+                DispatchQueue.main.async(execute: {
+                    success(Optional.none, response)
+                })
+            }
+        }
+    }
+    
 }

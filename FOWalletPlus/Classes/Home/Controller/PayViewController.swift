@@ -55,8 +55,12 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
             let asset = CacheHelper.shared.getOneAsset(current!.account, symbol: model.symbol, contract: model.contract)
             if asset == nil {
                 let err = LanguageHelper.localizedString(key: "NoAssetsFound")
-                let noticeBar = NoticeBar(title: err, defaultType: .error)
-                noticeBar.show(duration: 1, completed: nil)
+                let btn = ModalButtonModel(LanguageHelper.localizedString(key: "OK"), _titleColor: nil, _titleFont: nil, _backgroundColor: nil, _borderColor: nil) {
+                    [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                let modalModel = ModalModel(false, _imageName: "error", _title: err, _message: nil, _buttons: [btn])
+                ModalViewController(modalModel).show(source: self)
             } else {
                 assetModel = asset!
             }
@@ -76,11 +80,7 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
         let tokenPreview = TokenPreview(frame: CGRect(x: padding, y: 10, width: kSize.width - padding * 2, height: 70))
         tokenPreview.titleLabel.text = LanguageHelper.localizedString(key: "SymbolDesc")
         tokenPreview.tokenImageView.model = TokenImageModel(model.symbol, _contract: model.contract, _isSmart: false, _wh: 30)
-        if model.contract == "eosio" {
-            tokenPreview.tokenLabel.text = model.symbol
-        } else {
-            tokenPreview.titleLabel.text = HomeUtils.getExtendSymbol(model.symbol, contract: model.contract)
-        }
+        tokenPreview.tokenLabel.text = HomeUtils.autoExtendSymbol(model.symbol, contract: model.contract)
         container.addSubview(tokenPreview)
         
         receiveAccount = TokenInputPreview(frame: CGRect(x: padding, y: tokenPreview.bottom + 5, width: tokenPreview.width, height: 65))
@@ -114,7 +114,6 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
         scrollView.contentSize = CGSize(width: kSize.width, height: container.bottom)
         
         payButton.setTitle(LanguageHelper.localizedString(key: "PayToken"), for: .normal)
-        payButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         payButton.backgroundColor = BUTTON_COLOR
     }
     
@@ -208,23 +207,19 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
                     pay.model = tokenModel
                     pay.payInfo = payModel
                     navigationController?.replace(pay, animated: false)
-                } else {
-                    let btn = ModalButtonModel(LanguageHelper.localizedString(key: "OK"), _titleColor: nil, _titleFont: nil, _backgroundColor: nil, _borderColor: nil, _handler: nil)
-                    let modalModel = ModalModel(true, _imageName: "error", _title: LanguageHelper.localizedString(key: "QRCodeUnablePay"), _message: nil, _buttons: [btn])
-                    ModalViewController(modalModel).show(source: self)
+                    return
                 }
-            } else {
-                scanResultUnknow(result)
             }
+            scanResultUnknow(result)
         } catch {
             scanResultUnknow(result)
         }
     }
     
     private func scanResultUnknow(_ result: String) {
-        let unknow = ScanResultViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "ScanResult"), right: nil)
-        unknow.result = result
-        navigationController?.pushViewController(unknow, animated: true)
+        let btn = ModalButtonModel(LanguageHelper.localizedString(key: "OK"), _titleColor: nil, _titleFont: nil, _backgroundColor: nil, _borderColor: nil, _handler: nil)
+        let modalModel = ModalModel(true, _imageName: "error", _title: LanguageHelper.localizedString(key: "QRCodeUnablePay"), _message: nil, _buttons: [btn])
+        ModalViewController(modalModel).show(source: self)
     }
     
     // MARK: ====== 键盘变化 ============
@@ -262,7 +257,9 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
     }
     
     func authorizeViewController(sender: AuthorizeViewController, cancel: Bool) {
-        
+        if cancel {
+            ZSProgressHUD.showDpromptText(LanguageHelper.localizedString(key: "TransactionCancel"))
+        }
     }
     
     func authorizeViewController(sender: AuthorizeViewController, resp: TransactionResult) {

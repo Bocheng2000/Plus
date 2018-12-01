@@ -42,10 +42,16 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         if token.contract == "eosio" && token.symbol == "EOS" {
             btns = [
                 FunctionMenuModel("export", _title: LanguageHelper.localizedString(key: "ExportToken")) {
-                    
+                    [weak self] in
+                    let withDraw = WithdrawViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "ExportToken"), right: nil)
+                    withDraw.model = BaseTokenModel((self?.model.symbol)!, _contract: (self?.model.contract)!)
+                    self?.navigationController?.pushViewController(withDraw, animated: true)
                 },
                 FunctionMenuModel("exchangeToken", _title: LanguageHelper.localizedString(key: "ExchangeToken")) {
-                    
+                    [weak self] in
+                    let exchange = ExchangeViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "ExchangeToken"), right: nil)
+                    exchange.model = self?.token!
+                    self?.navigationController?.pushViewController(exchange, animated: true)
                 }
             ]
         } else {
@@ -67,8 +73,12 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
                 }
             ]
             if token.isSmart {
-                let exchange = FunctionMenuModel("exchangeToken", _title: LanguageHelper.localizedString(key: "ExchangeToken")) {
-                    
+                let exchangeText = LanguageHelper.localizedString(key: "ExchangeToken")
+                let exchange = FunctionMenuModel("exchangeToken", _title: exchangeText) {
+                    [weak self] in
+                    let exchange = ExchangeViewController(left: "img|blackBack", title: exchangeText, right: nil)
+                    exchange.model = self?.token!
+                    self?.navigationController?.pushViewController(exchange, animated: true)
                 }
                 btns.append(exchange)
             }
@@ -113,11 +123,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         tokenLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         tokenLabel.textColor = UIColor.white
         tokenLabel.textAlignment = .center
-        if model.contract == "eosio" {
-            tokenLabel.text = model.symbol
-        } else {
-            tokenLabel.text = HomeUtils.getExtendSymbol(model.symbol, contract: model.contract)
-        }
+        tokenLabel.text = HomeUtils.autoExtendSymbol(model.symbol, contract: model.contract)
         headerView.addSubview(tokenLabel)
         sumToken = UILabel(frame: CGRect(x: tokenLabel.x, y: tokenLabel.bottom, width: tokenLabel.width, height: 42))
         sumToken.textColor = UIColor.white
@@ -133,7 +139,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         let wallet = HomeUtils.getQuantity(model.contractWallet)
         let precision = HomeUtils.getTokenPrecision(quantity)
         let sum = quantity.toDecimal() + lock.toDecimal() + wallet.toDecimal()
-        let value = HomeUtils.fmtQuantity(sum.toFixed(precision))
+        let value = sum.toFixed(precision)
         let attr = NSMutableAttributedString(string: value)
         let fontSize = HomeUtils.getTextSize(value)
         attr.addAttributes([

@@ -19,6 +19,11 @@ class TokenPreview: UIView {
         makeUI()
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        makeUI()
+    }
+    
     private func makeUI() {
         titleLabel = UILabel(frame: CGRect(x: 0, y: 10, width: width, height: 20))
         titleLabel.font = UIFont.systemFont(ofSize: 14)

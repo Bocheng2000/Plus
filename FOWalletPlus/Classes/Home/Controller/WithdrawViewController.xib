@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WithdrawViewController" customModule="FOWalletPlus" customModuleProvider="target">
+            <connections>
+                <outlet property="amountPreview" destination="PzJ-ao-wO9" id="73O-b2-H3u"/>
+                <outlet property="memoPreview" destination="ONc-Fx-6zq" id="Mig-kt-tg9"/>
+                <outlet property="receiveAccount" destination="V7h-ET-HNG" id="31V-ag-SZt"/>
+                <outlet property="scrollView" destination="e6B-ib-AU6" id="pk3-3v-dgM"/>
+                <outlet property="tokenPreview" destination="sNE-no-4xX" id="5q5-zc-e2B"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="withDrawBtn" destination="Bi3-ch-IyN" id="E2x-hD-w3p"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bi3-ch-IyN" customClass="BaseButton" customModule="FOWalletPlus" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="mUh-kl-ci2"/>
+                    </constraints>
+                    <connections>
+                        <action selector="withDrawDidClick:" destination="-1" eventType="touchUpInside" id="Lxa-Iv-kRM"/>
+                    </connections>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6B-ib-AU6">
+                    <rect key="frame" x="0.0" y="64" width="375" height="555"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zCr-kS-Lbf">
+                            <rect key="frame" x="0.0" y="10" width="375" height="310"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNE-no-4xX" customClass="TokenPreview" customModule="FOWalletPlus" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="10" width="335" height="70"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="70" id="dgp-97-QT8"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7h-ET-HNG" customClass="TokenInputPreview" customModule="FOWalletPlus" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="85" width="335" height="65"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="65" id="JRQ-7k-WwT"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzJ-ao-wO9" customClass="TokenInputPreview" customModule="FOWalletPlus" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="155" width="335" height="65"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="65" id="Q0e-oA-nUS"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONc-Fx-6zq" customClass="TokenInputPreview" customModule="FOWalletPlus" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="225" width="335" height="65"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="65" id="ZTP-cR-S8O"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="PzJ-ao-wO9" secondAttribute="trailing" constant="20" id="5lU-Kl-9g3"/>
+                                <constraint firstItem="PzJ-ao-wO9" firstAttribute="leading" secondItem="zCr-kS-Lbf" secondAttribute="leading" constant="20" id="EHL-Q5-3RU"/>
+                                <constraint firstAttribute="trailing" secondItem="sNE-no-4xX" secondAttribute="trailing" constant="20" id="Ivt-TA-bLO"/>
+                                <constraint firstItem="V7h-ET-HNG" firstAttribute="top" secondItem="sNE-no-4xX" secondAttribute="bottom" constant="5" id="KsZ-oN-E6B"/>
+                                <constraint firstItem="sNE-no-4xX" firstAttribute="leading" secondItem="zCr-kS-Lbf" secondAttribute="leading" constant="20" id="UOU-fs-sXL"/>
+                                <constraint firstItem="ONc-Fx-6zq" firstAttribute="leading" secondItem="zCr-kS-Lbf" secondAttribute="leading" constant="20" id="XEt-s5-cSc"/>
+                                <constraint firstItem="PzJ-ao-wO9" firstAttribute="top" secondItem="V7h-ET-HNG" secondAttribute="bottom" constant="5" id="f9q-Hd-tkZ"/>
+                                <constraint firstItem="V7h-ET-HNG" firstAttribute="leading" secondItem="zCr-kS-Lbf" secondAttribute="leading" constant="20" id="gv0-GL-XBD"/>
+                                <constraint firstItem="sNE-no-4xX" firstAttribute="top" secondItem="zCr-kS-Lbf" secondAttribute="top" constant="10" id="hVE-ZX-oRo"/>
+                                <constraint firstAttribute="trailing" secondItem="V7h-ET-HNG" secondAttribute="trailing" constant="20" id="jyS-9T-6MO"/>
+                                <constraint firstItem="ONc-Fx-6zq" firstAttribute="top" secondItem="PzJ-ao-wO9" secondAttribute="bottom" constant="5" id="lQr-49-e02"/>
+                                <constraint firstAttribute="trailing" secondItem="ONc-Fx-6zq" secondAttribute="trailing" constant="20" id="mZi-zO-lDM"/>
+                                <constraint firstAttribute="height" constant="310" id="xZd-5n-giZ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="zCr-kS-Lbf" firstAttribute="leading" secondItem="e6B-ib-AU6" secondAttribute="leading" id="KKR-by-ejX"/>
+                        <constraint firstItem="zCr-kS-Lbf" firstAttribute="top" secondItem="e6B-ib-AU6" secondAttribute="top" constant="10" id="QXq-2V-Deb"/>
+                        <constraint firstItem="zCr-kS-Lbf" firstAttribute="width" secondItem="e6B-ib-AU6" secondAttribute="width" id="ecq-8c-U5E"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bi3-ch-IyN" secondAttribute="trailing" id="HCK-EV-6th"/>
+                <constraint firstItem="Bi3-ch-IyN" firstAttribute="top" secondItem="e6B-ib-AU6" secondAttribute="bottom" id="SyA-ik-FNe"/>
+                <constraint firstItem="e6B-ib-AU6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="VRa-cz-fg9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e6B-ib-AU6" secondAttribute="trailing" id="i7g-Uh-GrK"/>
+                <constraint firstItem="Bi3-ch-IyN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rZC-wM-Zrs"/>
+                <constraint firstItem="e6B-ib-AU6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tQ2-eh-xkl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Bi3-ch-IyN" secondAttribute="bottom" id="zie-8f-AYP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

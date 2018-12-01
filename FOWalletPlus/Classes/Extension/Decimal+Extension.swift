@@ -11,10 +11,11 @@ import Foundation
 extension Decimal {
     public func toFixed(_ precision: Int) -> String {
         let fmt = NumberFormatter()
-        fmt.alwaysShowsDecimalSeparator = true
         fmt.roundingMode = .ceiling
         fmt.numberStyle = .decimal
-        fmt.minimumFractionDigits = precision
-        return fmt.string(from: self as NSNumber)!
+        fmt.minimumFractionDigits = precision + 1
+        var resp = fmt.string(from: self as NSNumber)!
+        resp.removeLast()
+        return resp
     }
 }

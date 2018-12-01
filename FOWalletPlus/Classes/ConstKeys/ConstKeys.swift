@@ -31,10 +31,15 @@ let statusHeight:CGFloat = safeTop == 0 ? 20 : safeTop
 let tabbarHeight:CGFloat = safeBottom + 49
 let navHeight:CGFloat = statusHeight + 44
 
+// Warning
+let fiboscouncil: String = "fiboscouncil"
+
 // MARK: ===== EndPoint =======
 var defaultHttpEndPoint = "http://to-rpc.fibos.io:8870"
 let tunnel = "https://tunnel.fibos.io/1.0/app/token/create"
 let salt = "kQkAjnFj8vI="
+let graphqlUri = "http://api.tracker.fibos.io/1.0/app"
+let exploreUri = "http://explorer.fibos.rocks/transactions/"
 
 // MARK: ===== ConstKey ======
 let pageSize: Int32 = 100

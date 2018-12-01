@@ -41,6 +41,9 @@ class CacheHelper: NSObject {
     /// - Returns: 是否保存成功
     @discardableResult
     open func saveWallets(_ wallets: [Wallet]) -> Bool {
+        if wallets.count == 0 {
+            return true
+        }
         db.beginTransaction()
         do {
             let sql = "REPLACE INTO TWallets (account, prompt, pubKey, password, priKey) VALUES (?,?,?,?,?)"
@@ -263,6 +266,9 @@ class CacheHelper: NSObject {
     ///
     /// - Parameter tokens: 通证信息的概要
     open func saveTokens(_ tokens: [TokenSummary]) {
+        if tokens.count == 0 {
+            return
+        }
         db.beginTransaction()
         do {
             let sql = "REPLACE INTO TTokens (connector_balance, connector_weight, issuer, max_exchange, max_supply, reserve_connector_balance, reserve_supply, supply, symbol) VALUES (?,?,?,?,?,?,?,?,?)"

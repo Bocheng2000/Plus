@@ -80,4 +80,20 @@ extension String {
     func toDecimal() -> Decimal {
         return Decimal(string: self) ?? Decimal(0)
     }
+
+    func utcTime2Local(format: String?) -> String {
+        let local = NSTimeZone.local
+        let offset = local.secondsFromGMT()
+        let fmt = DateFormatter()
+        fmt.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let ts = fmt.date(from: self)?.timeIntervalSince1970
+        if ts == nil {
+            return ""
+        }
+        let localDate = Date(timeIntervalSince1970: TimeInterval(Int(ts!) + offset))
+        if format == nil {
+            return localDate.format(formatter: "yyyy/MM/dd")
+        }
+        return localDate.format(formatter: format!)
+    }
 }

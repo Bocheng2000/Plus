@@ -48,7 +48,7 @@ class TokenTableViewCell: UITableViewCell {
             let precision = HomeUtils.getTokenPrecision(quantity)
             let all = quantity.toDecimal() + lock.toDecimal() + wallet.toDecimal()
             quantityLabel.frame = CGRect(x: tokenLabel.right + 5, y: 17, width: w - 15 - tokenLabel.right, height: 25)
-            quantityLabel.text = HomeUtils.fmtQuantity(all.toFixed(precision))
+            quantityLabel.text = all.toFixed(precision)
             moneyLabel.frame = CGRect(x: contractLabel.right + 5, y: quantityLabel.bottom, width: w - 15 - contractLabel.right, height: 20)
             moneyLabel.text = "≈ 0.00"
         }

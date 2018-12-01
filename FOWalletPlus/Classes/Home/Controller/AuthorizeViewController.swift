@@ -193,7 +193,7 @@ class AuthorizeViewController: UIViewController {
             return
         }
         let pkString = wallet!.getPriKey(value!)
-        if pkString == nil {
+        if pkString == nil || pkString == "" {
             let err = LanguageHelper.localizedString(key: "PasswordIsError")
             ZSProgressHUD.showDpromptText(err)
             return

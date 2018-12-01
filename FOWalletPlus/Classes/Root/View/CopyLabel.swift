@@ -11,6 +11,15 @@ import UIKit
 class CopyLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        make()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        make()
+    }
+    
+    private func make() {
         isUserInteractionEnabled = true
         becomeFirstResponder()
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(showMenu))

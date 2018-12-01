@@ -29,3 +29,8 @@ class SimpleWalletPayModel: SimpleWalletBaseModel {
     var precision: Int = 0
     var desc: String = ""
 }
+
+class SimpleWalletTokenDetailModel: SimpleWalletBaseModel {
+    var symbol: String!
+    var contract: String!
+}

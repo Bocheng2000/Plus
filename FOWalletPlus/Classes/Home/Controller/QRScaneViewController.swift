@@ -135,6 +135,7 @@ class QRScaneViewController: FatherViewController, AVCaptureMetadataOutputObject
     }
     
     private func didScanResult(_ result: String) {
+        print(result)
         if scanFinish != nil {
             navigationController?.popViewController(animated: true)
             scanFinish!(result)
@@ -142,12 +143,6 @@ class QRScaneViewController: FatherViewController, AVCaptureMetadataOutputObject
         }
         if result == "" {
             return
-        }
-        let model = CreateQRModel.deserialize(from: result)
-        if model == nil {
-            
-        } else {
-            print("dasdasd")
         }
     }
     

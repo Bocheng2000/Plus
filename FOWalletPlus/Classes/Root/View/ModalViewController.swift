@@ -102,7 +102,7 @@ class ModalViewController: UIViewController {
             container.addSubview(btn)
         }
         
-        let height: CGFloat = _h + 70 + 30
+        let height: CGFloat = _h + 70 + 30 + safeBottom
         container.frame = CGRect(x: padding, y: (kSize.height - height) / 2, width: kSize.width - padding * 2, height: height)
     }
     

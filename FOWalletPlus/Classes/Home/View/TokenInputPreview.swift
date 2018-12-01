@@ -30,6 +30,15 @@ class TokenInputPreview: UIView, UITextFieldDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        makeUI()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        makeUI()
+    }
+    
+    private func makeUI() {
         let color: UIColor = UIColor.colorWithHexString(hex: "#666666")
         let font = UIFont.systemFont(ofSize: 14)
         titleLabel = UILabel(frame: .zero)

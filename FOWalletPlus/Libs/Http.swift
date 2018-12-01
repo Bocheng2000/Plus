@@ -16,7 +16,6 @@ class Http: NSObject, URLSessionDataDelegate {
     static var httpErrorCode: Int = 9999
     static var httpErrorDomain = "HttpError"
     
-    
     private static var http:Http = Http()
     private static var kTimeoutInterval:TimeInterval = 30 //链接超时
     private var success: successBlock?
@@ -35,9 +34,13 @@ class Http: NSObject, URLSessionDataDelegate {
         
     }
     
-    /**
-     * Post 请求
-     */
+    
+    /// Post 请求
+    ///
+    /// - Parameters:
+    ///   - urlStr: url
+    ///   - params: 参数
+    ///   - success: block
     open func post(urlStr:String, params:Any?, success:@escaping (Error?, NSDictionary?) -> Void) {
         let url = URL(string: urlStr)
         let body = try!JSONSerialization.data(withJSONObject: params!, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -62,6 +65,35 @@ class Http: NSObject, URLSessionDataDelegate {
         task.resume()
     }
     
+    /// graphql
+    ///
+    /// - Parameters:
+    ///   - urlStr: url
+    ///   - params: 参数
+    ///   - success: block
+    open func graphql(urlStr:String, params:String, success:@escaping (Error?, NSDictionary?) -> Void) {
+        let url = URL(string: urlStr)
+        let body = params.data(using: .utf8)
+        var request = URLRequest(url: url!)
+        request.timeoutInterval = Http.kTimeoutInterval
+        request.httpMethod = "POST"
+        request.httpBody = body
+        request.setValue("application/graphql", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared //单例
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if error != nil { //出错
+                success(error, Optional.none)
+            }else {
+                guard let res = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) else {
+                    let ex = NSError(domain: Http.httpErrorDomain, code: Http.httpErrorCode, userInfo: [NSLocalizedDescriptionKey: "Decoding error"])
+                    success(ex, Optional.none)
+                    return
+                }
+                success(Optional.none, res as? NSDictionary)
+            }
+        }
+        task.resume()
+    }
     
     //MARK: ==== 上传带进度
     open func putWithProgress(urlStr:String, contentType:String, sufix:String, fileUrl: String, success:successBlock?,fail:failBlock?, progress: progressBlock?) {
@@ -96,31 +128,7 @@ class Http: NSObject, URLSessionDataDelegate {
         let task = session.uploadTask(with: request, from: data)
         task.resume()
     }
-    
-    /**
-     * Put
-     */
-    open func put(urlStr:String, contentType:String, sufix:String, postData:Data, success:@escaping (String) -> Void?,fail:@escaping (String) -> Void?) -> Void {
-        let url = URL(string: urlStr)
-        var request = URLRequest(url: url!)
-        request.timeoutInterval = Http.kTimeoutInterval
-        request.httpMethod = "POST"
-        request.httpBody = postData
-        request.setValue(contentType, forHTTPHeaderField: "Content-Type")
-        request.setValue(sufix, forHTTPHeaderField: "sufix")
-        let session = URLSession.shared //单例
-        let task = session.dataTask(with: request) { (data, response, error) in
-            if error != nil { //出错
-                fail((error?.localizedDescription)!)
-            }else {
-                let res = String(data: data!, encoding: String.Encoding.utf8)
-                success(res!)
-            }
-        }
-        task.resume()
-    }
-    
-    
+
     //MARK: ===== URLSession Delegate ======
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         let percent = CGFloat(totalBytesSent) / CGFloat(totalBytesExpectedToSend)

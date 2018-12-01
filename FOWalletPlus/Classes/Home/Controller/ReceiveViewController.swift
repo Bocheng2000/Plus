@@ -108,7 +108,6 @@ class ReceiveViewController: FatherViewController, UITextFieldDelegate, FSAction
     
     // MARK: ======== FSActionSheet Delegate =======
     func fsActionSheet(_ actionSheet: FSActionSheet!, selectedIndex: Int) {
-        print(selectedIndex)
         if selectedIndex == 0 {
             let helper = PermissionHelper()
             helper.checkLibraryIsAllow { [weak self] (isAllow) in

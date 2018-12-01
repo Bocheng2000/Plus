@@ -189,9 +189,14 @@ class TokenDetailViewController: FatherViewController, UITableViewDelegate, UITa
     
     // MARK: =========== 右侧按钮点击事件 ===========
     override func rightBtnDidClick() {
-        let info = TokenInfoQRModel(model.symbol, _contract: model.contract)
-        let createQR = CreateQRModel("TokenDetail", _params: info.toJSONString()!)
-        let qrModel = QRModel(createQR.toJSONString()!, _wh: 180, _tip: LanguageHelper.localizedString(key: "ScanWithFOWallet"), _color: nil)
+        let info = SimpleWalletTokenDetailModel()
+        info.protocol = "SimpleWallet"
+        info.version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        info.action = "tokendetail"
+        info.expired = Date.now() + 300000
+        info.symbol = model.symbol
+        info.contract = model.contract
+        let qrModel = QRModel(info.toJSONString()!, _wh: 180, _tip: LanguageHelper.localizedString(key: "ScanWithFOWallet"), _color: nil)
         QRViewController(qrModel).show(source: self)
     }
     

@@ -108,6 +108,7 @@ class ImportViewController: FatherViewController, InputItemDelegate, InputItemMu
             _regex: nil,
             _isSecureTextEntry: false)
         prompt.delegate = self
+        prompt.textField.keyboardType = .emailAddress
         prompt.model = promptModel
         container.addSubview(prompt)
         

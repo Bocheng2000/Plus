@@ -152,7 +152,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
         btn.titleLabel?.font = font
         btn.setTitleColor(UIColor.colorWithHexString(hex: "#666666"), for: .normal)
         btn.setTitle(showHideToken, for: .normal)
-        btn.addTarget(self, action: #selector(showHideTokenDidClick), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(addTokenDidClick), for: .touchUpInside)
         footer.addSubview(btn)
         return footer
     }()
@@ -162,18 +162,8 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
         
     }
     
-    @objc private func showHideTokenDidClick() {
-        let current = WalletManager.shared.getCurrent()
-        if current != nil {
-            let hideToken = HideTokenViewController(left: "img|blackBack", title: current!.account, right: nil)
-            hideToken.showTokenBlock = {
-                [weak self] (model: AccountAssetModel) in
-                let indexPath = IndexPath(item: (self?.dataSource.count)!, section: 0)
-                self?.dataSource.append(model)
-                self?.tableView.insertRows(at: [indexPath], with: .automatic)
-            }
-            navigationController?.pushViewController(hideToken, animated: true)
-        }
+    @objc private func addTokenDidClick() {
+        
     }
     
     private func setValue(amount: String) {
@@ -210,8 +200,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
         let tokenInfo = CacheHelper.shared.getOneToken(model.symbol, contract: model.contract)
         if tokenInfo == nil {
             let err = LanguageHelper.localizedString(key: "NoTokenFound")
-            let noticeBar = NoticeBar(title: err, defaultType: .error)
-            noticeBar.show(duration: 1, completed: nil)
+            ZSProgressHUD.showDpromptText(err)
         } else {
             let summary = TokenSummaryViewController(left: "img|back", title: nil, right: nil)
             summary.model = model
