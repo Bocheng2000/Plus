@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UnLockTokenViewController" customModule="FOWalletPlus" customModuleProvider="target">
+            <connections>
+                <outlet property="containerHeight" destination="6hu-Co-aQW" id="IPu-Jz-4ws"/>
+                <outlet property="containerView" destination="g3F-zb-UM9" id="Z5L-c2-MWj"/>
+                <outlet property="scrollView" destination="zhM-lT-bpz" id="8WA-uy-ikD"/>
+                <outlet property="tipLabel" destination="tlK-BV-JFz" id="ixu-iy-ffb"/>
+                <outlet property="tipLabelHeight" destination="0vo-gp-li5" id="gnB-gc-ISQ"/>
+                <outlet property="unlockBtn" destination="PYe-Xh-LpV" id="Cox-gh-VU9"/>
+                <outlet property="unlockPreview" destination="syG-tu-EMf" id="19z-0a-60b"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYe-Xh-LpV" customClass="BaseButton" customModule="FOWalletPlus" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="Jyj-j0-c6v"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="unlockBtnDidClick:" destination="-1" eventType="touchUpInside" id="z9E-Yz-xhT"/>
+                    </connections>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zhM-lT-bpz">
+                    <rect key="frame" x="0.0" y="64" width="375" height="555"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3F-zb-UM9">
+                            <rect key="frame" x="0.0" y="10" width="375" height="105"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syG-tu-EMf" customClass="TokenInputPreview" customModule="FOWalletPlus" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="10" width="335" height="65"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="65" id="c9C-jP-gKF"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlK-BV-JFz">
+                                    <rect key="frame" x="20" y="80" width="335" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="16" id="0vo-gp-li5"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="tlK-BV-JFz" firstAttribute="top" secondItem="syG-tu-EMf" secondAttribute="bottom" constant="5" id="0gW-Ac-nOG"/>
+                                <constraint firstAttribute="trailing" secondItem="tlK-BV-JFz" secondAttribute="trailing" constant="20" id="2he-Gm-h76"/>
+                                <constraint firstAttribute="height" constant="105" id="6hu-Co-aQW"/>
+                                <constraint firstItem="tlK-BV-JFz" firstAttribute="leading" secondItem="g3F-zb-UM9" secondAttribute="leading" constant="20" id="ADb-LC-k28"/>
+                                <constraint firstAttribute="trailing" secondItem="syG-tu-EMf" secondAttribute="trailing" constant="20" id="JCL-4E-mBR"/>
+                                <constraint firstItem="syG-tu-EMf" firstAttribute="top" secondItem="g3F-zb-UM9" secondAttribute="top" constant="10" id="uKY-aH-ik8"/>
+                                <constraint firstItem="syG-tu-EMf" firstAttribute="leading" secondItem="g3F-zb-UM9" secondAttribute="leading" constant="20" id="xHC-xp-n2D"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="g3F-zb-UM9" firstAttribute="top" secondItem="zhM-lT-bpz" secondAttribute="top" constant="10" id="5UI-r7-U3S"/>
+                        <constraint firstItem="g3F-zb-UM9" firstAttribute="leading" secondItem="zhM-lT-bpz" secondAttribute="leading" id="Fpc-Qu-rDz"/>
+                        <constraint firstItem="g3F-zb-UM9" firstAttribute="width" secondItem="zhM-lT-bpz" secondAttribute="width" id="quC-Bb-If9"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="PYe-Xh-LpV" firstAttribute="top" secondItem="zhM-lT-bpz" secondAttribute="bottom" id="D1I-XC-cLF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zhM-lT-bpz" secondAttribute="trailing" id="Qnw-RT-Vrr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PYe-Xh-LpV" secondAttribute="bottom" id="YnN-Qd-cfw"/>
+                <constraint firstItem="zhM-lT-bpz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="b6F-X2-rpg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PYe-Xh-LpV" secondAttribute="trailing" id="gH2-MN-ZGe"/>
+                <constraint firstItem="zhM-lT-bpz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kE6-lb-B7z"/>
+                <constraint firstItem="PYe-Xh-LpV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tP0-Vg-ri4"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="31.5" y="127.5"/>
+        </view>
+    </objects>
+</document>

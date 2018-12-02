@@ -238,9 +238,13 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
                 let vc = TokenDetailViewController(left: "img|back", title: nil, right: "img|qr")
                 let tokenInfo = CacheHelper.shared.getOneToken(model.symbol, contract: model.contract)
                 if tokenInfo == nil {
-                    let err = LanguageHelper.localizedString(key: "NoTokenFound")
-                    let noticeBar = NoticeBar(title: err, defaultType: .error)
-                    noticeBar.show(duration: 1, completed: nil)
+                    let err = LanguageHelper.localizedString(key: "NoAssetsFound")
+                    let btn = ModalButtonModel(LanguageHelper.localizedString(key: "OK"), _titleColor: nil, _titleFont: nil, _backgroundColor: nil, _borderColor: nil) {
+                        [weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    let modalModel = ModalModel(false, _imageName: "error", _title: err, _message: nil, _buttons: [btn])
+                    ModalViewController(modalModel).show(source: self)
                 } else {
                     vc.model = tokenInfo!
                     vc.showAddButton = false

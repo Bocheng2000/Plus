@@ -27,5 +27,6 @@
 #import "FMDB.h"
 #import "TZImagePickerController.h"
 #import "FSActionSheet.h"
+#import "PGDatePickManager.h"
 
 #endif /* FOWalletPlus_Bridging_h */

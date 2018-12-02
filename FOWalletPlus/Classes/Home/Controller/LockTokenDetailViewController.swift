@@ -31,6 +31,11 @@ class LockTokenDetailViewController: FatherViewController, UITableViewDelegate, 
         setFuncMenu()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
     private func makeUI() {
         let tokenImage = TokenImage(frame: CGRect(x: (kSize.width - 40) / 2, y: statusHeight + 2, width: 40, height: 40))
         tokenImage.model = TokenImageModel(model.balance.symbol, _contract: model.balance.contract, _isSmart: isSmart, _wh: 40)
@@ -41,11 +46,15 @@ class LockTokenDetailViewController: FatherViewController, UITableViewDelegate, 
     }
     
     private func setFuncMenu() {
-        let transfer = FunctionMenuModel("", _title: LanguageHelper.localizedString(key: "Transfer")) {
+        let transfer = FunctionMenuModel("unlockTransfer", _title: LanguageHelper.localizedString(key: "Transfer")) {
             [weak self] in
+            let lockPay = LockPayViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "Transfer"), right: nil)
+            lockPay.model = self?.model
+            self?.navigationController?.pushViewController(lockPay, animated: true)
         }
-        let unlock = FunctionMenuModel("", _title: LanguageHelper.localizedString(key: "UnLockToken")) {
+        let unlock = FunctionMenuModel("unlock", _title: LanguageHelper.localizedString(key: "UnLockToken")) {
             [weak self] in
+            self?.unLockTokenDidClick()
         }
         functionMenuView.models = [transfer, unlock]
     }
@@ -93,6 +102,19 @@ class LockTokenDetailViewController: FatherViewController, UITableViewDelegate, 
         sumToken.attributedText = attr
     }
     
+    private func unLockTokenDidClick() {
+        let lockAtTs = "\(model.lock_timestamp!).000Z".utcTime2LocalDate().timeIntervalSince1970
+        let now = Date.now()
+        if Int(lockAtTs) * 1000 > now {
+            let error = LanguageHelper.localizedString(key: "UnReachUnLockTs")
+            ZSProgressHUD.showDpromptText(error)
+            return
+        }
+        let unlock = UnLockTokenViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "UnLockToken"), right: nil)
+        unlock.model = model
+        navigationController?.pushViewController(unlock, animated: true)
+    }
+    
     // MARK: ========== UITableView DataSource And Delegate =========
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -128,6 +150,10 @@ class LockTokenDetailViewController: FatherViewController, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     // MARK: ========= UITableView delegate =========

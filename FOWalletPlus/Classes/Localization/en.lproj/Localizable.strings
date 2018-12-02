@@ -167,3 +167,11 @@
 "Sina" = "Sina";
 "UnableOpenSafari" = "Unable to open safari";
 "CanUnLockTime" = "Lock To";
+"LockTime" = "Unlockable Time";
+"UnLockTokenTips" = "Lock time will be up to 11:59 P.M. of the date you have already selected. Holders of the locked tokens could unlock these tokens at 0:00 A.M. of the next day.";
+"LockTransfer" = "Lock transfer";
+"UnReachUnLockTs" = "Too early to unlock";
+"UnLockQuantity" = "Quantity";
+"InputUnLockQuantity" = "Please input unlock quantity";
+"UnLockMax" = "Estimated maximum quantity could unlock";
+"ToUnLockToken" = "Unlock token";

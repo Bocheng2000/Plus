@@ -158,16 +158,16 @@ class PayViewController: FatherViewController, TokenInputPreviewDelegate, Author
             showErrorWithKey("QuantityNotNull")
             return false
         }
-        let amoutValueFloat = amountValue.toDecimal()
-        if amoutValueFloat.isNaN {
+        let amoutValueDecimal = amountValue.toDecimal()
+        if amoutValueDecimal.isNaN {
             showErrorWithKey("QuantityNotZero")
             return false
         }
-        if amoutValueFloat.isZero {
+        if amoutValueDecimal.isZero {
             showErrorWithKey("QuantityNotZero")
             return false
         }
-        if amoutValueFloat > HomeUtils.getQuantity(assetModel.quantity).toDecimal() {
+        if amoutValueDecimal > HomeUtils.getQuantity(assetModel.quantity).toDecimal() {
             showErrorWithKey("LeakOfBalance")
             return false
         }

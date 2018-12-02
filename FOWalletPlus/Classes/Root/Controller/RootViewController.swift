@@ -21,7 +21,10 @@ class RootViewController: UITabBarController {
     
     private func makeUI() {
         UIApplication.shared.statusBarStyle = .lightContent
-        tabBar.tintColor = TINT_COLOR
+//        tabBar.tintColor = TINT_COLOR
+        let tabbar = MyTabbar()
+        tabbar.tintColor = TINT_COLOR
+        setValue(tabbar, forKey: "tabBar")
     }
     
     private func createChildren() {

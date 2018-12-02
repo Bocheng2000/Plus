@@ -167,3 +167,11 @@
 "Sina" = "新浪";
 "UnableOpenSafari" = "无法打开Safari";
 "CanUnLockTime" = "可解锁时间";
+"LockTime" = "锁仓时间";
+"UnLockTokenTips" = "锁仓时间截止到当日的23:59，对方可从第二天零点开始解锁";
+"LockTransfer" = "锁仓转账";
+"UnReachUnLockTs" = "尚未到达解锁时间";
+"UnLockQuantity" = "解锁数量";
+"InputUnLockQuantity" = "请输入解锁数量";
+"UnLockMax" = "当前预估最大可解锁量";
+"ToUnLockToken" = "解锁通证";

@@ -17,6 +17,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    public func utcFormatter(formatter: String?) -> String {
+        let local = NSTimeZone.local
+        let offset = local.secondsFromGMT()
+        let ts = TimeInterval(Int(self.timeIntervalSince1970) - offset)
+        return Date.init(timeIntervalSince1970: ts).format(formatter: formatter)
+    }
+    
     public static func now() -> Int {
         return Int(floor(Date().timeIntervalSince1970 * 1000))
     }

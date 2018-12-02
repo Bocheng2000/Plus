@@ -17,29 +17,6 @@ class LanguageHelper: NSObject {
         super.init()
     }
     
-    
-    /// 返回错误描述的key
-    open class func errorDescription() -> String {
-        return isZHCN() ? "ed_zh" : "ed_en"
-    }
-    
-    //MARK: ===== 是否是中文环境 ========
-    /// 是否是中文环境
-    ///
-    /// - Returns: Bool 值
-    open class func isZHCN () -> Bool {
-        if currentLanguage == "" {
-            let def = UserDefaults.standard
-            var value = def.string(forKey: kLanguage)
-            if value == nil {
-                let preferredLanguages = Locale.preferredLanguages
-                value = preferredLanguages[0]
-            }
-            currentLanguage = value!
-        }
-        return currentLanguage.hasPrefix("zh")
-    }
-    
     //MARK: ===== 初始化用户的语言环境 ========
     /// 初始化用户的语言环境
     open class func initUserLanguage() {
@@ -50,8 +27,10 @@ class LanguageHelper: NSObject {
             value = preferredLanguages[0]
             if (value?.hasPrefix("en"))! {
                 value = "en"
-            } else if (value?.hasPrefix("zh"))! {
+            } else if value == "zh-Hans" {
                 value = "zh-Hans"
+            } else if value == "zh-Hant" {
+                value = "zh-Hant"
             } else {
                 value = "en"
             }
@@ -84,24 +63,6 @@ class LanguageHelper: NSObject {
         }
         bundle = Bundle.init(path: path!)!
     }
-
-    
-    /// 获取当前的语言名称
-    ///
-    /// - Returns: value
-    open class func getUserLanguageName() -> String {
-        switch currentLanguage {
-        case "en":
-            return "English"
-        case "zh-Hans":
-            return "简体中文"
-        case "zh-Hant":
-            return "繁体中文"
-        default:
-            return "English"
-        }
-    }
-    
     
     /// 获取当前的语言
     ///
