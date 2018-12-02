@@ -312,6 +312,10 @@
 		91CA8C4C21A4F1CD00E53333 /* ToUnLockTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CA8C4B21A4F1CD00E53333 /* ToUnLockTokenModel.swift */; };
 		91CA8C6921A5042000E53333 /* ToContractWalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CA8C6821A5042000E53333 /* ToContractWalletModel.swift */; };
 		91CA8C6B21A5053400E53333 /* PkStringModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CA8C6A21A5053400E53333 /* PkStringModel.swift */; };
+		91D4A26721B2E0F600821B4D /* LockTokenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4A26521B2E0F600821B4D /* LockTokenDetailViewController.swift */; };
+		91D4A26821B2E0F600821B4D /* LockTokenDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D4A26621B2E0F600821B4D /* LockTokenDetailViewController.xib */; };
+		91D4A26B21B2EA8200821B4D /* copy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D4A26921B2EA8200821B4D /* copy@3x.png */; };
+		91D4A26C21B2EA8200821B4D /* copy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D4A26A21B2EA8200821B4D /* copy@2x.png */; };
 		91EA938D219998ED0075D801 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA938C219998ED0075D801 /* AppDelegate.swift */; };
 		91EA9394219998EE0075D801 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91EA9393219998EE0075D801 /* Assets.xcassets */; };
 		91EA9397219998EE0075D801 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91EA9395219998EE0075D801 /* LaunchScreen.storyboard */; };
@@ -797,6 +801,10 @@
 		91CA8C4B21A4F1CD00E53333 /* ToUnLockTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToUnLockTokenModel.swift; sourceTree = "<group>"; };
 		91CA8C6821A5042000E53333 /* ToContractWalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToContractWalletModel.swift; sourceTree = "<group>"; };
 		91CA8C6A21A5053400E53333 /* PkStringModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PkStringModel.swift; sourceTree = "<group>"; };
+		91D4A26521B2E0F600821B4D /* LockTokenDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockTokenDetailViewController.swift; sourceTree = "<group>"; };
+		91D4A26621B2E0F600821B4D /* LockTokenDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LockTokenDetailViewController.xib; sourceTree = "<group>"; };
+		91D4A26921B2EA8200821B4D /* copy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy@3x.png"; sourceTree = "<group>"; };
+		91D4A26A21B2EA8200821B4D /* copy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy@2x.png"; sourceTree = "<group>"; };
 		91EA9389219998ED0075D801 /* FOWalletPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOWalletPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91EA938C219998ED0075D801 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91EA9393219998EE0075D801 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1252,6 +1260,8 @@
 				916E898C21B287C600FC4C16 /* qq@3x.png */,
 				916E898921B287C500FC4C16 /* sina@2x.png */,
 				916E898B21B287C500FC4C16 /* sina@3x.png */,
+				91D4A26A21B2EA8200821B4D /* copy@2x.png */,
+				91D4A26921B2EA8200821B4D /* copy@3x.png */,
 				9150819421B13AD3002C117E /* left@2x.png */,
 				9150819321B13AD3002C117E /* left@3x.png */,
 				9150819621B13AD3002C117E /* right@2x.png */,
@@ -1364,6 +1374,8 @@
 				915081A221B181ED002C117E /* TransactionDetailViewController.xib */,
 				915081A721B25613002C117E /* ExploreViewController.swift */,
 				915081A821B25613002C117E /* ExploreViewController.xib */,
+				91D4A26521B2E0F600821B4D /* LockTokenDetailViewController.swift */,
+				91D4A26621B2E0F600821B4D /* LockTokenDetailViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2290,6 +2302,7 @@
 				915E128821A128E6002ECF8A /* available@3x.png in Resources */,
 				91966EB8219C3D2E0016F58F /* me@3x.png in Resources */,
 				91A30F1421A2AD040010E685 /* export@3x.png in Resources */,
+				91D4A26C21B2EA8200821B4D /* copy@2x.png in Resources */,
 				91A30F2021A2B7B70010E685 /* qrScane@3x.png in Resources */,
 				91966EB6219C3D2E0016F58F /* me_high@2x.png in Resources */,
 				916F184C219D76EF00F5BD3D /* cover.png in Resources */,
@@ -2367,6 +2380,7 @@
 				916F1864219DB51400F5BD3D /* transfer@2x.png in Resources */,
 				915E126821A054D5002ECF8A /* hide@3x.png in Resources */,
 				9122CED3219B1F120014F790 /* sha512.js in Resources */,
+				91D4A26821B2E0F600821B4D /* LockTokenDetailViewController.xib in Resources */,
 				916F1850219D7F1300F5BD3D /* TokenTableViewCell.xib in Resources */,
 				9122CED0219B1F120014F790 /* pad-iso10126.js in Resources */,
 				9150819721B13AD3002C117E /* left@3x.png in Resources */,
@@ -2438,6 +2452,7 @@
 				916F17F9219D136E00F5BD3D /* refresh_loop_19@2x.png in Resources */,
 				91A30F1821A2B5D40010E685 /* PayViewController.xib in Resources */,
 				9122CED7219B1F120014F790 /* pad-ansix923.js in Resources */,
+				91D4A26B21B2EA8200821B4D /* copy@3x.png in Resources */,
 				91966EAB219C3D050016F58F /* dapp@2x.png in Resources */,
 				916F17FF219D136E00F5BD3D /* refresh_loop_1@2x.png in Resources */,
 				91A30F1C21A2B7020010E685 /* blackBack@3x.png in Resources */,
@@ -2544,6 +2559,7 @@
 				9135C2A721AC48080089A746 /* NSBundle+TZImagePicker.m in Sources */,
 				91EA945A2199A1370075D801 /* String+Extension.swift in Sources */,
 				91EA9580219AACC20075D801 /* NSImage+WebCache.m in Sources */,
+				91D4A26721B2E0F600821B4D /* LockTokenDetailViewController.swift in Sources */,
 				9135C2AE21AC48080089A746 /* TZPhotoPreviewCell.m in Sources */,
 				91EA94E6219AACAC0075D801 /* MJRefreshBackGifFooter.m in Sources */,
 				91A30F6B21A3A8730010E685 /* BaseTextField.swift in Sources */,

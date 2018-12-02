@@ -263,11 +263,10 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         let y = scrollView.contentOffset.y
         if y > -kSize.height / 2 {
             if y < 0 {
-                let scale = -y / 100 + 1
-                bjView.transform = CGAffineTransform(scaleX: scale, y: scale)
+                bjView.height = menuHeight + navHeight - y
             } else {
-                if !bjView.transform.isIdentity {
-                    bjView.transform = CGAffineTransform.identity
+                if bjView.height != menuHeight + navHeight {
+                    bjView.height = menuHeight + navHeight
                 }
                 if y <= menuHeight {
                     bjView.y = -y

@@ -30,6 +30,11 @@ class AssetsModel: NSObject, Codable {
 class BalanceModel: NSObject, Codable {
     var quantity: String!
     var contract: String!
+    var symbol: String {
+        get {
+            return HomeUtils.getSymbol(quantity)
+        }
+    }
     convenience init(_ _quantity: String, _contract: String) {
         self.init()
         quantity = _quantity

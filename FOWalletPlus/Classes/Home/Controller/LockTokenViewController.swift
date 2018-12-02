@@ -204,7 +204,10 @@ class LockTokenViewController: FatherViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            
+            let detail = LockTokenDetailViewController(left: "img|back", title: nil, right: nil)
+            detail.model = lockTokenDataSource[indexPath.row]
+            detail.isSmart = model.isSmart
+            navigationController?.pushViewController(detail, animated: true)
         } else {
             let detail = TransactionDetailViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "TransactionDetail"), right: "img|more")
             let model = historyDataSource[indexPath.row]
@@ -277,11 +280,10 @@ class LockTokenViewController: FatherViewController, UITableViewDelegate, UITabl
         let y = scrollView.contentOffset.y
         if y > -kSize.height / 2 {
             if y < 0 {
-                let scale = -y / 100 + 1
-                bjView.transform = CGAffineTransform(scaleX: scale, y: scale)
+                bjView.height = menuHeight + navHeight - y
             } else {
-                if !bjView.transform.isIdentity {
-                    bjView.transform = CGAffineTransform.identity
+                if bjView.height != menuHeight + navHeight {
+                    bjView.height = menuHeight + navHeight
                 }
                 if y <= menuHeight {
                     bjView.y = -y
