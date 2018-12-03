@@ -33,6 +33,7 @@ class BackUpViewController: FatherViewController {
         navBar?.setBorderLine(position: .bottom, number: 0.5, color: BORDER_COLOR)
         let padding: CGFloat = 20
         scrollView.alwaysBounceVertical = true
+        scrollView.backgroundColor = UIColor.clear
         makeUIHeader(padding: padding)
         makeUIPK(padding: padding)
         makeUINext(padding: padding)

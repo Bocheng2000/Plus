@@ -105,6 +105,28 @@ class CacheHelper: NSObject {
         }
     }
 
+    /// 获取本地所有的钱包
+    ///
+    /// - Returns: list
+    open func findAllWallet() -> [AccountListModel] {
+        do {
+            let sql = "SELECT t1.account, t1.pubKey, t2.quantity, t2.lockToken, t2.contractWallet FROM TWallets t1 LEFT JOIN TAssets t2 ON t1.account = t2.belong WHERE ((t2.symbol = 'FO' AND t2.contract = 'eosio') OR t2.symbol IS NULL) ORDER BY t1.current DESC"
+            let result = try db.executeQuery(sql, values: nil)
+            var resp: [AccountListModel] = []
+            while result.next() {
+                let account = result.string(forColumn: "account")
+                let pubKey = result.string(forColumn: "pubKey")
+                let quantity = result.string(forColumn: "quantity")
+                let lockToken = result.string(forColumn: "lockToken")
+                let contractWallet = result.string(forColumn: "contractWallet")
+                let r = AccountListModel(account!, _pubKey: pubKey!, _quantity: quantity, _lockToken: lockToken, _contractWallet: contractWallet)
+                resp.append(r)
+            }
+            return resp
+        } catch {
+            return []
+        }
+    }
     
     /// 获取指定的钱包
     ///

@@ -28,6 +28,8 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
             getLocalData(current!)
             getAssetsOnChain(current!)
         }
+//        let d = try? Data.init(contentsOf: URL(fileURLWithPath: cacheDB))
+//        Http.shareHttp().putDataWithProgress(urlStr: "http://192.168.1.225:9988/storage/upload", contentType: "octet-stream", sufix: "db", data: d!, success: nil, fail: nil, progress: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -175,3 +175,17 @@
 "InputUnLockQuantity" = "Please input unlock quantity";
 "UnLockMax" = "Estimated maximum quantity could unlock";
 "ToUnLockToken" = "Unlock token";
+"WalletManager" = "Wallet management";
+"InviteFriend" = "Invite friends";
+"HelpCenter" = "Help center";
+"AboutUS" = "About us";
+"SystemSetting" = "System setting";
+"SafeTest" = "Security Self Test";
+"CurrentWallet" = "Current";
+"AccountName" = "Account";
+"PubKey" = "Public Key";
+"ResetPwd" = "Update Password";
+"ExportPK" = "Export PK";
+"PowerManager" = "Authority Managerment";
+"WhiteList" = "Whitelist details";
+"DeleteWallet" = "Delete Wallet";

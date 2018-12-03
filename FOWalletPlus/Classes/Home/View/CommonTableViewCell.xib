@@ -47,17 +47,28 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V7r-dG-OHK">
+                        <rect key="frame" x="291" y="22" width="4" height="4"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="4" id="WJx-9H-AgI"/>
+                            <constraint firstAttribute="height" constant="4" id="h04-Ob-q0N"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="UCG-E8-SIw" firstAttribute="leading" secondItem="V7r-dG-OHK" secondAttribute="trailing" constant="6" id="3XP-N1-Y7M"/>
                     <constraint firstItem="Bke-kD-vGe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="HwH-F2-Stw"/>
                     <constraint firstItem="Bke-kD-vGe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="JJ9-4m-wLF"/>
                     <constraint firstItem="UCG-E8-SIw" firstAttribute="centerY" secondItem="Bke-kD-vGe" secondAttribute="centerY" id="Nsj-zI-114"/>
+                    <constraint firstItem="UCG-E8-SIw" firstAttribute="centerY" secondItem="V7r-dG-OHK" secondAttribute="centerY" id="wyY-12-Igx"/>
                     <constraint firstAttribute="trailing" secondItem="UCG-E8-SIw" secondAttribute="trailing" constant="10" id="xey-Kh-z8f"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="arrowImageView" destination="UCG-E8-SIw" id="Jds-jf-0cq"/>
+                <outlet property="dotView" destination="V7r-dG-OHK" id="EEY-Ra-Eql"/>
                 <outlet property="icon" destination="Bke-kD-vGe" id="ZK6-kj-Lzr"/>
                 <outlet property="titleLabel" destination="p5A-Tc-hxb" id="wNf-Pz-MgL"/>
                 <outlet property="valueLabel" destination="kzR-KP-uj3" id="aIh-kB-3Gm"/>

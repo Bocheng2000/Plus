@@ -175,3 +175,17 @@
 "InputUnLockQuantity" = "请输入解锁数量";
 "UnLockMax" = "当前预估最大可解锁量";
 "ToUnLockToken" = "解锁通证";
+"WalletManager" = "钱包管理";
+"InviteFriend" = "邀请好友";
+"HelpCenter" = "帮助中心";
+"AboutUS" = "关于我们";
+"SystemSetting" = "系统设置";
+"SafeTest" = "安全自测";
+"CurrentWallet" = "当前钱包";
+"AccountName" = "账户名称";
+"PubKey" = "公钥";
+"ResetPwd" = "修改密码";
+"ExportPK" = "导出私钥";
+"PowerManager" = "权限管理";
+"WhiteList" = "白名单详情";
+"DeleteWallet" = "删除钱包";

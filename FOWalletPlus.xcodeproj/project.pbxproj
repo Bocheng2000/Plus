@@ -307,6 +307,30 @@
 		91966ED7219C6B520016F58F /* WhichModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91966ED6219C6B520016F58F /* WhichModel.swift */; };
 		9199F77B21B40F17002B15A8 /* UnLockTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199F77921B40F17002B15A8 /* UnLockTokenViewController.swift */; };
 		9199F77C21B40F17002B15A8 /* UnLockTokenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9199F77A21B40F17002B15A8 /* UnLockTokenViewController.xib */; };
+		9199F78A21B427E1002B15A8 /* system@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F77E21B427DF002B15A8 /* system@2x.png */; };
+		9199F78B21B427E1002B15A8 /* system@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F77F21B427DF002B15A8 /* system@3x.png */; };
+		9199F78C21B427E1002B15A8 /* help@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F78021B427E0002B15A8 /* help@3x.png */; };
+		9199F78D21B427E1002B15A8 /* wallet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F78121B427E0002B15A8 /* wallet@3x.png */; };
+		9199F78E21B427E1002B15A8 /* about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F78221B427E0002B15A8 /* about@3x.png */; };
+		9199F78F21B427E1002B15A8 /* safe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F78321B427E0002B15A8 /* safe@3x.png */; };
+		9199F79021B427E1002B15A8 /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F78421B427E0002B15A8 /* help@2x.png */; };
+		9199F79121B427E1002B15A8 /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F78521B427E1002B15A8 /* about@2x.png */; };
+		9199F79221B427E1002B15A8 /* safe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F78621B427E1002B15A8 /* safe@2x.png */; };
+		9199F79521B427E1002B15A8 /* wallet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F78921B427E1002B15A8 /* wallet@2x.png */; };
+		9199F79821B42C49002B15A8 /* WalletManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199F79621B42C49002B15A8 /* WalletManagerViewController.swift */; };
+		9199F79921B42C49002B15A8 /* WalletManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9199F79721B42C49002B15A8 /* WalletManagerViewController.xib */; };
+		9199F79C21B42F20002B15A8 /* WalletManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199F79A21B42F20002B15A8 /* WalletManagerTableViewCell.swift */; };
+		9199F79D21B42F20002B15A8 /* WalletManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9199F79B21B42F20002B15A8 /* WalletManagerTableViewCell.xib */; };
+		9199F79F21B4C651002B15A8 /* AccountListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199F79E21B4C651002B15A8 /* AccountListViewModel.swift */; };
+		9199F7AE21B4CAAA002B15A8 /* fibos@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F7AC21B4CAA9002B15A8 /* fibos@3x.png */; };
+		9199F7AF21B4CAAA002B15A8 /* fibos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9199F7AD21B4CAA9002B15A8 /* fibos@2x.png */; };
+		9199F7B221B4D664002B15A8 /* WalletDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199F7B021B4D664002B15A8 /* WalletDetailViewController.swift */; };
+		9199F7B321B4D664002B15A8 /* WalletDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9199F7B121B4D664002B15A8 /* WalletDetailViewController.xib */; };
+		9199F7B621B4DBF6002B15A8 /* WalletDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199F7B421B4DBF6002B15A8 /* WalletDetailTableViewCell.swift */; };
+		9199F7B721B4DBF6002B15A8 /* WalletDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9199F7B521B4DBF6002B15A8 /* WalletDetailTableViewCell.xib */; };
+		9199F7B921B4DCC9002B15A8 /* WalletDetailCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199F7B821B4DCC9002B15A8 /* WalletDetailCellModel.swift */; };
+		9199F7BC21B4F509002B15A8 /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199F7BA21B4F509002B15A8 /* UpdatePasswordViewController.swift */; };
+		9199F7BD21B4F509002B15A8 /* UpdatePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9199F7BB21B4F509002B15A8 /* UpdatePasswordViewController.xib */; };
 		91A30EFE21A2A0AE0010E685 /* FunctionMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A30EFD21A2A0AE0010E685 /* FunctionMenuView.swift */; };
 		91A30F0021A2A0D80010E685 /* FunctionMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A30EFF21A2A0D80010E685 /* FunctionMenuModel.swift */; };
 		91A30F0721A2AB500010E685 /* payToken@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91A30F0121A2AB4F0010E685 /* payToken@3x.png */; };
@@ -854,6 +878,30 @@
 		91966ED6219C6B520016F58F /* WhichModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhichModel.swift; sourceTree = "<group>"; };
 		9199F77921B40F17002B15A8 /* UnLockTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnLockTokenViewController.swift; sourceTree = "<group>"; };
 		9199F77A21B40F17002B15A8 /* UnLockTokenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnLockTokenViewController.xib; sourceTree = "<group>"; };
+		9199F77E21B427DF002B15A8 /* system@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "system@2x.png"; sourceTree = "<group>"; };
+		9199F77F21B427DF002B15A8 /* system@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "system@3x.png"; sourceTree = "<group>"; };
+		9199F78021B427E0002B15A8 /* help@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@3x.png"; sourceTree = "<group>"; };
+		9199F78121B427E0002B15A8 /* wallet@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wallet@3x.png"; sourceTree = "<group>"; };
+		9199F78221B427E0002B15A8 /* about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@3x.png"; sourceTree = "<group>"; };
+		9199F78321B427E0002B15A8 /* safe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "safe@3x.png"; sourceTree = "<group>"; };
+		9199F78421B427E0002B15A8 /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@2x.png"; sourceTree = "<group>"; };
+		9199F78521B427E1002B15A8 /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
+		9199F78621B427E1002B15A8 /* safe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "safe@2x.png"; sourceTree = "<group>"; };
+		9199F78921B427E1002B15A8 /* wallet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wallet@2x.png"; sourceTree = "<group>"; };
+		9199F79621B42C49002B15A8 /* WalletManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManagerViewController.swift; sourceTree = "<group>"; };
+		9199F79721B42C49002B15A8 /* WalletManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletManagerViewController.xib; sourceTree = "<group>"; };
+		9199F79A21B42F20002B15A8 /* WalletManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManagerTableViewCell.swift; sourceTree = "<group>"; };
+		9199F79B21B42F20002B15A8 /* WalletManagerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletManagerTableViewCell.xib; sourceTree = "<group>"; };
+		9199F79E21B4C651002B15A8 /* AccountListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListViewModel.swift; sourceTree = "<group>"; };
+		9199F7AC21B4CAA9002B15A8 /* fibos@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fibos@3x.png"; sourceTree = "<group>"; };
+		9199F7AD21B4CAA9002B15A8 /* fibos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fibos@2x.png"; sourceTree = "<group>"; };
+		9199F7B021B4D664002B15A8 /* WalletDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailViewController.swift; sourceTree = "<group>"; };
+		9199F7B121B4D664002B15A8 /* WalletDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletDetailViewController.xib; sourceTree = "<group>"; };
+		9199F7B421B4DBF6002B15A8 /* WalletDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailTableViewCell.swift; sourceTree = "<group>"; };
+		9199F7B521B4DBF6002B15A8 /* WalletDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletDetailTableViewCell.xib; sourceTree = "<group>"; };
+		9199F7B821B4DCC9002B15A8 /* WalletDetailCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailCellModel.swift; sourceTree = "<group>"; };
+		9199F7BA21B4F509002B15A8 /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
+		9199F7BB21B4F509002B15A8 /* UpdatePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatePasswordViewController.xib; sourceTree = "<group>"; };
 		91A30EFD21A2A0AE0010E685 /* FunctionMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMenuView.swift; sourceTree = "<group>"; };
 		91A30EFF21A2A0D80010E685 /* FunctionMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMenuModel.swift; sourceTree = "<group>"; };
 		91A30F0121A2AB4F0010E685 /* payToken@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payToken@3x.png"; sourceTree = "<group>"; };
@@ -1666,6 +1714,12 @@
 			children = (
 				91966E63219BFCDA0016F58F /* MeViewController.swift */,
 				91966E64219BFCDA0016F58F /* MeViewController.xib */,
+				9199F79621B42C49002B15A8 /* WalletManagerViewController.swift */,
+				9199F79721B42C49002B15A8 /* WalletManagerViewController.xib */,
+				9199F7B021B4D664002B15A8 /* WalletDetailViewController.swift */,
+				9199F7B121B4D664002B15A8 /* WalletDetailViewController.xib */,
+				9199F7BA21B4F509002B15A8 /* UpdatePasswordViewController.swift */,
+				9199F7BB21B4F509002B15A8 /* UpdatePasswordViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1673,6 +1727,10 @@
 		91966E60219BFCBC0016F58F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9199F79A21B42F20002B15A8 /* WalletManagerTableViewCell.swift */,
+				9199F79B21B42F20002B15A8 /* WalletManagerTableViewCell.xib */,
+				9199F7B421B4DBF6002B15A8 /* WalletDetailTableViewCell.swift */,
+				9199F7B521B4DBF6002B15A8 /* WalletDetailTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1680,6 +1738,8 @@
 		91966E61219BFCC20016F58F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9199F79E21B4C651002B15A8 /* AccountListViewModel.swift */,
+				9199F7B821B4DCC9002B15A8 /* WalletDetailCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1733,6 +1793,25 @@
 				916E89AD21B2B49200FC4C16 /* ModalPanelModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9199F77D21B427D1002B15A8 /* me */ = {
+			isa = PBXGroup;
+			children = (
+				9199F7AD21B4CAA9002B15A8 /* fibos@2x.png */,
+				9199F7AC21B4CAA9002B15A8 /* fibos@3x.png */,
+				9199F78521B427E1002B15A8 /* about@2x.png */,
+				9199F78221B427E0002B15A8 /* about@3x.png */,
+				9199F78421B427E0002B15A8 /* help@2x.png */,
+				9199F78021B427E0002B15A8 /* help@3x.png */,
+				9199F78621B427E1002B15A8 /* safe@2x.png */,
+				9199F78321B427E0002B15A8 /* safe@3x.png */,
+				9199F77E21B427DF002B15A8 /* system@2x.png */,
+				9199F77F21B427DF002B15A8 /* system@3x.png */,
+				9199F78921B427E1002B15A8 /* wallet@2x.png */,
+				9199F78121B427E0002B15A8 /* wallet@3x.png */,
+			);
+			path = me;
 			sourceTree = "<group>";
 		};
 		91A30F6121A39A860010E685 /* ClientModel */ = {
@@ -2175,6 +2254,7 @@
 		91EA94632199A9810075D801 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9199F77D21B427D1002B15A8 /* me */,
 				916F182E219D4FB600F5BD3D /* home */,
 				916F17E0219D136E00F5BD3D /* refresh */,
 				91966E68219BFF770016F58F /* begin */,
@@ -2487,6 +2567,7 @@
 				91966ED1219C67A70016F58F /* SelectAccountViewController.xib in Resources */,
 				91966E55219BFC400016F58F /* HomeViewController.xib in Resources */,
 				9162B1D121A29DB200262970 /* Images.xcassets in Resources */,
+				9199F79021B427E1002B15A8 /* help@2x.png in Resources */,
 				91A30F0A21A2AB500010E685 /* receiveToken@3x.png in Resources */,
 				91966EB7219C3D2E0016F58F /* me_high@3x.png in Resources */,
 				915E128821A128E6002ECF8A /* available@3x.png in Resources */,
@@ -2496,6 +2577,7 @@
 				91A30F2021A2B7B70010E685 /* qrScane@3x.png in Resources */,
 				91966EB6219C3D2E0016F58F /* me_high@2x.png in Resources */,
 				916F184C219D76EF00F5BD3D /* cover.png in Resources */,
+				9199F78C21B427E1002B15A8 /* help@3x.png in Resources */,
 				91966EC2219C3D9D0016F58F /* selected.png in Resources */,
 				916E899221B287C600FC4C16 /* qq@3x.png in Resources */,
 				91EA9397219998EE0075D801 /* LaunchScreen.storyboard in Resources */,
@@ -2529,6 +2611,7 @@
 				916E899C21B287CE00FC4C16 /* timeLine@3x.png in Resources */,
 				916E899B21B287CE00FC4C16 /* wechat@2x.png in Resources */,
 				91966EB5219C3D2E0016F58F /* home@3x.png in Resources */,
+				9199F7BD21B4F509002B15A8 /* UpdatePasswordViewController.xib in Resources */,
 				91EA94622199A42E0075D801 /* StartViewController.xib in Resources */,
 				91EA93F62199990F0075D801 /* secp256k1.table in Resources */,
 				91966E94219C3B390016F58F /* ok@3x.png in Resources */,
@@ -2549,6 +2632,7 @@
 				916F1807219D136E00F5BD3D /* refresh_loop_12@2x.png in Resources */,
 				9122CED5219B1F120014F790 /* pad-zeropadding.js in Resources */,
 				91EA94802199C51D0075D801 /* CreateViewController.xib in Resources */,
+				9199F78E21B427E1002B15A8 /* about@3x.png in Resources */,
 				91EA9394219998EE0075D801 /* Assets.xcassets in Resources */,
 				9162B1D221A29DB200262970 /* Info.plist in Resources */,
 				91966EAD219C3D050016F58F /* dapp_high@3x.png in Resources */,
@@ -2556,6 +2640,7 @@
 				91143DDB21B3B19D00E0B6AD /* unlockTransfer@2x.png in Resources */,
 				91A30F1021A2AB660010E685 /* contractWallet@2x.png in Resources */,
 				9122CED9219B1F120014F790 /* pad-nopadding.js in Resources */,
+				9199F78A21B427E1002B15A8 /* system@2x.png in Resources */,
 				9122CEF4219BAEE90014F790 /* Info.plist in Resources */,
 				9135C31F21AE98120089A746 /* more@2x.png in Resources */,
 				915E12AA21A18486002ECF8A /* qr@3x.png in Resources */,
@@ -2572,27 +2657,34 @@
 				916F17FD219D136E00F5BD3D /* refresh_loop_8@2x.png in Resources */,
 				916F1870219DBF6300F5BD3D /* transfer@3x.png in Resources */,
 				916F1864219DB51400F5BD3D /* transfer@2x.png in Resources */,
+				9199F7AE21B4CAAA002B15A8 /* fibos@3x.png in Resources */,
 				915E126821A054D5002ECF8A /* hide@3x.png in Resources */,
 				9122CED3219B1F120014F790 /* sha512.js in Resources */,
 				91D4A26821B2E0F600821B4D /* LockTokenDetailViewController.xib in Resources */,
 				916F1850219D7F1300F5BD3D /* TokenTableViewCell.xib in Resources */,
+				9199F7AF21B4CAAA002B15A8 /* fibos@2x.png in Resources */,
 				9122CED0219B1F120014F790 /* pad-iso10126.js in Resources */,
 				9150819721B13AD3002C117E /* left@3x.png in Resources */,
 				9150819A21B13AD3002C117E /* right@2x.png in Resources */,
 				91966EBF219C3D9D0016F58F /* FOWallet.png in Resources */,
+				9199F79521B427E1002B15A8 /* wallet@2x.png in Resources */,
 				916E899E21B287CE00FC4C16 /* timeLine@2x.png in Resources */,
+				9199F78F21B427E1002B15A8 /* safe@3x.png in Resources */,
 				9135C32821AEE0FD0089A746 /* exchange@3x.png in Resources */,
 				916F182C219D4EAD00F5BD3D /* close@3x.png in Resources */,
 				915E128721A128E6002ECF8A /* tokenDetail@2x.png in Resources */,
 				9160AE2421B02E0C0008BB95 /* LockTokenTableViewCell.xib in Resources */,
+				9199F7B321B4D664002B15A8 /* WalletDetailViewController.xib in Resources */,
 				9135C32421AED93D0089A746 /* ExchangeViewController.xib in Resources */,
 				916F1800219D136E00F5BD3D /* refresh_loop_0@2x.png in Resources */,
 				915E12A221A12F45002ECF8A /* forword@3x.png in Resources */,
+				9199F78D21B427E1002B15A8 /* wallet@3x.png in Resources */,
 				9150818E21B130CD002C117E /* empty@2x.png in Resources */,
 				91EA94792199C2610075D801 /* InfoPlist.strings in Resources */,
 				91966EAA219C3D050016F58F /* home_high@2x.png in Resources */,
 				9135C26921AC13A30089A746 /* ScaneBorder@2x.png in Resources */,
 				9122CECE219B1F120014F790 /* sha384.js in Resources */,
+				9199F7B721B4DBF6002B15A8 /* WalletDetailTableViewCell.xib in Resources */,
 				9122CED1219B1F120014F790 /* mode-ecb.js in Resources */,
 				91966E5D219BFC720016F58F /* DAppViewController.xib in Resources */,
 				91C428A121A7AF6D00874954 /* ReceiveViewController.xib in Resources */,
@@ -2634,6 +2726,7 @@
 				9122CEDD219B1F120014F790 /* sha224.js in Resources */,
 				9135C30B21AE48C80089A746 /* ActionSheetCancel@3x.png in Resources */,
 				916F17FC219D136E00F5BD3D /* refresh_loop_23@2x.png in Resources */,
+				9199F79121B427E1002B15A8 /* about@2x.png in Resources */,
 				91966EAC219C3D050016F58F /* dapp_high@2x.png in Resources */,
 				91A30F6921A3A6D80010E685 /* AuthorizeViewController.xib in Resources */,
 				915E122F219FBCD9002ECF8A /* eos@3x.png in Resources */,
@@ -2646,12 +2739,15 @@
 				9122CEFA219BB1740014F790 /* tables.sql in Resources */,
 				9122CED8219B1F120014F790 /* md5.js in Resources */,
 				916F17F9219D136E00F5BD3D /* refresh_loop_19@2x.png in Resources */,
+				9199F79921B42C49002B15A8 /* WalletManagerViewController.xib in Resources */,
 				91A30F1821A2B5D40010E685 /* PayViewController.xib in Resources */,
 				9122CED7219B1F120014F790 /* pad-ansix923.js in Resources */,
+				9199F79D21B42F20002B15A8 /* WalletManagerTableViewCell.xib in Resources */,
 				91D4A26B21B2EA8200821B4D /* copy@3x.png in Resources */,
 				91966EAB219C3D050016F58F /* dapp@2x.png in Resources */,
 				916F17FF219D136E00F5BD3D /* refresh_loop_1@2x.png in Resources */,
 				91A30F1C21A2B7020010E685 /* blackBack@3x.png in Resources */,
+				9199F78B21B427E1002B15A8 /* system@3x.png in Resources */,
 				916F1802219D136E00F5BD3D /* refresh_loop_3@2x.png in Resources */,
 				916F1832219D4FD300F5BD3D /* plus@3x.png in Resources */,
 				915E122E219FBCD9002ECF8A /* fo@3x.png in Resources */,
@@ -2666,6 +2762,7 @@
 				916F180D219D136E00F5BD3D /* refresh_loop_17@2x.png in Resources */,
 				91966EC0219C3D9D0016F58F /* unSelect.png in Resources */,
 				9160AE1821AFEB2C0008BB95 /* TokenListViewController.xib in Resources */,
+				9199F79221B427E1002B15A8 /* safe@2x.png in Resources */,
 				915E128B21A128E6002ECF8A /* available@2x.png in Resources */,
 				9122CECF219B1F120014F790 /* tripledes.js in Resources */,
 			);
@@ -2711,6 +2808,7 @@
 				9160AE1E21B024590008BB95 /* LockTokenHeaderFooterView.swift in Sources */,
 				91EA94EA219AACAC0075D801 /* MJRefreshAutoGifFooter.m in Sources */,
 				9162B1C821A2979300262970 /* TokenInfoQRModel.swift in Sources */,
+				9199F7B921B4DCC9002B15A8 /* WalletDetailCellModel.swift in Sources */,
 				91EA94E9219AACAC0075D801 /* MJRefreshAutoStateFooter.m in Sources */,
 				91EA95C0219AC4830075D801 /* BackModel.swift in Sources */,
 				91EA9486219A5C520075D801 /* InputItemModel.swift in Sources */,
@@ -2759,6 +2857,7 @@
 				91EA94142199990F0075D801 /* EOSRPC.swift in Sources */,
 				91966E65219BFCDA0016F58F /* MeViewController.swift in Sources */,
 				9160AE1321AFE5550008BB95 /* WithdrawViewController.swift in Sources */,
+				9199F7BC21B4F509002B15A8 /* UpdatePasswordViewController.swift in Sources */,
 				91EA945C2199A1370075D801 /* UIImage+Extension.swift in Sources */,
 				91A30F2821A2C2CD0010E685 /* TokenInputPreview.swift in Sources */,
 				91EA94AB219AAC9B0075D801 /* MPublicManager.m in Sources */,
@@ -2776,6 +2875,7 @@
 				91EA94F3219AACAC0075D801 /* MJRefreshComponent.m in Sources */,
 				91EA93FE2199990F0075D801 /* ripemd160.c in Sources */,
 				91966E8E219C30FF0016F58F /* ModalViewController.swift in Sources */,
+				9199F79F21B4C651002B15A8 /* AccountListViewModel.swift in Sources */,
 				91EA94E5219AACAC0075D801 /* UIView+MJExtension.m in Sources */,
 				9135C2AC21AC48080089A746 /* TZImageManager.m in Sources */,
 				91EA94EE219AACAC0075D801 /* MJRefreshGifHeader.m in Sources */,
@@ -2842,6 +2942,7 @@
 				91EA940B2199990F0075D801 /* Contract.swift in Sources */,
 				918CC8F021A54F1D00246DC1 /* ToVoteModel.swift in Sources */,
 				915E1258219FF94E002ECF8A /* TAAnimatedDotView.m in Sources */,
+				9199F7B221B4D664002B15A8 /* WalletDetailViewController.swift in Sources */,
 				915E1206219E9C58002ECF8A /* HomeHttp.swift in Sources */,
 				9135C30E21AE48C80089A746 /* FSActionSheet.m in Sources */,
 				91EA93FB2199990F0075D801 /* curves.c in Sources */,
@@ -2867,6 +2968,7 @@
 				9122CEF3219BAEE90014F790 /* FMResultSet.m in Sources */,
 				91143E4B21B3D1F700E0B6AD /* PGPickerTableView.m in Sources */,
 				91A30FAB21A3F0870010E685 /* JCAlertController.m in Sources */,
+				9199F79C21B42F20002B15A8 /* WalletManagerTableViewCell.swift in Sources */,
 				915E1225219EFE0A002ECF8A /* TokenSummary.swift in Sources */,
 				91EA93FD2199990F0075D801 /* bignum.c in Sources */,
 				91EA94EB219AACAC0075D801 /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -2911,6 +3013,7 @@
 				91EA94172199990F0075D801 /* PublicKey.swift in Sources */,
 				9135C24921ABF0B10089A746 /* QRScaneViewController.swift in Sources */,
 				91EA94192199990F0075D801 /* ChainModels.swift in Sources */,
+				9199F79821B42C49002B15A8 /* WalletManagerViewController.swift in Sources */,
 				9122CEDF219B1FA90014F790 /* Wallet.swift in Sources */,
 				91143DDE21B3B22800E0B6AD /* LockPayViewController.swift in Sources */,
 				91EA94E8219AACAC0075D801 /* MJRefreshBackNormalFooter.m in Sources */,
@@ -2947,6 +3050,7 @@
 				91A30F2621A2BE5A0010E685 /* TokenPreview.swift in Sources */,
 				915E12A621A1316A002ECF8A /* TokenDetailViewController.swift in Sources */,
 				91EA93F72199990F0075D801 /* bip39.c in Sources */,
+				9199F7B621B4DBF6002B15A8 /* WalletDetailTableViewCell.swift in Sources */,
 				91143E1521B3D0EB00E0B6AD /* PGDatePicker+MinuteAndSecond.m in Sources */,
 				91966E8C219C0BD20016F58F /* AutoHeightTextView.swift in Sources */,
 				91EA9575219AACC20075D801 /* SDWebImageCoderHelper.m in Sources */,

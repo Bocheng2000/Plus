@@ -66,6 +66,7 @@ class CreateViewController: FatherViewController, InputItemDelegate {
     private func makeUIContainer(padding: CGFloat) {
         let container = UIView(frame: CGRect(x: 0, y: header.bottom, width: kSize.width, height: 0))
         container.backgroundColor = UIColor.white
+        scrollView.backgroundColor = UIColor.clear
         scrollView.addSubview(container)
         account = InputItem(frame: CGRect(x: padding, y: 11, width: kSize.width - padding * 2, height: 65))
         account.textField.keyboardType = .emailAddress

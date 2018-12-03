@@ -27,7 +27,7 @@ class SelectAccountViewController: FatherViewController, UITableViewDelegate, UI
     }
 
     private func makeUI() {
-        tableView.backgroundColor = BACKGROUND_COLOR
+        tableView.backgroundColor = UIColor.clear
         tableView.separatorColor = SEPEAT_COLOR
         tableView.delegate = self
         tableView.dataSource = self

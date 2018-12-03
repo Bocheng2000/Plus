@@ -14,6 +14,7 @@ class CommenCellModel: NSObject {
     var value: String!
     var showArrow: Bool!
     var target: String?
+    var showDot: Bool = false
     convenience init(_ _icon: String, _title: String, _value: String, _showArrow: Bool?, _target: String?) {
         self.init()
         icon = _icon
@@ -25,5 +26,21 @@ class CommenCellModel: NSObject {
             showArrow = _showArrow!
         }
         target = _target
+    }
+    
+    convenience init(_ _icon: String, _title: String, _value: String, _showArrow: Bool?, _target: String?, _showDot: Bool?) {
+        self.init()
+        icon = _icon
+        title = _title
+        value = _value
+        if _showArrow == nil {
+            showArrow = true
+        } else {
+            showArrow = _showArrow!
+        }
+        target = _target
+        if _showDot != nil {
+            showDot = _showDot!
+        }
     }
 }

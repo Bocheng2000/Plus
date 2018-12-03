@@ -27,9 +27,9 @@ class LanguageHelper: NSObject {
             value = preferredLanguages[0]
             if (value?.hasPrefix("en"))! {
                 value = "en"
-            } else if value == "zh-Hans" {
+            } else if (value?.hasPrefix("zh-Hans"))! {
                 value = "zh-Hans"
-            } else if value == "zh-Hant" {
+            } else if (value?.hasPrefix("zh-Hant"))! {
                 value = "zh-Hant"
             } else {
                 value = "en"

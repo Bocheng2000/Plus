@@ -86,4 +86,11 @@ class WalletManager: NSObject {
     open func getWallet(pubKey: String, account: String) -> Wallet? {
         return CacheHelper.shared.findWalletBy(pubKey: pubKey, account: account)
     }
+    
+    /// 获取钱包列表
+    ///
+    /// - Returns: list
+    open func walletList() -> [AccountListModel] {
+        return CacheHelper.shared.findAllWallet()
+    }
 }

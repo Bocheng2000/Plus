@@ -66,6 +66,7 @@ class ImportViewController: FatherViewController, InputItemDelegate, InputItemMu
     private func makeUIContainer(padding: CGFloat) {
         let container = UIView(frame: CGRect(x: 0, y: header.bottom, width: kSize.width, height: 0))
         container.backgroundColor = UIColor.white
+        scrollView.backgroundColor = UIColor.clear
         scrollView.addSubview(container)
         privateKey = InputItemMulit(frame: CGRect(x: padding, y: 0, width: kSize.width - padding * 2, height: 90))
         let privateKeyModel = InputItemModel(
