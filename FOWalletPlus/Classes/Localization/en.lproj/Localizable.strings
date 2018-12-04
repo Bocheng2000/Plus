@@ -189,3 +189,6 @@
 "PowerManager" = "Authority Managerment";
 "WhiteList" = "Whitelist details";
 "DeleteWallet" = "Delete Wallet";
+"OldPwd" = "Old one";
+"NewPwd" = "Reset";
+"RepeatPwd" = "Repeat";

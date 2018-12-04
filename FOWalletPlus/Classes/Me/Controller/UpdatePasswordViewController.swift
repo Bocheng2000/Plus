@@ -16,9 +16,15 @@ class UpdatePasswordViewController: FatherViewController {
     
     @IBOutlet weak var oldPwdLabel: UILabel!
     
+    @IBOutlet weak var oldInputField: BaseTextField!
     
+    @IBOutlet weak var newPwsLabel: UILabel!
     
+    @IBOutlet weak var newPwdTextField: BaseTextField!
     
+    @IBOutlet weak var confirmLabel: UILabel!
+    
+    @IBOutlet weak var confirmTextField: BaseTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +38,12 @@ class UpdatePasswordViewController: FatherViewController {
         scrollView.backgroundColor = UIColor.clear
         scrollView.alwaysBounceVertical = true
         scrollView.keyboardDismissMode = .onDrag
+        oldPwdLabel.text = LanguageHelper.localizedString(key: "OldPwd")
+        newPwsLabel.text = LanguageHelper.localizedString(key: "NewPwd")
+        confirmLabel.text = LanguageHelper.localizedString(key: "RepeatPwd")
     }
 
     @IBAction func doneBtnDidClick(_ sender: BaseButton) {
+        
     }
 }

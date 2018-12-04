@@ -189,3 +189,6 @@
 "PowerManager" = "权限管理";
 "WhiteList" = "白名单详情";
 "DeleteWallet" = "删除钱包";
+"OldPwd" = "当前密码";
+"NewPwd" = "新密码";
+"RepeatPwd" = "确认密码";
