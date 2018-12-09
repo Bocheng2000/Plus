@@ -8,6 +8,6 @@
 
 import UIKit
 
-class PkStringModel: NSObject {
+class PkStringModel: FatherModel {
     var pkString: String = ""
 }

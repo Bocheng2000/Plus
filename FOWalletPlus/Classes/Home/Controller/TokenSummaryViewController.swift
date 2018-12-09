@@ -18,7 +18,9 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
     private var tokenLabel: UILabel!
     private var sumToken: UILabel!
     private var topDataSource: [CommenCellModel]! = []
+    private var listDataSource: [TransactionHistoryModel]! = []
     private var transDataSource: [String]!
+    private var lastId: Int64 = INT64_MAX
     
     @IBOutlet weak var functionMenuView: FunctionMenuView!
     
@@ -30,6 +32,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         makeUI()
         makeFunctionMenu()
         createDataSource()
+        tableView.mj_header.beginRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +106,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         topDataSource.append(tokenDetail)
     }
     
+    // MARK: ======== 构建UI =============
     private func makeUI() {
         let tokenImage = TokenImage(frame: CGRect(x: (kSize.width - 40) / 2, y: statusHeight + 2, width: 40, height: 40))
         tokenImage.model = TokenImageModel(model.symbol, _contract: model.contract, _isSmart: model.isSmart, _wh: 40)
@@ -130,6 +134,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         sumToken.textAlignment = .center
         headerView.addSubview(sumToken)
         tableView.tableHeaderView = headerView
+        tableView.separatorColor = SEPEAT_COLOR
         setSumTokenText()
     }
     
@@ -154,10 +159,12 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         tableView.separatorInset = .zero
         tableView.separatorColor = SEPEAT_COLOR
         tableView.mj_header = createMjHeader()
+        tableView.mj_footer = createMjFooter()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CommonTableViewCell", bundle: nil), forCellReuseIdentifier: "CommonTableViewCell")
-        tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: nil), forCellReuseIdentifier: "TransactionTableViewCell")
+        tableView.register(UINib(nibName: "LockTokenHistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "LockTokenHistoryTableViewCell")
+        tableView.register(LockTokenHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "LockTokenHeaderFooterView")
     }
     
     private func createMjHeader() -> MJRefreshGifHeader {
@@ -168,7 +175,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         }
         let header = MJRefreshGifHeader {
             [weak self] in
-            self?.tableView.mj_header.endRefreshing()
+            self?.headerRefresh()
         }
         header?.setImages([UIImage(named: "logo")!], for: .idle)
         header?.setImages(arr, for: .refreshing)
@@ -177,6 +184,49 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         return header!
     }
 
+    private func createMjFooter() -> MJRefreshAutoNormalFooter {
+        let footer = MJRefreshAutoNormalFooter {
+            [weak self] in
+            if self?.lastId == 0 {
+                self?.tableView.mj_footer.endRefreshingWithNoMoreData()
+                return
+            }
+            self?.getTransactionList(maxId: (self?.lastId)!)
+        }
+        return footer!
+    }
+    
+    private func headerRefresh() {
+        self.lastId = INT64_MAX
+        getTransactionList(maxId: self.lastId)
+    }
+    
+    private func getTransactionList(maxId: Int64) {
+        let current = WalletManager.shared.getCurrent()!
+        HomeHttp().getTransactionHistory(symbol: model.symbol, contract: model.contract, account: current.account, maxId: maxId) { [weak self] (err, resp) in
+            if self?.tableView.mj_header.isRefreshing ?? false {
+                self?.tableView.mj_header.endRefreshing()
+            }
+            if self?.tableView.mj_footer.isRefreshing ?? false {
+                self?.tableView.mj_footer.endRefreshing()
+            }
+            if resp != nil {
+                self?.lastId = resp!.lastId
+                if maxId == INT64_MAX { // 第一次加载
+                    self?.listDataSource = resp!.resp
+                    self?.tableView.mj_footer.resetNoMoreData()
+                } else {
+                    if resp!.resp.count == 0 {
+                        self?.tableView.mj_footer.endRefreshingWithNoMoreData()
+                        return
+                    }
+                    self?.listDataSource.append(contentsOf: resp!.resp)
+                }
+                self?.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+            }
+        }
+    }
+    
     // MARK: ========= UItableView datasource =======
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -186,7 +236,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         if section == 0 {
             return topDataSource.count
         }
-        return 0
+        return listDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -195,7 +245,8 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
             cell.model = topDataSource[indexPath.row]
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTableViewCell") as! TransactionTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LockTokenHistoryTableViewCell") as! LockTokenHistoryTableViewCell
+            cell.historyModel = listDataSource[indexPath.row]
             return cell
         }
     }
@@ -208,14 +259,45 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        if section == 0 {
+            return 0.0001
+        }
+        if listDataSource.count > 0 {
+            return 0.0001
+        }
+        return 150
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 48
         }
-        return 44
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil
+        }
+        if listDataSource.count > 0 {
+            return nil
+        }
+        let view = UIView(frame: .zero)
+        let imageView = UIImageView(frame: CGRect(x: (kSize.width - 90) / 2, y: 40, width: 90, height: 90))
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "empty")
+        view.addSubview(imageView)
+        return view
+
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil
+        }
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "LockTokenHeaderFooterView") as! LockTokenHeaderFooterView
+        headerView.text = LanguageHelper.localizedString(key: "TransactionRecord")
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -252,6 +334,12 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
                 }
                 return
             }
+        } else {
+            let detail = TransactionDetailViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "TransactionDetail"), right: "img|more")
+            let m = listDataSource[indexPath.row]
+            let detailModel = TransactionDetailModel(m.quantity, _symbol: m.symbol, _contract: m.contract, _transactionDesc: m.desc, _fromAccount: m.from_account, _toAccount: m.to_account, _memo: m.memo, _created: m.created, _trx_id: m.trx_id, _isReceive: m.isReceive, _block_num: m.block_num)
+            detail.model = detailModel
+            navigationController?.pushViewController(detail, animated: true)
         }
     }
     
@@ -259,7 +347,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         if indexPath.section == 0 {
             return topDataSource[indexPath.row].showArrow
         }
-        return false
+        return true
     }
     
     // MARK: ========= UITableView delegate =========

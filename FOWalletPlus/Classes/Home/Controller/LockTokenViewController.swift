@@ -78,11 +78,12 @@ class LockTokenViewController: FatherViewController, UITableViewDelegate, UITabl
 
     private func makeUITableView() {
         tableView.backgroundColor = UIColor.clear
+        tableView.separatorColor = SEPEAT_COLOR
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorInset = .zero
         tableView.separatorColor = SEPEAT_COLOR
         tableView.mj_header = createMjHeader()
-        tableView.mj_footer = createMhFooter()
+        tableView.mj_footer = createMjFooter()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "LockTokenTableViewCell", bundle: nil), forCellReuseIdentifier: "LockTokenTableViewCell")
@@ -107,7 +108,7 @@ class LockTokenViewController: FatherViewController, UITableViewDelegate, UITabl
         return header!
     }
     
-    private func createMhFooter() -> MJRefreshAutoNormalFooter {
+    private func createMjFooter() -> MJRefreshAutoNormalFooter {
         let footer = MJRefreshAutoNormalFooter {
             [weak self] in
             let last = self?.historyDataSource.last
@@ -140,11 +141,11 @@ class LockTokenViewController: FatherViewController, UITableViewDelegate, UITabl
                     self?.tableView.mj_footer.resetNoMoreData()
                 } else {
                     self?.historyDataSource.append(contentsOf: resp!)
-                    if resp!.count < pageSize {
+                    if resp!.count < basePageSize {
                         self?.tableView.mj_footer.endRefreshingWithNoMoreData()
                     }
                 }
-                self?.tableView.reloadData()
+                self?.tableView.reloadSections(IndexSet(integer: 1), with: .none)
             }
         }
     }
@@ -238,10 +239,10 @@ class LockTokenViewController: FatherViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 10
+            return 0.0001
         }
         if historyDataSource.count > 0 {
-            return 10
+            return 0.0001
         }
         return 150
     }

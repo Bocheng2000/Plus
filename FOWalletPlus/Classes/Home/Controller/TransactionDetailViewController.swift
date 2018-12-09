@@ -111,7 +111,7 @@ class TransactionDetailViewController: FatherViewController, FSActionSheetDelega
         createAtLabel.frame = CGRect(x: createLabel.x, y: createLabel.bottom + 10, width: createLabel.width, height: createLabel.height)
         createAtLabel.text = model.created.utcTime2Local(format: "yyyy/MM/dd HH:mm")
         qrImageView.frame = CGRect(x: kSize.width - 20 - 100, y: line2.bottom + 15, width: 100, height: 100)
-        qrImageView.image = HomeUtils.generateQRCode("\(exploreUri)\(model.trx_id)", size: CGSize(width: 100, height: 100), color: nil)
+        qrImageView.image = HomeUtils.generateQRCode("\(exploreUri)\(String(describing: model.trx_id))", size: CGSize(width: 100, height: 100), color: nil)
         linkButton.frame = CGRect(x: line2.x, y: createAtLabel.bottom + 40, width: line2.width, height: 30)
         linkButton.setTitle(LanguageHelper.localizedString(key: "ViewDetail"), for: .normal)
         scrollView.contentSize = CGSize(width: kSize.width, height: linkButton.bottom + 20)

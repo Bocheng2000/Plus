@@ -22,6 +22,7 @@ class LockTokenHistoryModel: FatherModel {
     var block_num: Int64!
 }
 
+
 class LockTokenHistoryDataModel: FatherModel {
     var quantity: QuantityModel!
     var expiration: String!

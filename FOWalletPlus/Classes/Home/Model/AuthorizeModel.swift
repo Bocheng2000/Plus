@@ -65,6 +65,10 @@ enum TransactionType: NSInteger {
      * 投票
      */
     case vote
+    /**
+     * 导出私钥
+     */
+    case exportPk
 }
 
 class AuthorizeModel: NSObject {

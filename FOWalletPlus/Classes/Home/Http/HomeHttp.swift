@@ -319,6 +319,48 @@ class HomeHttp: NSObject {
         }
     }
 
+    /// 构造FO历史记录schema
+    ///
+    /// - Parameters:
+    ///   - account: 账户
+    ///   - maxId: 最大的ID
+    /// - Returns: schema
+    private func generateFOHistorySchema(_ table: String, account: String, maxId: Int64) -> String {
+        return """
+        {
+            \(table)(
+            where: {
+                and:[
+                    {
+                        or:[
+                            {
+                                from_account:"\(account)"
+                            },
+                            {
+                                to_account:"\(account)"
+                            }
+                        ]
+                    }
+                ]
+                id: {
+                    lt: \(maxId)
+                }
+            }
+            limit: \(basePageSize)
+            order: "-id"
+            ){
+            id
+            block_num
+            from_account
+            to_account
+            action
+            data
+            created
+            trx_id
+            }
+        }
+        """
+    }
     
     /// 构造历史记录schema
     ///
@@ -337,7 +379,7 @@ class HomeHttp: NSObject {
                 and:[
                     {
                         contract: "\(contract)"
-                            symbol: "\(symbol)"
+                        symbol: "\(symbol)"
                         or:[
                             {
                                 from_account:"\(account)"
@@ -352,7 +394,7 @@ class HomeHttp: NSObject {
                     lt: \(maxId)
                 }
             }
-            limit: \(pageSize)
+            limit: \(basePageSize)
             order: "-id"
             ){
                 id
@@ -429,6 +471,163 @@ class HomeHttp: NSObject {
                 let response = self.processLockTokenHistory(body: body, account: account)
                 DispatchQueue.main.async(execute: {
                     success(Optional.none, response)
+                })
+            }
+        }
+    }
+    
+    /// 处理历史交易
+    ///
+    /// - Parameters:
+    ///   - body: 数据体
+    ///   - account: a当前账户
+    ///   - symbol: 通证
+    ///   - contract: 合约名
+    private func processTransactionHistory(body: Array<NSDictionary>?, account: String, symbol: String, contract: String) -> [TransactionHistoryModel] {
+        var response: [TransactionHistoryModel] = []
+        if body == nil || body?.count == 0 {
+            return response
+        }
+        for elem: NSDictionary in body! {
+            let model = TransactionHistoryModel.deserialize(from: elem)
+            if model == nil {
+                continue
+            }
+            model?.symbol = (elem["symbol"] ?? symbol) as? String
+            model?.contract = (elem["contract"] ?? contract) as? String
+            let data = elem.object(forKey: "data") as! NSDictionary
+            switch model?.action {
+            case "buyram":
+                fallthrough
+            case "buyrambytes":
+                if data["payer"] as? String == account {
+                    model?.quantity = data["quant"] as? String
+                    model?.isReceive = false
+                    model?.desc = LanguageHelper.localizedString(key: "BuyRamDesc")
+                    response.append(model!)
+                }
+                break
+            case "sellram":
+                model?.quantity = data["quantity"] as? String
+                model?.isReceive = true
+                model?.desc = LanguageHelper.localizedString(key: "SellRamDesc")
+                response.append(model!)
+                break
+            case "delegatebw":
+                let net = data["stake_net_quantity"] as! String
+                let netDeciaml = HomeUtils.getQuantity(net).toDecimal()
+                if !netDeciaml.isZero { // 抵押网络
+                    model?.action = "delegatebw_net"
+                    model?.quantity = net
+                    model?.desc = LanguageHelper.localizedString(key: "DelegateNet")
+                } else {
+                    model?.action = "delegatebw_cpu"
+                    model?.quantity = data["stake_cpu_quantity"] as? String
+                    model?.desc = LanguageHelper.localizedString(key: "DelegateCPU")
+                }
+                model?.isReceive = false
+                response.append(model!)
+                break
+            case "undelegatebw":
+                if data["from"] as? String == account {
+                    let net = data["unstake_net_quantity"] as! String
+                    let netDecimal = HomeUtils.getQuantity(net).toDecimal()
+                    if !netDecimal.isZero { // 赎回网络
+                        model?.action = "undelegatebw_net"
+                        model?.quantity = net
+                        model?.desc = LanguageHelper.localizedString(key: "UnDelegateNet")
+                    } else {
+                        model?.action = "undelegatebw_cpu"
+                        model?.quantity = data["unstake_cpu_quantity"] as? String
+                        model?.desc = LanguageHelper.localizedString(key: "UnDelegateCPU")
+                    }
+                    response.append(model!)
+                }
+                break
+            case "exchange":
+                let indata = data["in"] as! NSDictionary
+                let inSymbol = HomeUtils.getSymbol(indata["quantity"] as! String)
+                let inContract = indata["contract"] as? String
+                if inSymbol == symbol && inContract == contract {
+                    model?.quantity = indata["quantity"] as? String
+                    model?.isReceive = false
+                } else {
+                    let outdata = data["out"] as! NSDictionary
+                    model?.quantity = outdata["quantity"] as? String
+                    model?.isReceive = true
+                }
+                model?.desc = LanguageHelper.localizedString(key: "ExchangeToken")
+                model?.memo = (data["memo"] ?? "") as! String
+                response.append(model!)
+                break
+            case "extransfer":
+                fallthrough
+            case "transfer":
+                // extransfer action 的 quantity 中嵌套了一层 quantity
+                let quantity = data["quantity"]
+                var nextQuantity: String!
+                if quantity is String {
+                    nextQuantity = quantity as? String
+                } else {
+                    let qDict = quantity as! NSDictionary
+                    nextQuantity = qDict["quantity"] as? String
+                }
+                if data["from"] as? String == account {
+                    model?.isReceive = false
+                    model?.desc = LanguageHelper.localizedString(key: "Pay")
+                } else {
+                    model?.isReceive = true
+                    model?.desc = LanguageHelper.localizedString(key: "Receive")
+                }
+                model?.quantity = nextQuantity
+                model?.memo = (data["memo"] ?? "") as! String
+                response.append(model!)
+                break
+            default:
+                break
+            }
+        }
+        return response
+    }
+    
+    /// 获取交易的历史记录
+    ///
+    /// - Parameters:
+    ///   - table: 表名
+    ///   - symbol: 通证名称
+    ///   - contract: 合约名
+    ///   - account: 账户名
+    ///   - maxId: 最大ID
+    ///   - success: block
+    open func getTransactionHistory(symbol: String, contract: String, account:String, maxId: Int64, success: @escaping (Error?, HistoryRespModel?) -> Void) {
+        var schema: String!
+        var table: String!
+        if symbol == "FO" && contract == "eosio" {
+            table = "find_fotransactions"
+            schema = generateFOHistorySchema(table, account: account, maxId: maxId)
+        } else {
+            table = "find_symbolTransactions"
+            schema = generateHistorySchema(table, symbol: symbol, contract: contract, account: account, maxId: maxId)
+        }
+        Http.shareHttp().graphql(urlStr: graphqlUri, params: schema) { (err, resp) in
+            if err != nil {
+                DispatchQueue.main.async(execute: {
+                    success(err, Optional.none)
+                })
+            } else {
+                let res = resp?.object(forKey: "data") as? NSDictionary
+                let body = res?.object(forKey: table) as? Array<NSDictionary>
+                let response = self.processTransactionHistory(body: body, account: account, symbol: symbol, contract: contract)
+                let resModel = HistoryRespModel()
+                resModel.resp = response
+                let id = body?.last?.object(forKey: "id")
+                if id == nil {
+                    resModel.lastId = 0
+                } else {
+                    resModel.lastId = id as? Int64
+                }
+                DispatchQueue.main.async(execute: {
+                    success(Optional.none, resModel)
                 })
             }
         }

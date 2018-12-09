@@ -77,6 +77,7 @@ class LockTokenDetailViewController: FatherViewController, UITableViewDelegate, 
         sumToken.textColor = UIColor.white
         sumToken.textAlignment = .center
         headerView.addSubview(sumToken)
+        tableView.separatorColor = SEPEAT_COLOR
         tableView.tableHeaderView = headerView
     }
 

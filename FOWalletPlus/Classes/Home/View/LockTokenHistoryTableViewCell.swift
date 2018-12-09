@@ -34,6 +34,22 @@ class LockTokenHistoryTableViewCell: UITableViewCell {
         }
     }
     
+    open var historyModel: TransactionHistoryModel! {
+        didSet {
+            let quantity = HomeUtils.getQuantity(historyModel.quantity)
+            if historyModel.isReceive {
+                typeImage.image = UIImage(named: "right")
+                nameLabel.setTitle(historyModel.from_account, for: .normal)
+                quantityLabel.text = "+ \(quantity)"
+            } else {
+                typeImage.image = UIImage(named: "left")
+                nameLabel.setTitle(historyModel.to_account, for: .normal)
+                quantityLabel.text = "- \(quantity)"
+            }
+            cretedAtLabel.text = historyModel.created.utcTime2Local(format: "yyyy/MM/dd HH:mm")
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

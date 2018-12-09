@@ -27,9 +27,8 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
         if current != nil {
             getLocalData(current!)
             getAssetsOnChain(current!)
+            getAccountInfo()
         }
-//        let d = try? Data.init(contentsOf: URL(fileURLWithPath: cacheDB))
-//        Http.shareHttp().putDataWithProgress(urlStr: "http://192.168.1.225:9988/storage/upload", contentType: "octet-stream", sufix: "db", data: d!, success: nil, fail: nil, progress: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +89,17 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
         setValue(amount: "100000000000.0000")
     }
     
+    private func getAccountInfo() {
+        let current = WalletManager.shared.getCurrent()
+        if current != nil {
+            ClientManager.shared.getAccount(account: current!.account) { (err, info) in
+                if info != nil {
+                    CacheHelper.shared.saveAccountInfo(info!)
+                }
+            }
+        }
+    }
+    
     private func createMjHeader() -> MJRefreshGifHeader {
         var arr: [UIImage] = []
         for i in 0...23 {
@@ -100,6 +110,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
             [weak self] in
             let current = WalletManager.shared.getCurrent()
             if current != nil {
+                self?.getAccountInfo()
                 self?.getAssetsOnChain(current!)
             } else {
                 if (self?.tableView.mj_header.isRefreshing)! {
@@ -251,7 +262,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
         let sup = IOS(version: 11) ? tableView : cell!
         let swipeStr = IOS(version: 11) ? "UISwipeActionPullView" : "UITableViewCellDeleteConfirmationView"
         let actionStr = IOS(version: 11) ? "UISwipeActionStandardButton" : "_UITableViewCellActionButton"
-        for subview in sup.subviews {
+        for subview in sup!.subviews {
             if String(describing: subview).range(of: swipeStr) != nil {
                 for sub in subview.subviews {
                     if String(describing: sub).range(of: actionStr) != nil {

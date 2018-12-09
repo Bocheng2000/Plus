@@ -13,6 +13,7 @@ class AccountModel: NSObject {
     var pubKey: String!
     var endPoint: String?
     var backUp: Bool?
+    var resourceWidget: Bool?
     convenience init(_ _account: String, _pubKey: String!) {
         self.init()
         account = _account

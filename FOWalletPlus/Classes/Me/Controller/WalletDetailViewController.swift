@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalletDetailViewController: FatherViewController, UITableViewDataSource, UITableViewDelegate {
+class WalletDetailViewController: FatherViewController, UITableViewDataSource, UITableViewDelegate, AuthorizeViewControllerDelegate {
 
     open var model: AccountListModel!
     
@@ -66,6 +66,7 @@ class WalletDetailViewController: FatherViewController, UITableViewDataSource, U
         sum.textAlignment = .center
         sum.text = HomeUtils.getFullQuantity(model.sum, symbol: "FO")
         headerView.addSubview(sum)
+        tableView.separatorColor = SEPEAT_COLOR
         headerView.backgroundColor = themeColor
         tableView.tableHeaderView = headerView
     }
@@ -124,6 +125,21 @@ class WalletDetailViewController: FatherViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let model = dataSource[indexPath.section][indexPath.row]
+        if indexPath.section == 1 {
+            let update = UpdatePasswordViewController(left: "img|blackBack", title: model.title, right: nil)
+            navigationController?.pushViewController(update, animated: true)
+            return
+        }
+        if indexPath.section == 2 {
+            if indexPath.row == 0 {
+                let authModel = AuthorizeModel(LanguageHelper.localizedString(key: "ExportPK"), _items: [], _type: .exportPk, _params: PkStringModel())
+                let auth = AuthorizeViewController(authModel)
+                auth.delegate = self
+                auth.show(source: self)
+                return
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -165,5 +181,12 @@ class WalletDetailViewController: FatherViewController, UITableViewDataSource, U
                 }
             }
         }
+    }
+
+    // MARK: ========= AuthorizeViewControllerDelegate =========
+    func exportPkString(sender: AuthorizeViewController, pkString: String) {
+        let exportPk = ExportPKViewController(left: "img|blackBack", title: LanguageHelper.localizedString(key: "ExportPK"), right: nil)
+        exportPk.pkString = pkString
+        navigationController?.pushViewController(exportPk, animated: true)
     }
 }

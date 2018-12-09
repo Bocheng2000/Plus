@@ -9,7 +9,7 @@
 import UIKit
 
 class WalletManager: NSObject {
-    open static var shared: WalletManager = WalletManager()
+    public static var shared: WalletManager = WalletManager()
     private var current: AccountModel?
     
     private override init() {
@@ -50,10 +50,18 @@ class WalletManager: NSObject {
     ///   - pubKey: 公钥
     ///   - account: 账户名
     open func setCurrent(pubKey: String, account: String) {
-        if current?.account != account {
-            CacheHelper.shared.setCurrent(account)
-            current = AccountModel(account, _pubKey: pubKey)
-        }
+        CacheHelper.shared.setCurrent(account)
+        current = AccountModel(account, _pubKey: pubKey)
+    }
+    
+    /// 设置当前的账户
+    ///
+    /// - Parameters:
+    ///   - account: model
+    open func setCurrent(account: AccountModel) {
+        CacheHelper.shared.setCurrent(account.account)
+        CacheHelper.shared.updateAccountWidget(account: account.account, show: account.resourceWidget ?? false)
+        current = account
     }
     
     /// 获取当前账户

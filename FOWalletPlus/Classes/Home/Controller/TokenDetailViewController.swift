@@ -164,6 +164,7 @@ class TokenDetailViewController: FatherViewController, UITableViewDelegate, UITa
     
     private func makeUITableView() {
         tableView.backgroundColor = UIColor.clear
+        tableView.separatorColor = SEPEAT_COLOR
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorInset = .zero
         tableView.separatorColor = SEPEAT_COLOR

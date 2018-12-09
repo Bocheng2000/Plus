@@ -28,5 +28,7 @@
 #import "TZImagePickerController.h"
 #import "FSActionSheet.h"
 #import "PGDatePickManager.h"
+#import "XLPlainFlowLayout.h"
+#import "SDCycleScrollView.h"
 
 #endif /* FOWalletPlus_Bridging_h */

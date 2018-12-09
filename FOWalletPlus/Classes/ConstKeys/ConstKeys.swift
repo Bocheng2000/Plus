@@ -40,9 +40,11 @@ let tunnel = "https://tunnel.fibos.io/1.0/app/token/create"
 let salt = "kQkAjnFj8vI="
 let graphqlUri = "http://api.tracker.fibos.io/1.0/app"
 let exploreUri = "http://explorer.fibos.rocks/transactions/"
+let dappUri = "https://dapp.fo/1.0"
 
 // MARK: ===== ConstKey ======
 let pageSize: Int32 = 100
+let basePageSize: Int32 = 10
 
 // MARK: ===== Cache ======
 let cacheDB = "\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!)/cache.db"

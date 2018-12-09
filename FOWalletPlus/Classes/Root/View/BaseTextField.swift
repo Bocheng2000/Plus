@@ -24,6 +24,7 @@ class BaseTextField: UITextField, UITextFieldDelegate {
     }
     
     private func addToolBar() {
+        autocorrectionType = .no
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: kSize.width, height: 40))
         let btn = UIButton(frame: CGRect(x: kSize.width - 60, y: 0, width: 50, height: 40))
         btn.setTitle(LanguageHelper.localizedString(key: "Done"), for: .normal)

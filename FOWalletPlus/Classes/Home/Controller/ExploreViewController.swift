@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDelegate, ModalPanelViewControllerDelegate {
+class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDelegate, ModalPanelViewControllerDelegate, CircleViewDelegate, UIScrollViewDelegate {
     
     open var uri: String!
     
@@ -20,6 +20,12 @@ class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDel
     @IBOutlet weak var webView: WKWebView!
     
     private var progressBar: UIView!
+    
+    private var cpu: CircleView!
+    private var cpuPercentLabel: UILabel!
+    
+    private var net: CircleView!
+    private var netPercentLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +41,85 @@ class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDel
     }
     
     private func makeUI() {
+        powerByLabel.alpha = 0
+        serverByLabel.alpha = 0
         navBar?.setBorderLine(position: .bottom, number: 0.5, color: BORDER_COLOR)
         webView.backgroundColor = UIColor.white
+        webView.backgroundColor = UIColor.clear
+        webView.isOpaque = false
         progressBar = UIView(frame: CGRect(x: 0, y: (navBar?.bottom)! - 2, width: 0, height: 2))
         progressBar.backgroundColor = UIColor.RGBA(r: 2, g: 187, b: 0, a: 1)
         navBar?.addSubview(progressBar)
         webView.uiDelegate = self
+        webView.scrollView.delegate = self
         webView.navigationDelegate = self
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        makeUIResourceWidget()
+        setWidget()
+    }
+    
+    private func makeUIResourceWidget() {
+        cpu = CircleView(frame: CGRect(x: kSize.width - 40 - 70, y: statusHeight + 10, width: 30, height: 30))
+        cpu.delegate = self
+        cpu.circleColor = UIColor.colorWithHexString(hex: "#BC5671")
+        cpuPercentLabel = UILabel(frame: CGRect(x: 0, y: 7, width: cpu.width, height: 8))
+        cpuPercentLabel.textAlignment = .center
+        cpuPercentLabel.font = UIFont.systemFont(ofSize: 7)
+        cpuPercentLabel.textColor = FONT_COLOR
+        cpuPercentLabel.text = ""
+        
+        let cpuTip = UILabel(frame: CGRect(x: 0, y: cpuPercentLabel.bottom, width: cpuPercentLabel.width, height: cpuPercentLabel.height))
+        cpuTip.textAlignment = .center
+        cpuTip.font = UIFont.systemFont(ofSize: 7)
+        cpuTip.textColor = FONT_COLOR
+        cpuTip.text = "cpu"
+        cpu.addSubview(cpuPercentLabel)
+        cpu.addSubview(cpuTip)
+        
+        net = CircleView(frame: CGRect(x: kSize.width - 40 - 35, y: statusHeight + 10, width: 30, height: 30))
+        net.delegate = self
+        netPercentLabel = UILabel(frame: CGRect(x: 0, y: 7, width: cpu.width, height: 8))
+        netPercentLabel.textAlignment = .center
+        netPercentLabel.font = UIFont.systemFont(ofSize: 7)
+        netPercentLabel.textColor = FONT_COLOR
+        netPercentLabel.text = ""
+        let netTip = UILabel(frame: CGRect(x: 0, y: cpuPercentLabel.bottom, width: cpuPercentLabel.width, height: cpuPercentLabel.height))
+        netTip.textAlignment = .center
+        netTip.font = UIFont.systemFont(ofSize: 7)
+        netTip.textColor = FONT_COLOR
+        netTip.text = "net"
+        net.addSubview(netPercentLabel)
+        net.addSubview(netTip)
+        navBar?.addSubview(cpu)
+        navBar?.addSubview(net)
+    }
+    
+    private func setWidget() {
+        let current = WalletManager.shared.getCurrent()
+        if current != nil {
+            if current!.resourceWidget ?? false {
+                let account = CacheHelper.shared.getAccountInfo(current!.account)
+                if account != nil {
+                    let used_cpu = account!.cpuLimit?.used ?? 0
+                    let max_cpu = account!.cpuLimit?.max ?? 1
+                    let double_cpu = Decimal(used_cpu) / Decimal(max_cpu)
+                    cpuPercentLabel.text = "\(double_cpu.toFixed(2))%"
+                    cpu.value = CGFloat((double_cpu as NSNumber).floatValue)
+                    let used_net = account!.netLimit?.used ?? 0
+                    let max_net = account!.netLimit?.max ?? 1
+                    let double_net = Decimal(used_net) / Decimal(max_net)
+                    netPercentLabel.text = "\(double_net.toFixed(2))%"
+                    net.value = CGFloat((double_net as NSNumber).floatValue)
+                    cpu.isHidden = false
+                    net.isHidden = false
+                    return
+                }
+            }
+        }
+        cpu.isHidden = true
+        cpu.value = 0
+        net.isHidden = true
+        net.value = 0
     }
     
     override func rightBtnDidClick() {
@@ -53,9 +130,10 @@ class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDel
         }
         m.top = [
             ItemOptModel(LanguageHelper.localizedString(key: "CopyLink"), _image: UIImage(named: "link")!),
-            ItemOptModel(LanguageHelper.localizedString(key: "Refresh"), _image: UIImage(named: "link")!),
-            ItemOptModel(LanguageHelper.localizedString(key: "OpenSafari"), _image: UIImage(named: "link")!),
-            ItemOptModel(LanguageHelper.localizedString(key: "GoBack"), _image: UIImage(named: "link")!),
+            ItemOptModel(LanguageHelper.localizedString(key: "Refresh"), _image: UIImage(named: "refresh")!),
+            ItemOptModel(LanguageHelper.localizedString(key: "OpenSafari"), _image: UIImage(named: "safari")!),
+            ItemOptModel(LanguageHelper.localizedString(key: "GoBack"), _image: UIImage(named: "goback")!),
+            ItemOptModel(LanguageHelper.localizedString(key: "ResourceWidget"), _image: UIImage(named: "resource")!),
         ]
         m.bottom = [
             ItemOptModel(LanguageHelper.localizedString(key: "WeChat"), _image: UIImage(named: "wechat")!),
@@ -90,16 +168,23 @@ class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDel
     // MARK: ======== WKWebView Delegate ===========
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         progressBar.width = 0
-        webView.backgroundColor = UIColor.clear
-        webView.isOpaque = false
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         progressBar.width = 0
-        webView.backgroundColor = UIColor.clear
-        webView.isOpaque = false
     }
-   
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDragging {
+            let offsetY = scrollView.contentOffset.y
+            if offsetY < 0 && offsetY > -120 {
+                let alpha = abs(offsetY) / 120
+                serverByLabel.alpha = alpha
+                powerByLabel.alpha = alpha
+            }
+        }
+    }
+    
     // MARK: ========== ModalPanelViewController Deleagte ==========
     func modalPanelCanceled(sender: ModalPanelViewController) {
         
@@ -107,10 +192,25 @@ class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDel
     
     func modalPanelClickAt(sender: ModalPanelViewController, section: Int, row: Int) {
         if section == 0 {
-            processSection1(row: row)
+            if row < 4 {
+                processSection1(row: row)
+            } else {
+                reosurceWidgetProcess()
+            }
         } else {
             toShare(row: row)
         }
+    }
+    
+    private func reosurceWidgetProcess() {
+        let current = WalletManager.shared.getCurrent()!
+        if current.resourceWidget! {
+            current.resourceWidget = false
+        } else {
+            current.resourceWidget = true
+        }
+        WalletManager.shared.setCurrent(account: current)
+        setWidget()
     }
     
     // MARK: ======= webView 处理相关行为 ===========
@@ -145,6 +245,11 @@ class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDel
     
     // MARK: ======= 分享第三方软件 ================
     private func toShare(row: Int) {
+        
+    }
+    
+    // MARK: ======= CircleView Delegate =========
+    func circleViewDidClick() {
         
     }
     

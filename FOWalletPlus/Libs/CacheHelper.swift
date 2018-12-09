@@ -9,7 +9,7 @@
 import UIKit
 
 class CacheHelper: NSObject {
-    open static var shared: CacheHelper = CacheHelper()
+    public static var shared: CacheHelper = CacheHelper()
     private(set) var db: FMDatabase!
     
     private override init() {
@@ -87,6 +87,19 @@ class CacheHelper: NSObject {
         }
     }
 
+    /// 设置用户是否显示资源
+    ///
+    /// - Parameter account: 当前账户的名称
+    /// - Parameter show: 是否显示
+    open func updateAccountWidget(account: String, show: Bool) {
+        do {
+            let sql = "UPDATE TWallets SET resourceWeidge = ? WHERE account = ?"
+            try db.executeUpdate(sql, values: [show ? 1 : 0, account])
+        } catch {
+            
+        }
+    }
+    
     /// 移除钱包
     ///
     /// - Parameter wallets: 钱包数组
@@ -168,6 +181,7 @@ class CacheHelper: NSObject {
                 resp?.pubKey = result.string(forColumn: "pubKey")
                 resp?.endPoint = result.string(forColumn: "endPoint")
                 resp?.backUp = result.int(forColumn: "backUp") == 1
+                resp?.resourceWidget = result.int(forColumn: "resourceWeidge") == 1
             }
             return resp
         } catch {
@@ -339,6 +353,153 @@ class CacheHelper: NSObject {
             return resp
         } catch {
             return Optional.none
+        }
+    }
+
+    /// 存储账户的信息
+    ///
+    /// - Parameters:
+    ///   - account: 账户信息
+    open func saveAccountInfo(_ account: Account) {
+        do {
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(account)
+            let infoString = String.init(data: jsonData, encoding: .utf8)
+            let sql = "REPLACE INTO TAccounts (account, info) VALUES (?,?)"
+            try db.executeUpdate(sql, values: [account.accountName, infoString ?? ""])
+        } catch {
+            
+        }
+    }
+    
+    /// 获取账户的信息
+    ///
+    /// - Parameters:
+    ///   - account: 账户信息
+    open func getAccountInfo(_ account: String) -> Account? {
+        do {
+            let sql = "SELECT * FROM TAccounts WHERE account = ?"
+            let result = try db.executeQuery(sql, values: [account])
+            var model: Account?
+            let decodere = JSONDecoder()
+            while result.next() {
+                let info = result.string(forColumn: "info") ?? ""
+                let data = info.data(using: .utf8)
+                model = try decodere.decode(Account.self, from: data!)
+            }
+            return model
+        } catch {
+            return Optional.none
+        }
+    }
+    
+    /// 保存DApp
+    ///
+    /// - Parameter dapps: models
+    open func saveDApps(_ dapps: [DAppModel]) {
+        if dapps.count == 0 {
+            return
+        }
+        do {
+            db.beginTransaction()
+            let sql = "REPLACE INTO TDApps (id, name, name_en, description_cn, description_en, url, img, token, tags) VALUES (?,?,?,?,?,?,?,?,?)"
+            for model in dapps {
+                try db.executeUpdate(sql, values: [
+                        model.id,
+                        model.name,
+                        model.name_en,
+                        model.description_cn,
+                        model.description_en,
+                        model.url,
+                        model.img,
+                        model.token,
+                        model.tags.toJSONString() ?? ""
+                    ])
+            }
+            db.commit()
+        } catch {
+            db.rollback()
+        }
+    }
+
+    /// 获取以保存的DApp
+    ///
+    /// - Returns: DApps
+    open func getSavedDApps(pageSize: Int) -> [DAppModel] {
+        var sql: String = "SELECT * FROM TDApps"
+        if pageSize > 0 {
+            sql += " LIMIT \(pageSize)"
+        }
+        do {
+            let result = try db.executeQuery(sql, values: nil)
+            var resp: [DAppModel] = []
+            while result.next() {
+                let model: DAppModel = DAppModel()
+                model.id = result.longLongInt(forColumn: "id")
+                model.name = result.string(forColumn: "name")
+                model.name_en = result.string(forColumn: "name_en")
+                model.description_cn = result.string(forColumn: "description_cn")
+                model.description_en = result.string(forColumn: "description_en")
+                model.url = result.string(forColumn: "url")
+                model.img = result.string(forColumn: "img")
+                model.token = result.string(forColumn: "token")
+                model.tags = [DAppTagsModel].deserialize(from: result.string(forColumn: "tags")) as? [DAppTagsModel]
+                resp.append(model)
+            }
+            return resp
+        } catch {
+            return []
+        }
+    }
+    
+    /// 置顶DApp
+    ///
+    /// - Parameters:
+    ///   - owner: 所属账户
+    ///   - dappid: DApp id
+    open func topMyDApp(owner: String, dappid: Int64) {
+        do {
+            db.beginTransaction()
+            let sql = "REPLACE INTO TMyDApp (owner, dappid, weight) VALUES (?,?,?)"
+            try db.executeUpdate(sql, values: [owner, dappid, 0])
+            let update = "UPDATE TMyDApp SET weight = (SELECT MAX(weight) FROM TMyDApp) + 1 WHERE owner = ? AND dappid = ?"
+            try db.executeUpdate(update, values: [owner, dappid])
+            db.commit()
+        } catch {
+            db.rollback()
+        }
+    }
+    
+    /// 我的DApp列表
+    ///
+    /// - Parameters:
+    ///   - owner: 所属账户
+    ///   - pageSize: 每页个数
+    /// - Returns: models
+    open func myDappList(owner: String, pageSize: Int) -> [DAppModel] {
+        do {
+            var sql: String = "SELECT t2.* FROM TMyDApp t1 INNER JOIN TDApps t2 ON t1.dappid = t2.id WHERE t1.owner = ? ORDER BY t1.weight DESC"
+            if pageSize > 0 {
+                sql += " LIMIT \(pageSize)"
+            }
+            var resp: [DAppModel] = []
+            let result = try db.executeQuery(sql, values: [owner])
+            while result.next() {
+                let model: DAppModel = DAppModel()
+                model.id = result.longLongInt(forColumn: "id")
+                model.name = result.string(forColumn: "name")
+                model.name_en = result.string(forColumn: "name_en")
+                model.description_cn = result.string(forColumn: "description_cn")
+                model.description_en = result.string(forColumn: "description_en")
+                model.url = result.string(forColumn: "url")
+                model.img = result.string(forColumn: "img")
+                model.token = result.string(forColumn: "token")
+                model.tags = [DAppTagsModel].deserialize(from: result.string(forColumn: "tags")) as? [DAppTagsModel]
+                resp.append(model)
+            }
+            return resp
+        } catch {
+            return []
         }
     }
 }

@@ -31,6 +31,7 @@ class WalletManagerViewController: FatherViewController, UITableViewDelegate, UI
     private func makeUI() {
         navBar?.setBorderLine(position: .bottom, number: 0.5, color: BORDER_COLOR)
         tableView.backgroundColor = UIColor.clear
+        tableView.separatorColor = SEPEAT_COLOR
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.delegate = self
         tableView.dataSource = self

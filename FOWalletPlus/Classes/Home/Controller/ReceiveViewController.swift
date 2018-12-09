@@ -71,8 +71,12 @@ class ReceiveViewController: FatherViewController, UITextFieldDelegate, FSAction
             let asset = CacheHelper.shared.getOneAsset(current!.account, symbol: model.symbol, contract: model.contract)
             if asset == nil {
                 let err = LanguageHelper.localizedString(key: "NoAssetsFound")
-                let noticeBar = NoticeBar(title: err, defaultType: .error)
-                noticeBar.show(duration: 1, completed: nil)
+                let btn = ModalButtonModel(LanguageHelper.localizedString(key: "OK"), _titleColor: nil, _titleFont: nil, _backgroundColor: nil, _borderColor: nil) {
+                    [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                let modalModel = ModalModel(false, _imageName: "error", _title: err, _message: nil, _buttons: [btn])
+                ModalViewController(modalModel).show(source: self)
             } else {
                 assetModel = asset!
             }

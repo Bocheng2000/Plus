@@ -29,7 +29,7 @@ class LockTokenHeaderFooterView: UITableViewHeaderFooterView {
     }
     
     private func makeUI() {
-        contentView.backgroundColor = UIColor.clear
+        contentView.backgroundColor = BACKGROUND_COLOR
         let tiner = UIView(frame: CGRect(x: 0, y: 11, width: 5, height: 18))
         tiner.backgroundColor = themeColor
         contentView.addSubview(tiner)
