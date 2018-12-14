@@ -145,7 +145,9 @@ class LockTokenViewController: FatherViewController, UITableViewDelegate, UITabl
                         self?.tableView.mj_footer.endRefreshingWithNoMoreData()
                     }
                 }
-                self?.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+                UIView.performWithoutAnimation {
+                    self?.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+                }
             }
         }
     }

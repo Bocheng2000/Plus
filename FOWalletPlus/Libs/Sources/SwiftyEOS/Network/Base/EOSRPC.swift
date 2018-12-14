@@ -76,7 +76,6 @@ func customDateFormatter(_ decoder: Decoder) throws -> Date {
                                             userInfo: [NSLocalizedDescriptionKey: "Networking error \(String(describing: error)) \(String(describing: response))"]))
                     return
                 }
-                
                 let decoder = self.decoder
                 guard let responseObject = try? decoder.decode(T.self, from: data) else {
                     guard let errorResponse = try? decoder.decode(RPCErrorResponse.self, from: data) else {

@@ -13,6 +13,7 @@ enum ChainEndpoint {
     case GetBlock(blockNumberOrId: AnyObject)
     case PushTransaction(transaction: SignedTransaction)
     case AbiJsonToBin(abi: AbiJson)
+    case AbiBinToJson(abi: AbiBin)
     case GetCurrencyBalance(account: String, symbol: String, code: String)
     case GetAccount(account: String)
     case GetTableRows(param: TableRowRequestParam)
@@ -35,6 +36,7 @@ class ChainRouter: BaseRouter {
         case .GetBlock: return "/chain/get_block"
         case .PushTransaction: return "/chain/push_transaction"
         case .AbiJsonToBin: return "/chain/abi_json_to_bin"
+        case .AbiBinToJson: return "/chain/abi_bin_to_json"
         case .GetCurrencyBalance: return "/chain/get_currency_balance"
         case .GetAccount: return "/chain/get_account"
         case .GetTableRows: return "/chain/get_table_rows"
@@ -62,6 +64,11 @@ class ChainRouter: BaseRouter {
             let jsonData = try! encoder.encode(transaction)
             return jsonData
         case .AbiJsonToBin(let abi):
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .useDefaultKeys
+            let jsonData = try! encoder.encode(abi)
+            return jsonData
+        case .AbiBinToJson(let abi):
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .useDefaultKeys
             let jsonData = try! encoder.encode(abi)

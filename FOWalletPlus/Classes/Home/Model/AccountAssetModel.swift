@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountAssetModel: NSObject {
+class AccountAssetModel: FatherModel {
     var primary: Int32!
     var belong: String!
     var contract: String!

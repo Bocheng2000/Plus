@@ -214,4 +214,6 @@
 "ResourceManager" = "资源管理";
 "SubmitDApp" = "提交DApp";
 "SearchDApp" = "搜索DApp";
-"NewestDApp" = "最新DApp";
+"NewestDApp" = "最新DApps";
+"Behavior" = "行为";
+"TransactionData" = "交易数据";

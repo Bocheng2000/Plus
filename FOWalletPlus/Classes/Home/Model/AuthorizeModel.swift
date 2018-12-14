@@ -69,6 +69,10 @@ enum TransactionType: NSInteger {
      * 导出私钥
      */
     case exportPk
+    /**
+     * 授权登录
+     */
+    case authGetAccount
 }
 
 class AuthorizeModel: NSObject {

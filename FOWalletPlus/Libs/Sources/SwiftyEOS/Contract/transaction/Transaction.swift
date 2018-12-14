@@ -78,6 +78,21 @@ extension Data {
     }
 }
 
+@objcMembers class AbiBin: NSObject, Encodable {
+    var code: String
+    var action: String
+    var binargs: String
+    init(code: String, action: String, binargs: String) {
+        self.code = code
+        self.action = action
+        self.binargs = binargs
+    }
+}
+
+struct AbiJsonResult: Codable {
+    var args: Dictionary<String, AnyCodable>?
+}
+
 @objcMembers class AbiJson: NSObject, Encodable {
     var code: String
     var action: String

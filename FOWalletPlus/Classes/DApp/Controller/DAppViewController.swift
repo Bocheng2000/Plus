@@ -92,12 +92,12 @@ class DAppViewController: FatherViewController, UICollectionViewDelegateFlowLayo
             [DAppModel()],
             section1,
             [redPacket, api, resource, submit],
-            CacheHelper.shared.getSavedDApps(pageSize: 5)
+            CacheHelper.shared.getSavedDApps(pageSize: 10)
         ]
     }
     
     private func findNewestDapps() {
-        DAppHttp().getDAppList(maxId: INT64_MAX, pageSize: 5) { [weak self] (err, resp) in
+        DAppHttp().getDAppList(maxId: INT64_MAX, pageSize: 20) { [weak self] (err, resp) in
             if self?.collectionView.mj_header.isRefreshing ?? false {
                 self?.collectionView.mj_header.endRefreshing()
             }
@@ -106,6 +106,24 @@ class DAppViewController: FatherViewController, UICollectionViewDelegateFlowLayo
                 self?.dataSoruce[3] = resp!
                 self?.collectionView.reloadSections(IndexSet(integer: 3))
             }
+        }
+    }
+    
+    private func getDAppName(item: DAppModel) -> String {
+        let language = LanguageHelper.getUserLanguage()
+        switch language {
+        case "zh-Hans":
+            fallthrough
+        case "zh-Hant":
+            if item.name.count > 0 {
+                return item.name
+            }
+            return item.name_en
+        default:
+            if item.name_en.count > 0 {
+                return item.name_en
+            }
+            return item.name
         }
     }
     
@@ -187,7 +205,14 @@ class DAppViewController: FatherViewController, UICollectionViewDelegateFlowLayo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        print(indexPath.section, indexPath.row)
+        let model = dataSoruce[indexPath.section][indexPath.row]
+        if model.id == -1 {
+            
+        } else {
+            let container = DAppContainerViewController(left: "img|blackBack", title: getDAppName(item: model), right: "img|more")
+            container.uri = model.url
+            navigationController?.pushViewController(container, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {

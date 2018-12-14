@@ -180,7 +180,7 @@ class HomeHttp: NSObject {
     ///
     /// - Parameter list: 列表
     /// - Returns: 结果
-    private func processToken(_ list: [AssetsModel]) -> [String: AssetsModel] {
+    open func processToken(_ list: [AssetsModel]) -> [String: AssetsModel] {
         var dict: [String: AssetsModel] = [:]
         list.forEach { (model) in
             let symbol = HomeUtils.getSymbol(model.balance.quantity)

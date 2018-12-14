@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdatePasswordViewController: FatherViewController, UITextFieldDelegate, AuthorizeViewControllerDelegate {
+class UpdatePasswordViewController: FatherViewController, UITextFieldDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -55,7 +55,10 @@ class UpdatePasswordViewController: FatherViewController, UITextFieldDelegate, A
             let newModel = AuthorizeItemModel(LanguageHelper.localizedString(key: "NewPwd"), _detail: newPwd)
             let model = AuthorizeModel(LanguageHelper.localizedString(key: "ResetPwd"), _items: [newModel], _type: .exportPk, _params: PkStringModel())
             let auth = AuthorizeViewController(model)
-            auth.delegate = self
+            auth.exportPkStringBlock = {
+                [weak self] (pkString: String) in
+                self?.updatePassword(pkString: pkString)
+            }
             auth.show(source: self)
         }
     }
@@ -112,8 +115,8 @@ class UpdatePasswordViewController: FatherViewController, UITextFieldDelegate, A
         return true
     }
     
-    // MARK: =========== AuthorizeViewControllerDelegate ============
-    func exportPkString(sender: AuthorizeViewController, pkString: String) {
+    // MARK: =========== Update Password ============
+    func updatePassword(pkString: String) {
         let manager = WalletManager.shared
         let current = WalletManager.shared.getCurrent()!
         let wallet = manager.getWallet(pubKey: current.pubKey, account: current.account)

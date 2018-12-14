@@ -174,9 +174,6 @@ class TransactionDetailViewController: FatherViewController, FSActionSheetDelega
     }
     
     private func presentAlert(title: String, msg: String, helper: PermissionHelper) {
-        let style = JCAlertStyle.share()!
-        style.title.insets = UIEdgeInsetsMake(15, 10, 0, 10)
-        style.buttonNormal.textColor = BUTTON_COLOR
         let alert = JCAlertController.alert(withTitle: title, message: msg)
         alert?.addButton(withTitle: LanguageHelper.localizedString(key: "Cancel"), type: JCButtonType(rawValue: 0), clicked: nil)
         alert?.addButton(withTitle: LanguageHelper.localizedString(key: "Go"), type: JCButtonType(rawValue: 0), clicked: {

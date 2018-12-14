@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JavaScriptCore
 
 class HomeViewController: FatherViewController, UITableViewDataSource, UITableViewDelegate {
 

@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol CircleViewDelegate: NSObjectProtocol {
-    @objc optional func circleViewDidClick()
+    @objc optional func circleViewDidClick(sender: CircleView)
 }
 
 class CircleView: UIView {
@@ -54,8 +54,8 @@ class CircleView: UIView {
     
     @objc private func tapGestInvoke(gest: UITapGestureRecognizer) {
         if gest.state == .ended {
-            if delegate != nil && delegate?.responds(to: #selector(CircleViewDelegate.circleViewDidClick)) ?? false {
-                delegate?.circleViewDidClick!()
+            if delegate != nil && delegate?.responds(to: #selector(CircleViewDelegate.circleViewDidClick(sender:))) ?? false {
+                delegate?.circleViewDidClick!(sender: self)
             }
         }
     }

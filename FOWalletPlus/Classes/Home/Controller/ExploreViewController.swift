@@ -175,13 +175,16 @@ class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDel
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isDragging {
-            let offsetY = scrollView.contentOffset.y
-            if offsetY < 0 && offsetY > -120 {
+        let offsetY = scrollView.contentOffset.y
+        if offsetY < 0 && offsetY > -120 {
+            if scrollView.isDragging {
                 let alpha = abs(offsetY) / 120
                 serverByLabel.alpha = alpha
                 powerByLabel.alpha = alpha
             }
+        } else if offsetY >= 0 {
+            serverByLabel.alpha = 0
+            powerByLabel.alpha = 0
         }
     }
     
@@ -249,7 +252,7 @@ class ExploreViewController: FatherViewController, WKUIDelegate, WKNavigationDel
     }
     
     // MARK: ======= CircleView Delegate =========
-    func circleViewDidClick() {
+    func circleViewDidClick(sender: CircleView) {
         
     }
     

@@ -426,7 +426,7 @@ class CacheHelper: NSObject {
     ///
     /// - Returns: DApps
     open func getSavedDApps(pageSize: Int) -> [DAppModel] {
-        var sql: String = "SELECT * FROM TDApps"
+        var sql: String = "SELECT * FROM TDApps ORDER BY id DESC"
         if pageSize > 0 {
             sql += " LIMIT \(pageSize)"
         }

@@ -8,17 +8,30 @@
 
 import UIKit
 
+@objc enum AuthorizeResult: Int {
+    case denied
+    case authorized
+}
+
 @objc protocol AuthorizeViewControllerDelegate: NSObjectProtocol {
     @objc optional func authorizeViewController(sender: AuthorizeViewController, cancel: Bool)
     @objc optional func authorizeViewController(sender: AuthorizeViewController, resp: TransactionResult)
     @objc optional func exportPkString(sender: AuthorizeViewController, pkString: String)
+    @objc optional func authGetAccountInfo(result: AuthorizeResult)
 }
 
-class AuthorizeViewController: UIViewController {
+class AuthorizeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     weak var delegate: AuthorizeViewControllerDelegate?
+    open var cancelBlock: (() -> Void)?
+    open var transactionRespBlock: ((TransactionResult) -> Void)?
+    open var exportPkStringBlock: ((String) -> Void)?
+    open var authorizeBlock: ((AuthorizeResult) -> Void)?
+    
     open var model: AuthorizeModel!
     private var container: UIView!
+    private var maxHeight: CGFloat = 300
+    private var cellHeights: [CGFloat] = []
     
     convenience init(_ _model: AuthorizeModel) {
         self.init()
@@ -45,62 +58,72 @@ class AuthorizeViewController: UIViewController {
     
     private func makeUI() {
         view.backgroundColor = UIColor.RGBA(r: 0, g: 0, b: 0, a: 0.5)
-        let padding: CGFloat = 20
-        container = UIView(frame: CGRect(x: 0, y: 0, width: kSize.width - padding * 2, height: 0))
+        container = UIView(frame: CGRect(x: 0, y: 0, width: kSize.width, height: 0))
         container.backgroundColor = UIColor.white
         view.addSubview(container)
-        
+        createHeader()
+        var _h: CGFloat = 0
+        if model.items.count > 0 {
+            let font = UIFont.systemFont(ofSize: 15)
+            cellHeights = model.items.map { (item) -> CGFloat in
+                let valueHeight = item.detail.getTextSize(font: font, lineHeight: 0, maxSize: CGSize(width: kSize.width - 110 - 40, height: CGFloat(MAXFLOAT)))
+                let h = max(valueHeight.height + 20, 44)
+                _h += h
+                return h
+            }
+            let tableView = UITableView(frame: CGRect(x: 0, y: 50, width: kSize.width, height: min(maxHeight, _h)))
+            tableView.register(UINib(nibName: "AuthorizeTableViewCell", bundle: nil), forCellReuseIdentifier: "AuthorizeTableViewCell")
+            tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+            tableView.separatorColor = SEPEAT_COLOR
+            tableView.delegate = self
+            tableView.dataSource = self
+            container.addSubview(tableView)
+        }
+        let bottom = 50 + min(maxHeight, _h)
+        createButton(top: bottom)
+        container.frame = CGRect(x: 0, y: kSize.height, width: kSize.width, height: bottom + 48 + safeBottom)
+    }
+    
+    private func createHeader() {
         let titleLabel = UILabel(frame: CGRect(x: 45, y: 10, width: kSize.width - 90, height: 30))
         titleLabel.font = UIFont.systemFont(ofSize: 18)
         titleLabel.textColor = FONT_COLOR
         titleLabel.textAlignment = .center
         titleLabel.text = model.title
         container.addSubview(titleLabel)
-        
         let closeBtn = UIButton(frame: CGRect(x: kSize.width - 45, y: titleLabel.top, width: 30, height: 30))
         closeBtn.setImage(UIImage(named: "close"), for: .normal)
         closeBtn.imageEdgeInsets = UIEdgeInsetsMake(7, 7, 7, 7)
         closeBtn.addTarget(self, action: #selector(closeBtnDidClick), for: .touchUpInside)
         container.addSubview(closeBtn)
-        
-        let line = UIView(frame: CGRect(x: 0, y: titleLabel.bottom + 10, width: kSize.width, height: 0.5))
+        let line = UIView(frame: CGRect(x: 0, y: titleLabel.bottom + 9.5, width: kSize.width, height: 0.5))
         line.backgroundColor = BORDER_COLOR
         container.addSubview(line)
-        let font = UIFont.systemFont(ofSize: 15)
-        let color = UIColor.colorWithHexString(hex: "#4C4D60")
-        if model.items.count != 0 {
-            for i in (0...model.items.count - 1) {
-                let item = model.items[i]
-                let titleSize = item.title.getTextSize(font: font, lineHeight: 0, maxSize: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)))
-                let label = UILabel(frame: CGRect(x: padding, y: line.bottom + CGFloat(i) * 44, width: titleSize.width, height: 44))
-                label.font = font
-                label.textColor = color
-                label.text = item.title
-                label.setBorderLine(position: .bottom, number: 0.5, color: BORDER_COLOR)
-                
-                let detailLabel = UILabel(frame: CGRect(x: label.right, y: label.top, width: kSize.width - padding - label.right, height: label.height))
-                detailLabel.textAlignment = .right
-                detailLabel.font = font
-                detailLabel.textColor = color
-                detailLabel.text = item.detail
-                detailLabel.setBorderLine(position: .bottom, number: 0.5, color: BORDER_COLOR)
-                container.addSubview(label)
-                container.addSubview(detailLabel)
-            }
-        }
-        let confirmBtn = BaseButton(frame: CGRect(x: padding, y: line.bottom + CGFloat(model.items.count) * 44 + 20, width: kSize.width - padding * 2, height: 48))
-        confirmBtn.layer.cornerRadius = 4
-        confirmBtn.layer.masksToBounds = true
+    }
+    
+    private func createButton(top: CGFloat) {
+        let confirmBtn = BaseButton(frame: CGRect(x: 0, y: top, width: kSize.width, height: 48))
         confirmBtn.backgroundColor = BUTTON_COLOR
         confirmBtn.setTitle(LanguageHelper.localizedString(key: "Confirm"), for: .normal)
         container.addSubview(confirmBtn)
         confirmBtn.addTarget(self, action: #selector(doneBtnDidClick), for: .touchUpInside)
-        container.frame = CGRect(x: 0, y: kSize.height, width: kSize.width, height: confirmBtn.bottom + 20 + safeBottom)
     }
     
     @objc private func closeBtnDidClick() {
-        if delegate != nil && (delegate?.responds(to: #selector(AuthorizeViewControllerDelegate.authorizeViewController(sender:cancel:))) ?? false) {
-            delegate?.authorizeViewController!(sender: self, cancel: true)
+        if model.type == .authGetAccount {
+            if authorizeBlock != nil {
+                authorizeBlock!(.denied)
+            }
+            if delegate != nil && delegate?.responds(to: #selector(AuthorizeViewControllerDelegate.authGetAccountInfo(result:))) ?? false {
+                delegate?.authGetAccountInfo!(result: .denied)
+            }
+        } else {
+            if cancelBlock != nil {
+                cancelBlock!()
+            }
+            if delegate != nil && (delegate?.responds(to: #selector(AuthorizeViewControllerDelegate.authorizeViewController(sender:cancel:))) ?? false) {
+                delegate?.authorizeViewController!(sender: self, cancel: true)
+            }
         }
         UIView.animate(withDuration: 0.2, animations: {
             self.container.y = kSize.height
@@ -112,6 +135,19 @@ class AuthorizeViewController: UIViewController {
     }
     
     @objc private func doneBtnDidClick() {
+        if model.type == .authGetAccount {
+            if authorizeBlock != nil {
+                authorizeBlock!(.authorized)
+            }
+            if delegate != nil && delegate?.responds(to: #selector(AuthorizeViewControllerDelegate.authGetAccountInfo(result:))) ?? false {
+                delegate?.authGetAccountInfo!(result: .authorized)
+            }
+        } else {
+            createConfirmAlert()
+        }
+    }
+    
+    private func createConfirmAlert() {
         let style = JCAlertStyle.share()!
         let width = style.alertView.width
         let bjColor = UIColor.colorWithHexString(hex: "#E7E7E7")
@@ -142,12 +178,6 @@ class AuthorizeViewController: UIViewController {
     }
     
     private func createTextView(_ bjColor: UIColor, width: CGFloat) -> BaseTextField {
-        let style = JCAlertStyle.share()!
-        style.title.insets = UIEdgeInsetsMake(15, 10, 0, 10)
-        style.title.backgroundColor = bjColor
-        style.buttonNormal.textColor = BUTTON_COLOR
-        style.buttonNormal.backgroundColor = bjColor
-        style.buttonWarning.backgroundColor = bjColor
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 30))
         paddingView.backgroundColor = UIColor.white
         let textField = BaseTextField(frame: CGRect(x: 2, y: 2, width: width - 20, height: paddingView.height))
@@ -168,7 +198,7 @@ class AuthorizeViewController: UIViewController {
         return textField
     }
     
-    /// 去除私钥
+    /// 去取私钥
     ///
     /// - Parameter value: 密码
     private func confirmDidClick(value: String?) {
@@ -202,6 +232,9 @@ class AuthorizeViewController: UIViewController {
         }
         if model.type == .exportPk {
             dismiss(animated: true, completion: nil)
+            if exportPkStringBlock != nil {
+                exportPkStringBlock!(pkString!)
+            }
             if delegate != nil && (delegate?.responds(to: #selector(AuthorizeViewControllerDelegate.exportPkString(sender:pkString:))) ?? false) {
                 delegate?.exportPkString!(sender: self, pkString: pkString!)
             }
@@ -298,10 +331,54 @@ class AuthorizeViewController: UIViewController {
             let err = LanguageHelper.localizedString(key: "TransactionFailed")
             ZSProgressHUD.showDpromptText(err)
         } else {
+            if transactionRespBlock != nil {
+                transactionRespBlock!(resp!)
+            }
             if delegate != nil && (delegate?.responds(to: #selector(AuthorizeViewControllerDelegate.authorizeViewController(sender:resp:))) ?? false) {
                 delegate?.authorizeViewController!(sender: self, resp: resp!)
             }
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    // MARK: ======== UITableView DataSource And Delegate =======
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model.items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = model.items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AuthorizeTableViewCell") as! AuthorizeTableViewCell
+        cell.titleLabel?.text = item.title
+        cell.detailLabel?.text = item.detail
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeights[indexPath.section]
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }

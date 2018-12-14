@@ -9,7 +9,7 @@
 import UIKit
 
 class ClientManager: NSObject {
-    open static var shared: ClientManager = ClientManager()
+    public static var shared: ClientManager = ClientManager()
     
     /// 获取chaninfo
     ///
@@ -393,6 +393,19 @@ class ClientManager: NSObject {
         let params = TableRowRequestParam(scope: "eosio", code: "eosio", table: "global", json: true, lowerBound: nil, upperBound: nil, limit: nil)
         EOSRPC.sharedInstance.getTableRows(param: params) { (resp: TableRowResponse<GlobalInfoModel>?, error) in
             success(error, resp)
+        }
+    }
+    
+    /// abiBinToJson
+    ///
+    /// - Parameters:
+    ///   - action: 行为
+    ///   - data: 加密的数据
+    ///   - success: block
+    open func abiBinToJson(action: String, data: String, success: @escaping (Error?, AbiJsonResult?) -> Void) {
+        let bin = AbiBin(code: "eosio.token", action: action, binargs: data)
+        EOSRPC.sharedInstance.abiBinToJson(abi: bin) { (result, err) in
+            success(err, result)
         }
     }
 }

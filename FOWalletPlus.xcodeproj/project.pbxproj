@@ -140,6 +140,7 @@
 		915081A921B25613002C117E /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915081A721B25613002C117E /* ExploreViewController.swift */; };
 		915081AA21B25613002C117E /* ExploreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915081A821B25613002C117E /* ExploreViewController.xib */; };
 		9158A2F8219E644A0066CE18 /* AssetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9158A2F7219E644A0066CE18 /* AssetsModel.swift */; };
+		9159F8D021C361A7001A894C /* eosjs-ecc.js in Resources */ = {isa = PBXBuildFile; fileRef = 9159F8CF21C361A7001A894C /* eosjs-ecc.js */; };
 		915E1206219E9C58002ECF8A /* HomeHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915E1205219E9C58002ECF8A /* HomeHttp.swift */; };
 		915E1223219EBB48002ECF8A /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915E1222219EBB48002ECF8A /* Decimal+Extension.swift */; };
 		915E1225219EFE0A002ECF8A /* TokenSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915E1224219EFE0A002ECF8A /* TokenSummary.swift */; };
@@ -213,6 +214,19 @@
 		916E52C521BD668700E88FB3 /* holder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 916E52C321BD668700E88FB3 /* holder@3x.png */; };
 		916E52C821BD693C00E88FB3 /* CollectionFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E52C621BD693C00E88FB3 /* CollectionFooterCollectionReusableView.swift */; };
 		916E52C921BD693C00E88FB3 /* CollectionFooterCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916E52C721BD693C00E88FB3 /* CollectionFooterCollectionReusableView.xib */; };
+		916E530221BE2EFA00E88FB3 /* DAppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E530021BE2EFA00E88FB3 /* DAppContainerViewController.swift */; };
+		916E530321BE2EFA00E88FB3 /* DAppContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916E530121BE2EFA00E88FB3 /* DAppContainerViewController.xib */; };
+		916E532421BE630A00E88FB3 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 916E532321BE630A00E88FB3 /* HandyJSON.framework */; };
+		916E532521BE631100E88FB3 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 916E532321BE630A00E88FB3 /* HandyJSON.framework */; };
+		916E532621BE631100E88FB3 /* HandyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 916E532321BE630A00E88FB3 /* HandyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		916E542221BE886D00E88FB3 /* promise.js in Resources */ = {isa = PBXBuildFile; fileRef = 916E542021BE886D00E88FB3 /* promise.js */; };
+		916E542321BE886D00E88FB3 /* bridge.js in Resources */ = {isa = PBXBuildFile; fileRef = 916E542121BE886D00E88FB3 /* bridge.js */; };
+		916E542521BE899900E88FB3 /* sdk.js in Resources */ = {isa = PBXBuildFile; fileRef = 916E542421BE899900E88FB3 /* sdk.js */; };
+		916E545F21BF6D4A00E88FB3 /* DAppContainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E545E21BF6D4A00E88FB3 /* DAppContainerModel.swift */; };
+		916E54B521BFE9C700E88FB3 /* DAppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E54B421BFE9C700E88FB3 /* DAppUtils.swift */; };
+		916E54B721C004D900E88FB3 /* String+Camel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E54B621C004D900E88FB3 /* String+Camel+Extension.swift */; };
+		916E54BA21C0D3BA00E88FB3 /* AuthorizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E54B821C0D3BA00E88FB3 /* AuthorizeTableViewCell.swift */; };
+		916E54BB21C0D3BA00E88FB3 /* AuthorizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916E54B921C0D3BA00E88FB3 /* AuthorizeTableViewCell.xib */; };
 		916E898E21B287C600FC4C16 /* link@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 916E898821B287C400FC4C16 /* link@2x.png */; };
 		916E898F21B287C600FC4C16 /* sina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 916E898921B287C500FC4C16 /* sina@2x.png */; };
 		916E899021B287C600FC4C16 /* qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 916E898A21B287C500FC4C16 /* qq@2x.png */; };
@@ -407,9 +421,6 @@
 		91CA8C4C21A4F1CD00E53333 /* ToUnLockTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CA8C4B21A4F1CD00E53333 /* ToUnLockTokenModel.swift */; };
 		91CA8C6921A5042000E53333 /* ToContractWalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CA8C6821A5042000E53333 /* ToContractWalletModel.swift */; };
 		91CA8C6B21A5053400E53333 /* PkStringModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CA8C6A21A5053400E53333 /* PkStringModel.swift */; };
-		91CAE5F121B6D49C00629527 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CAE5F021B6D49C00629527 /* HandyJSON.framework */; };
-		91CAE5F221B6D4A300629527 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CAE5F021B6D49C00629527 /* HandyJSON.framework */; };
-		91CAE5F321B6D4A300629527 /* HandyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91CAE5F021B6D49C00629527 /* HandyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91D4A26721B2E0F600821B4D /* LockTokenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4A26521B2E0F600821B4D /* LockTokenDetailViewController.swift */; };
 		91D4A26821B2E0F600821B4D /* LockTokenDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D4A26621B2E0F600821B4D /* LockTokenDetailViewController.xib */; };
 		91D4A26B21B2EA8200821B4D /* copy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 91D4A26921B2EA8200821B4D /* copy@3x.png */; };
@@ -546,7 +557,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				91CAE5F321B6D4A300629527 /* HandyJSON.framework in Embed Frameworks */,
+				916E532621BE631100E88FB3 /* HandyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -741,6 +752,7 @@
 		915081A721B25613002C117E /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		915081A821B25613002C117E /* ExploreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExploreViewController.xib; sourceTree = "<group>"; };
 		9158A2F7219E644A0066CE18 /* AssetsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsModel.swift; sourceTree = "<group>"; };
+		9159F8CF21C361A7001A894C /* eosjs-ecc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "eosjs-ecc.js"; sourceTree = "<group>"; };
 		915E1205219E9C58002ECF8A /* HomeHttp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHttp.swift; sourceTree = "<group>"; };
 		915E1222219EBB48002ECF8A /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
 		915E1224219EFE0A002ECF8A /* TokenSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSummary.swift; sourceTree = "<group>"; };
@@ -821,6 +833,17 @@
 		916E52C321BD668700E88FB3 /* holder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "holder@3x.png"; sourceTree = "<group>"; };
 		916E52C621BD693C00E88FB3 /* CollectionFooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		916E52C721BD693C00E88FB3 /* CollectionFooterCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionFooterCollectionReusableView.xib; sourceTree = "<group>"; };
+		916E530021BE2EFA00E88FB3 /* DAppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAppContainerViewController.swift; sourceTree = "<group>"; };
+		916E530121BE2EFA00E88FB3 /* DAppContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DAppContainerViewController.xib; sourceTree = "<group>"; };
+		916E532321BE630A00E88FB3 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HandyJSON.framework; sourceTree = "<group>"; };
+		916E542021BE886D00E88FB3 /* promise.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = promise.js; sourceTree = "<group>"; };
+		916E542121BE886D00E88FB3 /* bridge.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bridge.js; sourceTree = "<group>"; };
+		916E542421BE899900E88FB3 /* sdk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sdk.js; sourceTree = "<group>"; };
+		916E545E21BF6D4A00E88FB3 /* DAppContainerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAppContainerModel.swift; sourceTree = "<group>"; };
+		916E54B421BFE9C700E88FB3 /* DAppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAppUtils.swift; sourceTree = "<group>"; };
+		916E54B621C004D900E88FB3 /* String+Camel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Camel+Extension.swift"; sourceTree = "<group>"; };
+		916E54B821C0D3BA00E88FB3 /* AuthorizeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeTableViewCell.swift; sourceTree = "<group>"; };
+		916E54B921C0D3BA00E88FB3 /* AuthorizeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizeTableViewCell.xib; sourceTree = "<group>"; };
 		916E898821B287C400FC4C16 /* link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link@2x.png"; sourceTree = "<group>"; };
 		916E898921B287C500FC4C16 /* sina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina@2x.png"; sourceTree = "<group>"; };
 		916E898A21B287C500FC4C16 /* qq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq@2x.png"; sourceTree = "<group>"; };
@@ -1026,7 +1049,6 @@
 		91CA8C4B21A4F1CD00E53333 /* ToUnLockTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToUnLockTokenModel.swift; sourceTree = "<group>"; };
 		91CA8C6821A5042000E53333 /* ToContractWalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToContractWalletModel.swift; sourceTree = "<group>"; };
 		91CA8C6A21A5053400E53333 /* PkStringModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PkStringModel.swift; sourceTree = "<group>"; };
-		91CAE5F021B6D49C00629527 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HandyJSON.framework; sourceTree = "<group>"; };
 		91D4A26521B2E0F600821B4D /* LockTokenDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockTokenDetailViewController.swift; sourceTree = "<group>"; };
 		91D4A26621B2E0F600821B4D /* LockTokenDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LockTokenDetailViewController.xib; sourceTree = "<group>"; };
 		91D4A26921B2EA8200821B4D /* copy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copy@3x.png"; sourceTree = "<group>"; };
@@ -1246,8 +1268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9122CEF7219BAF660014F790 /* libsqlite3.tbd in Frameworks */,
-				91CAE5F221B6D4A300629527 /* HandyJSON.framework in Frameworks */,
-				91CAE5F121B6D49C00629527 /* HandyJSON.framework in Frameworks */,
+				916E532521BE631100E88FB3 /* HandyJSON.framework in Frameworks */,
+				916E532421BE630A00E88FB3 /* HandyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1521,6 +1543,25 @@
 			path = PageControl;
 			sourceTree = "<group>";
 		};
+		916E541F21BE865900E88FB3 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				9159F8CF21C361A7001A894C /* eosjs-ecc.js */,
+				916E542421BE899900E88FB3 /* sdk.js */,
+				916E542121BE886D00E88FB3 /* bridge.js */,
+				916E542021BE886D00E88FB3 /* promise.js */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		916E54B321BFE9B700E88FB3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				916E54B421BFE9C700E88FB3 /* DAppUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		916F17E0219D136E00F5BD3D /* refresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -1740,6 +1781,8 @@
 				9150818F21B131F4002C117E /* LockTokenHistoryTableViewCell.swift */,
 				9150819021B131F4002C117E /* LockTokenHistoryTableViewCell.xib */,
 				917FC7A221BC11B3000891DB /* CircleView.swift */,
+				916E54B821C0D3BA00E88FB3 /* AuthorizeTableViewCell.swift */,
+				916E54B921C0D3BA00E88FB3 /* AuthorizeTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1772,6 +1815,8 @@
 		91966E56219BFC510016F58F /* DApp */ = {
 			isa = PBXGroup;
 			children = (
+				916E54B321BFE9B700E88FB3 /* Utils */,
+				916E541F21BE865900E88FB3 /* Bridge */,
 				917FC7C421BD3421000891DB /* Http */,
 				91966E59219BFC610016F58F /* Model */,
 				91966E58219BFC5D0016F58F /* View */,
@@ -1785,6 +1830,8 @@
 			children = (
 				91966E5A219BFC720016F58F /* DAppViewController.swift */,
 				91966E5B219BFC720016F58F /* DAppViewController.xib */,
+				916E530021BE2EFA00E88FB3 /* DAppContainerViewController.swift */,
+				916E530121BE2EFA00E88FB3 /* DAppContainerViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1810,6 +1857,7 @@
 			isa = PBXGroup;
 			children = (
 				913976A221BD391700103DF2 /* DAppModel.swift */,
+				916E545E21BF6D4A00E88FB3 /* DAppContainerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2059,7 +2107,7 @@
 			children = (
 				917FC7A621BCF24B000891DB /* XLPlainFlowLayout.h */,
 				917FC7A721BCF24C000891DB /* XLPlainFlowLayout.m */,
-				91CAE5F021B6D49C00629527 /* HandyJSON.framework */,
+				916E532321BE630A00E88FB3 /* HandyJSON.framework */,
 				91143E3F21B3D1F700E0B6AD /* PGPickerView */,
 				91143DE021B3D0EA00E0B6AD /* PGDatePicker */,
 				9135C2FF21AE48C80089A746 /* FSActionSheet */,
@@ -2370,6 +2418,7 @@
 				91EA94522199A1370075D801 /* UIViewController+Extension.swift */,
 				915E1222219EBB48002ECF8A /* Decimal+Extension.swift */,
 				9135C2B221ACD49A0089A746 /* UINavigationController+Exension.swift */,
+				916E54B621C004D900E88FB3 /* String+Camel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2708,6 +2757,7 @@
 				916E899221B287C600FC4C16 /* qq@3x.png in Resources */,
 				91EA9397219998EE0075D801 /* LaunchScreen.storyboard in Resources */,
 				916F1845219D6ECA00F5BD3D /* logo@2x.png in Resources */,
+				916E542321BE886D00E88FB3 /* bridge.js in Resources */,
 				913976B421BD4AEB00103DF2 /* resourceManager@3x.png in Resources */,
 				916F180C219D136E00F5BD3D /* refresh_loop_15@2x.png in Resources */,
 				916F17F8219D136E00F5BD3D /* refresh_loop_18@2x.png in Resources */,
@@ -2758,6 +2808,7 @@
 				9122CEDA219B1F120014F790 /* sha3.js in Resources */,
 				9135C24A21ABF0B10089A746 /* QRScaneViewController.xib in Resources */,
 				9122CECB219B1F120014F790 /* sha1.js in Resources */,
+				916E542521BE899900E88FB3 /* sdk.js in Resources */,
 				915E126D21A10C50002ECF8A /* TokenSummaryViewController.xib in Resources */,
 				91EA94722199C2350075D801 /* Localizable.strings in Resources */,
 				9135C25A21ABF4660089A746 /* library@3x.png in Resources */,
@@ -2781,6 +2832,7 @@
 				915E1231219FBCD9002ECF8A /* eos@2x.png in Resources */,
 				91143DDF21B3B22800E0B6AD /* LockPayViewController.xib in Resources */,
 				913976B321BD4AEB00103DF2 /* submitDApp@2x.png in Resources */,
+				916E542221BE886D00E88FB3 /* promise.js in Resources */,
 				9150819821B13AD3002C117E /* left@2x.png in Resources */,
 				915E128621A128E6002ECF8A /* lock@2x.png in Resources */,
 				9160AE1421AFE5550008BB95 /* WithdrawViewController.xib in Resources */,
@@ -2817,6 +2869,7 @@
 				9199F78D21B427E1002B15A8 /* wallet@3x.png in Resources */,
 				9150818E21B130CD002C117E /* empty@2x.png in Resources */,
 				91EA94792199C2610075D801 /* InfoPlist.strings in Resources */,
+				916E54BB21C0D3BA00E88FB3 /* AuthorizeTableViewCell.xib in Resources */,
 				917FC7B521BCFEBA000891DB /* moreArrow@3x.png in Resources */,
 				913976B121BD4AEB00103DF2 /* submitDApp@3x.png in Resources */,
 				917FC79B21BBF0BE000891DB /* refresh@2x.png in Resources */,
@@ -2824,6 +2877,7 @@
 				9135C26921AC13A30089A746 /* ScaneBorder@2x.png in Resources */,
 				917FC79A21BBF0BE000891DB /* goback@2x.png in Resources */,
 				9122CECE219B1F120014F790 /* sha384.js in Resources */,
+				9159F8D021C361A7001A894C /* eosjs-ecc.js in Resources */,
 				917FC7AE21BCF56E000891DB /* DAppCollectionViewCell.xib in Resources */,
 				9199F7B721B4DBF6002B15A8 /* WalletDetailTableViewCell.xib in Resources */,
 				9122CED1219B1F120014F790 /* mode-ecb.js in Resources */,
@@ -2914,6 +2968,7 @@
 				91966EC0219C3D9D0016F58F /* unSelect.png in Resources */,
 				9160AE1821AFEB2C0008BB95 /* TokenListViewController.xib in Resources */,
 				9199F79221B427E1002B15A8 /* safe@2x.png in Resources */,
+				916E530321BE2EFA00E88FB3 /* DAppContainerViewController.xib in Resources */,
 				915E128B21A128E6002ECF8A /* available@2x.png in Resources */,
 				9122CECF219B1F120014F790 /* tripledes.js in Resources */,
 			);
@@ -2929,6 +2984,7 @@
 				91EA94052199990F0075D801 /* AnyDecodable.swift in Sources */,
 				91143DCB21B3AD7700E0B6AD /* MyTabbar.swift in Sources */,
 				91143E2721B3D0EB00E0B6AD /* PGDatePicker+DateAndTime.m in Sources */,
+				916E530221BE2EFA00E88FB3 /* DAppContainerViewController.swift in Sources */,
 				91EA9579219AACC20075D801 /* NSButton+WebCache.m in Sources */,
 				91FDE02021A4560B00685121 /* ToExchangeModel.swift in Sources */,
 				91EA9584219AACC20075D801 /* UIView+WebCache.m in Sources */,
@@ -3056,6 +3112,7 @@
 				91143E1C21B3D0EB00E0B6AD /* PGDatePicker+Time.m in Sources */,
 				915E1233219FBD1C002ECF8A /* TokenImage.swift in Sources */,
 				916E89AC21B2B46A00FC4C16 /* ModalPanelViewController.swift in Sources */,
+				916E54BA21C0D3BA00E88FB3 /* AuthorizeTableViewCell.swift in Sources */,
 				9199F77B21B40F17002B15A8 /* UnLockTokenViewController.swift in Sources */,
 				91143E1621B3D0EB00E0B6AD /* PGDatePicker.m in Sources */,
 				91EA957C219AACC20075D801 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -3087,6 +3144,7 @@
 				91EA95B6219AAD900075D801 /* ChangeRootVC.swift in Sources */,
 				91143E4921B3D1F700E0B6AD /* PGPickerColumnView.m in Sources */,
 				91143E2121B3D0EB00E0B6AD /* PGDatePicker+MonthDayHourMinuteSecond.m in Sources */,
+				916E54B721C004D900E88FB3 /* String+Camel+Extension.swift in Sources */,
 				91A30FA921A3F0870010E685 /* NSAttributedString+JCCalculateSize.m in Sources */,
 				915081A321B181ED002C117E /* TransactionDetailViewController.swift in Sources */,
 				9135C2AD21AC48080089A746 /* TZPhotoPickerController.m in Sources */,
@@ -3182,6 +3240,7 @@
 				91A30F1721A2B5D40010E685 /* PayViewController.swift in Sources */,
 				9135C2B121AC48080089A746 /* TZGifPhotoPreviewController.m in Sources */,
 				918CC8E621A50A8300246DC1 /* ToCreateAccountModel.swift in Sources */,
+				916E545F21BF6D4A00E88FB3 /* DAppContainerModel.swift in Sources */,
 				91EA9573219AACC20075D801 /* UIImage+GIF.m in Sources */,
 				9160AE2321B02E0C0008BB95 /* LockTokenTableViewCell.swift in Sources */,
 				915E1255219FF94E002ECF8A /* SDCollectionViewCell.m in Sources */,
@@ -3212,6 +3271,7 @@
 				91EA93F72199990F0075D801 /* bip39.c in Sources */,
 				9199F7B621B4DBF6002B15A8 /* WalletDetailTableViewCell.swift in Sources */,
 				91143E1521B3D0EB00E0B6AD /* PGDatePicker+MinuteAndSecond.m in Sources */,
+				916E54B521BFE9C700E88FB3 /* DAppUtils.swift in Sources */,
 				91966E8C219C0BD20016F58F /* AutoHeightTextView.swift in Sources */,
 				91EA9575219AACC20075D801 /* SDWebImageCoderHelper.m in Sources */,
 				91EA94032199990F0075D801 /* ecdsa.c in Sources */,

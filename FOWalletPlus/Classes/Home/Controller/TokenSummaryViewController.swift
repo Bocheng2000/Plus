@@ -222,7 +222,9 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
                     }
                     self?.listDataSource.append(contentsOf: resp!.resp)
                 }
-                self?.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+                UIView.performWithoutAnimation {
+                    self?.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+                }
             }
         }
     }
