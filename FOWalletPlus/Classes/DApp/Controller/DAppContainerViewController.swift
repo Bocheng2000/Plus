@@ -116,14 +116,14 @@ class DAppContainerViewController: FatherViewController, WKUIDelegate, WKNavigat
             if current!.resourceWidget ?? false {
                 let account = CacheHelper.shared.getAccountInfo(current!.account)
                 if account != nil {
-                    let used_cpu = account!.cpuLimit?.used ?? 0
+                    let available_cpu = account!.cpuLimit?.available ?? 0
                     let max_cpu = account!.cpuLimit?.max ?? 1
-                    let double_cpu = Decimal(used_cpu) / Decimal(max_cpu)
+                    let double_cpu = Decimal(available_cpu) / Decimal(max_cpu)
                     cpuPercentLabel.text = "\(double_cpu.toFixed(2))%"
                     cpu.value = CGFloat((double_cpu as NSNumber).floatValue)
-                    let used_net = account!.netLimit?.used ?? 0
+                    let available_net = account!.netLimit?.available ?? 0
                     let max_net = account!.netLimit?.max ?? 1
-                    let double_net = Decimal(used_net) / Decimal(max_net)
+                    let double_net = Decimal(available_net) / Decimal(max_net)
                     netPercentLabel.text = "\(double_net.toFixed(2))%"
                     net.value = CGFloat((double_net as NSNumber).floatValue)
                     cpu.isHidden = false

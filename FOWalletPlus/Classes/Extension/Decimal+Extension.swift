@@ -13,6 +13,7 @@ extension Decimal {
         let fmt = NumberFormatter()
         fmt.roundingMode = .ceiling
         fmt.numberStyle = .decimal
+        fmt.usesGroupingSeparator = false
         fmt.minimumFractionDigits = precision + 1
         var resp = fmt.string(from: self as NSNumber)!
         resp.removeLast()

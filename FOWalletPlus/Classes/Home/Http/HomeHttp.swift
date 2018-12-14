@@ -110,7 +110,7 @@ class HomeHttp: NSObject {
                 let precision = HomeUtils.getTokenPrecision(quantity)
                 let zero: Decimal = Decimal(0)
                 let zeroToFix = HomeUtils.getFullQuantity(zero.toFixed(precision), symbol: symbol)
-                let m = AccountAssetModel(value.primary, _belong: account, _contract: value.balance.contract, _hide: true, _quantity: zeroToFix, _lockToken: value.balance.quantity, _contractWallet: zeroToFix, _isSmart: tokens[key]?.isSmart ?? false)
+                let m = AccountAssetModel(value.primary, _belong: account, _contract: value.balance.contract, _hide: false, _quantity: zeroToFix, _lockToken: value.balance.quantity, _contractWallet: zeroToFix, _isSmart: tokens[key]?.isSmart ?? false)
                 nextAsset.append(m)
             } else {
                 nextAsset[existAtIndex[key]!].lockToken = value.balance.quantity
@@ -125,7 +125,7 @@ class HomeHttp: NSObject {
                 let precision = HomeUtils.getTokenPrecision(quantity)
                 let zero: Decimal = Decimal(0)
                 let zeroToFix = HomeUtils.getFullQuantity(zero.toFixed(precision), symbol: symbol)
-                let m = AccountAssetModel(value.primary, _belong: account, _contract: value.balance.contract, _hide: true, _quantity: zeroToFix, _lockToken: zeroToFix, _contractWallet: value.balance.quantity, _isSmart: tokens[key]?.isSmart ?? false)
+                let m = AccountAssetModel(value.primary, _belong: account, _contract: value.balance.contract, _hide: false, _quantity: zeroToFix, _lockToken: zeroToFix, _contractWallet: value.balance.quantity, _isSmart: tokens[key]?.isSmart ?? false)
                 nextAsset.append(m)
             } else {
                 nextAsset[existAtIndex[key]!].contractWallet = value.balance.quantity
