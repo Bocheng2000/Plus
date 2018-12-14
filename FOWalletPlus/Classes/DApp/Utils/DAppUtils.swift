@@ -77,7 +77,15 @@ class DAppUtils: NSObject {
         } else {
             let assets = CacheHelper.shared.getAssetsByAccount(current!.account, hide: false)
             if options == nil {
-                return [nil, [:]]
+                var resp: [String: Dictionary<String, String>] = [:]
+                assets.forEach { (model) in
+                    let extendSymbol = HomeUtils.getExtendSymbol(model.symbol, contract: model.contract)
+                    resp[extendSymbol] = [
+                        "quantity": model.quantity,
+                        "contract": model.contract
+                    ]
+                }
+                return [nil, resp]
             } else if options is String {
                 var resp: [String: Dictionary<String, Any>] = [:]
                 for model in assets {
@@ -160,6 +168,7 @@ class DAppUtils: NSObject {
                     }
                 })
                 success(nil, resp)
+                return
             }
             success(nil, [:])
         }
