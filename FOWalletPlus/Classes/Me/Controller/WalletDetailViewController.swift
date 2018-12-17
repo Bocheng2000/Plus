@@ -133,8 +133,10 @@ class WalletDetailViewController: FatherViewController, UITableViewDataSource, U
         }
         if indexPath.section == 2 {
             if indexPath.row == 0 {
+                let current = WalletManager.shared.getCurrent()
                 let item = AuthorizeItemModel(LanguageHelper.localizedString(key: "Behavior"), _detail: LanguageHelper.localizedString(key: "ExportPK"))
-                let authModel = AuthorizeModel(LanguageHelper.localizedString(key: "ExportPK"), _items: [item], _type: .exportPk, _params: PkStringModel())
+                let account = AuthorizeItemModel(LanguageHelper.localizedString(key: "ActiveAccount"), _detail: current!.account)
+                let authModel = AuthorizeModel(LanguageHelper.localizedString(key: "ExportPK"), _items: [item, account], _type: .exportPk, _params: PkStringModel())
                 let auth = AuthorizeViewController(authModel)
                 auth.exportPkStringBlock = {
                     [weak self] (pkString: String) in

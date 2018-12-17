@@ -53,7 +53,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
             self?.dataSource = resp.assets.filter({ (asset) -> Bool in
                 return !asset.hide
             })
-            if (self?.tableView.mj_header.isRefreshing)! {
+            if self?.tableView.mj_header.isRefreshing ?? false{
                 self?.tableView.mj_header.endRefreshing()
             }
             self?.tableView.reloadData()
@@ -114,7 +114,7 @@ class HomeViewController: FatherViewController, UITableViewDataSource, UITableVi
                 self?.getAccountInfo()
                 self?.getAssetsOnChain(current!)
             } else {
-                if (self?.tableView.mj_header.isRefreshing)! {
+                if self?.tableView.mj_header.isRefreshing ?? false {
                     self?.tableView.mj_header.endRefreshing()
                 }
             }

@@ -86,6 +86,7 @@ struct ChainInfo: Codable {
     var refundRequest: RefundRequest?
     var selfDelegatedBandwidth: DelegatedBandwidth?
     var coreLiquidBalance: String? = ""
+    var totalResources: TotalResources?
     
     private enum CodingKeys: String, CodingKey {
         case accountName
@@ -97,6 +98,7 @@ struct ChainInfo: Codable {
         case refundRequest
         case selfDelegatedBandwidth
         case coreLiquidBalance
+        case totalResources
     }
     
     required init(from decoder: Decoder) throws {
@@ -122,6 +124,7 @@ struct ChainInfo: Codable {
         self.refundRequest = try container.decodeIfPresent(RefundRequest.self, forKey: .refundRequest)
         self.selfDelegatedBandwidth = try container.decodeIfPresent(DelegatedBandwidth.self, forKey: .selfDelegatedBandwidth)
         self.coreLiquidBalance = try container.decodeIfPresent(String.self, forKey: .coreLiquidBalance)
+        self.totalResources = try container.decodeIfPresent(TotalResources.self, forKey: .totalResources)
     }
 }
 
@@ -174,6 +177,13 @@ struct ChainInfo: Codable {
     var requestTime: Date?
     var netAmount: String?
     var cpuAmount: String?
+}
+
+@objcMembers class TotalResources: NSObject, Codable {
+    var cpuWeight: String = ""
+    var netWeight: String = ""
+    var owner: String = ""
+    var ramBytes: UInt64 = 0
 }
 
 @objcMembers class DelegatedBandwidth: NSObject, Codable {

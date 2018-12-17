@@ -67,7 +67,7 @@ class LockTokenViewController: FatherViewController, UITableViewDelegate, UITabl
     private func setSumTokenText() {
         let lock = HomeUtils.getQuantity(model.lockToken)
         let precision = HomeUtils.getTokenPrecision(lock)
-        let value = lock.toDecimal().toFixed(precision)
+        let value = HomeUtils.fmtQuantity(lock.toDecimal().toFixed(precision))
         let attr = NSMutableAttributedString(string: value)
         let fontSize = HomeUtils.getTextSize(value)
         attr.addAttributes([

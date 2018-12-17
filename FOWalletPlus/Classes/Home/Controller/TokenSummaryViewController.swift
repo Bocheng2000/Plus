@@ -144,7 +144,7 @@ class TokenSummaryViewController: FatherViewController, UITableViewDelegate, UIT
         let wallet = HomeUtils.getQuantity(model.contractWallet)
         let precision = HomeUtils.getTokenPrecision(quantity)
         let sum = quantity.toDecimal() + lock.toDecimal() + wallet.toDecimal()
-        let value = sum.toFixed(precision)
+        let value = HomeUtils.fmtQuantity(sum.toFixed(precision))
         let attr = NSMutableAttributedString(string: value)
         let fontSize = HomeUtils.getTextSize(value)
         attr.addAttributes([

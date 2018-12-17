@@ -28,7 +28,7 @@ class LockTokenTableViewCell: UITableViewCell {
             tokenLabel.frame = CGRect(x: 54, y: 10, width: size.width, height: 24)
             tokenLabel.text = text
             quantityLabel.frame = CGRect(x: tokenLabel.right + 10, y: tokenLabel.y, width: kSize.width - tokenLabel.right - 10 - 20, height: tokenLabel.height)
-            quantityLabel.text = HomeUtils.getQuantity(balance.quantity)
+            quantityLabel.text = HomeUtils.fmtQuantity(HomeUtils.getQuantity(balance.quantity))
             let lockTo = "\(model.lock_timestamp!).000Z".utcTime2Local(format: nil)
             lockToLabel.text = "\(LanguageHelper.localizedString(key: "LockTo")) \(lockTo)"
         }

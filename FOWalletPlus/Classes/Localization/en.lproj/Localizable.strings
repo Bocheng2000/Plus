@@ -218,3 +218,10 @@
 "NewestDApp" = "Newest DApps";
 "Behavior" = "Behavior";
 "TransactionData" = "Transaction data";
+"DappTitleWarning" = "You will be redirected to a third party DApp《%@》";
+"DappMessageWarning" = "You will be redirected to a third party DApp《%@》. Please go through the User Agreement and Privacy Policy of the third party DApp carefully,《%@》will resume full responsibility for all actions and usage on the DApp";
+"ActiveAccount" = "Active account";
+"Cpu" = "Cpu";
+"Net" = "Net";
+"Ram" = "Ram";
+"Delegate" = "Delegate";

@@ -74,15 +74,15 @@ class DAppViewController: FatherViewController, UICollectionViewDelegateFlowLayo
         redPacket.name = LanguageHelper.localizedString(key: "RedPacket")
         redPacket.img = "redPacket"
         
-        let api = DAppModel()
-        api.id = -1
-        api.name = LanguageHelper.localizedString(key: "API")
-        api.img = "api"
-        
         let resource = DAppModel()
         resource.id = -1
         resource.name = LanguageHelper.localizedString(key: "ResourceManager")
         resource.img = "resourceManager"
+        
+        let api = DAppModel()
+        api.id = -1
+        api.name = LanguageHelper.localizedString(key: "API")
+        api.img = "api"
         
         let submit = DAppModel()
         submit.id = -1
@@ -91,7 +91,7 @@ class DAppViewController: FatherViewController, UICollectionViewDelegateFlowLayo
         dataSoruce = [
             [DAppModel()],
             section1,
-            [redPacket, api, resource, submit],
+            [redPacket, resource, api, submit],
             CacheHelper.shared.getSavedDApps(pageSize: 10)
         ]
     }
@@ -124,6 +124,46 @@ class DAppViewController: FatherViewController, UICollectionViewDelegateFlowLayo
                 return item.name_en
             }
             return item.name
+        }
+    }
+    
+    // MARK: ========= 检测是不是游客 ======
+    private func checkIsGuest() -> Bool {
+        let current = WalletManager.shared.getCurrent()
+        if current == nil {
+            return true
+        }
+        return false
+    }
+    
+    // MARK: ========== Enter Third Dapp ==========
+    private func enterDappModel(dapp: DAppModel) {
+        if checkIsGuest() {
+            return
+        }
+        let title = LanguageHelper.localizedString(key: "DappTitleWarning")
+        let message = LanguageHelper.localizedString(key: "DappMessageWarning")
+        let name = getDAppName(item: dapp)
+        let alert = JCAlertController.alert(withTitle: String(format: title, arguments: [name]), message: String(format: message, arguments: [name, name]))
+        alert?.addButton(withTitle: LanguageHelper.localizedString(key: "Cancel"), type: JCButtonType.init(rawValue: 1), clicked: nil)
+        alert?.addButton(withTitle: LanguageHelper.localizedString(key: "OK"), type: JCButtonType.init(rawValue: 0), clicked: {
+            [weak self] in
+            let container = DAppContainerViewController(left: "img|blackBack", title: self?.getDAppName(item: dapp), right: "img|more")
+            container.uri = dapp.url
+            self?.navigationController?.pushViewController(container, animated: true)
+        })
+        present(alert!, animated: true, completion: nil)
+    }
+    
+    // MARK: ========== Enter Offical Dapp ========
+    private func enterOfficialDapp(dapp: DAppModel) {
+        if checkIsGuest() {
+           return
+        }
+        if dapp.name == LanguageHelper.localizedString(key: "ResourceManager") {
+            let resource = ResourceManagerViewController(left: "img|blackBack", title: nil, right: nil)
+            navigationController?.pushViewController(resource, animated: true)
+            return
         }
     }
     
@@ -207,11 +247,9 @@ class DAppViewController: FatherViewController, UICollectionViewDelegateFlowLayo
         collectionView.deselectItem(at: indexPath, animated: true)
         let model = dataSoruce[indexPath.section][indexPath.row]
         if model.id == -1 {
-            
+            enterOfficialDapp(dapp: model)
         } else {
-            let container = DAppContainerViewController(left: "img|blackBack", title: getDAppName(item: model), right: "img|more")
-            container.uri = model.url
-            navigationController?.pushViewController(container, animated: true)
+            enterDappModel(dapp: model)
         }
     }
     

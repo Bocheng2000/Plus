@@ -141,6 +141,27 @@
 		9159F98B21C3A9E7001A894C /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9159F97B21C3A9E7001A894C /* TZImagePickerController.m */; };
 		9159F98C21C3A9E7001A894C /* TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9159F97C21C3A9E7001A894C /* TZLocationManager.m */; };
 		9159F98D21C3A9E7001A894C /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9159F97D21C3A9E7001A894C /* TZGifPhotoPreviewController.m */; };
+		9159F9E421C4C6C2001A894C /* ResourceManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159F9E221C4C6C2001A894C /* ResourceManagerViewController.swift */; };
+		9159F9E521C4C6C2001A894C /* ResourceManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9159F9E321C4C6C2001A894C /* ResourceManagerViewController.xib */; };
+		9159F9E821C4CE4A001A894C /* CpuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159F9E621C4CE4A001A894C /* CpuViewController.swift */; };
+		9159F9E921C4CE4A001A894C /* CpuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9159F9E721C4CE4A001A894C /* CpuViewController.xib */; };
+		9159F9EC21C4D140001A894C /* NetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159F9EA21C4D140001A894C /* NetViewController.swift */; };
+		9159F9ED21C4D140001A894C /* NetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9159F9EB21C4D140001A894C /* NetViewController.xib */; };
+		9159F9F021C4D14C001A894C /* RamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159F9EE21C4D14C001A894C /* RamViewController.swift */; };
+		9159F9F121C4D14C001A894C /* RamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9159F9EF21C4D14C001A894C /* RamViewController.xib */; };
+		9159F9F321C4D529001A894C /* NetCpuPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159F9F221C4D529001A894C /* NetCpuPreview.swift */; };
+		9159FA1421C51BFD001A894C /* NetCpuUndelegateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159FA1321C51BFD001A894C /* NetCpuUndelegateView.swift */; };
+		9159FA1621C5276F001A894C /* NetCpuOperateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159FA1521C5276F001A894C /* NetCpuOperateView.swift */; };
+		9159FA2921C532C8001A894C /* select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA2521C532C8001A894C /* select@2x.png */; };
+		9159FA2A21C532C8001A894C /* unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA2621C532C8001A894C /* unselect@2x.png */; };
+		9159FA2B21C532C8001A894C /* select@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA2721C532C8001A894C /* select@3x.png */; };
+		9159FA2C21C532C8001A894C /* unselect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA2821C532C8001A894C /* unselect@3x.png */; };
+		9159FA3921C53DF0001A894C /* select24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA3521C53DEF001A894C /* select24@2x.png */; };
+		9159FA3A21C53DF0001A894C /* select24@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA3621C53DEF001A894C /* select24@3x.png */; };
+		9159FA3B21C53DF0001A894C /* unselect24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA3721C53DEF001A894C /* unselect24@2x.png */; };
+		9159FA3C21C53DF0001A894C /* unselect24@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA3821C53DF0001A894C /* unselect24@3x.png */; };
+		9159FA4321C553A5001A894C /* contact@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA4121C553A4001A894C /* contact@3x.png */; };
+		9159FA4421C553A5001A894C /* contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9159FA4221C553A4001A894C /* contact@2x.png */; };
 		915E1206219E9C58002ECF8A /* HomeHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915E1205219E9C58002ECF8A /* HomeHttp.swift */; };
 		915E1223219EBB48002ECF8A /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915E1222219EBB48002ECF8A /* Decimal+Extension.swift */; };
 		915E1225219EFE0A002ECF8A /* TokenSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915E1224219EFE0A002ECF8A /* TokenSummary.swift */; };
@@ -753,6 +774,27 @@
 		9159F97C21C3A9E7001A894C /* TZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZLocationManager.m; sourceTree = "<group>"; };
 		9159F97D21C3A9E7001A894C /* TZGifPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZGifPhotoPreviewController.m; sourceTree = "<group>"; };
 		9159F97E21C3A9E7001A894C /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
+		9159F9E221C4C6C2001A894C /* ResourceManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManagerViewController.swift; sourceTree = "<group>"; };
+		9159F9E321C4C6C2001A894C /* ResourceManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResourceManagerViewController.xib; sourceTree = "<group>"; };
+		9159F9E621C4CE4A001A894C /* CpuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CpuViewController.swift; sourceTree = "<group>"; };
+		9159F9E721C4CE4A001A894C /* CpuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CpuViewController.xib; sourceTree = "<group>"; };
+		9159F9EA21C4D140001A894C /* NetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetViewController.swift; sourceTree = "<group>"; };
+		9159F9EB21C4D140001A894C /* NetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetViewController.xib; sourceTree = "<group>"; };
+		9159F9EE21C4D14C001A894C /* RamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamViewController.swift; sourceTree = "<group>"; };
+		9159F9EF21C4D14C001A894C /* RamViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RamViewController.xib; sourceTree = "<group>"; };
+		9159F9F221C4D529001A894C /* NetCpuPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetCpuPreview.swift; sourceTree = "<group>"; };
+		9159FA1321C51BFD001A894C /* NetCpuUndelegateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetCpuUndelegateView.swift; sourceTree = "<group>"; };
+		9159FA1521C5276F001A894C /* NetCpuOperateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetCpuOperateView.swift; sourceTree = "<group>"; };
+		9159FA2521C532C8001A894C /* select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select@2x.png"; sourceTree = "<group>"; };
+		9159FA2621C532C8001A894C /* unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselect@2x.png"; sourceTree = "<group>"; };
+		9159FA2721C532C8001A894C /* select@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select@3x.png"; sourceTree = "<group>"; };
+		9159FA2821C532C8001A894C /* unselect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselect@3x.png"; sourceTree = "<group>"; };
+		9159FA3521C53DEF001A894C /* select24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select24@2x.png"; sourceTree = "<group>"; };
+		9159FA3621C53DEF001A894C /* select24@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select24@3x.png"; sourceTree = "<group>"; };
+		9159FA3721C53DEF001A894C /* unselect24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselect24@2x.png"; sourceTree = "<group>"; };
+		9159FA3821C53DF0001A894C /* unselect24@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselect24@3x.png"; sourceTree = "<group>"; };
+		9159FA4121C553A4001A894C /* contact@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact@3x.png"; sourceTree = "<group>"; };
+		9159FA4221C553A4001A894C /* contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact@2x.png"; sourceTree = "<group>"; };
 		915E1205219E9C58002ECF8A /* HomeHttp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHttp.swift; sourceTree = "<group>"; };
 		915E1222219EBB48002ECF8A /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
 		915E1224219EFE0A002ECF8A /* TokenSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSummary.swift; sourceTree = "<group>"; };
@@ -1413,6 +1455,16 @@
 		913976A421BD4A1700103DF2 /* dapp */ = {
 			isa = PBXGroup;
 			children = (
+				9159FA4221C553A4001A894C /* contact@2x.png */,
+				9159FA4121C553A4001A894C /* contact@3x.png */,
+				9159FA3521C53DEF001A894C /* select24@2x.png */,
+				9159FA3621C53DEF001A894C /* select24@3x.png */,
+				9159FA3721C53DEF001A894C /* unselect24@2x.png */,
+				9159FA3821C53DF0001A894C /* unselect24@3x.png */,
+				9159FA2521C532C8001A894C /* select@2x.png */,
+				9159FA2721C532C8001A894C /* select@3x.png */,
+				9159FA2621C532C8001A894C /* unselect@2x.png */,
+				9159FA2821C532C8001A894C /* unselect@3x.png */,
 				916E52C221BD668700E88FB3 /* holder@2x.png */,
 				916E52C321BD668700E88FB3 /* holder@3x.png */,
 				916E52BB21BD591500E88FB3 /* banner_en.png */,
@@ -1830,6 +1882,14 @@
 				91966E5B219BFC720016F58F /* DAppViewController.xib */,
 				916E530021BE2EFA00E88FB3 /* DAppContainerViewController.swift */,
 				916E530121BE2EFA00E88FB3 /* DAppContainerViewController.xib */,
+				9159F9E221C4C6C2001A894C /* ResourceManagerViewController.swift */,
+				9159F9E321C4C6C2001A894C /* ResourceManagerViewController.xib */,
+				9159F9E621C4CE4A001A894C /* CpuViewController.swift */,
+				9159F9E721C4CE4A001A894C /* CpuViewController.xib */,
+				9159F9EA21C4D140001A894C /* NetViewController.swift */,
+				9159F9EB21C4D140001A894C /* NetViewController.xib */,
+				9159F9EE21C4D14C001A894C /* RamViewController.swift */,
+				9159F9EF21C4D14C001A894C /* RamViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1847,6 +1907,9 @@
 				917FC7BC21BD09A2000891DB /* BannerCollectionViewCell.xib */,
 				916E52C621BD693C00E88FB3 /* CollectionFooterCollectionReusableView.swift */,
 				916E52C721BD693C00E88FB3 /* CollectionFooterCollectionReusableView.xib */,
+				9159F9F221C4D529001A894C /* NetCpuPreview.swift */,
+				9159FA1321C51BFD001A894C /* NetCpuUndelegateView.swift */,
+				9159FA1521C5276F001A894C /* NetCpuOperateView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2753,6 +2816,7 @@
 				9159F95B21C3A9B1001A894C /* FSActionSheet_cancel@3x.png in Resources */,
 				91966EC2219C3D9D0016F58F /* selected.png in Resources */,
 				916E899221B287C600FC4C16 /* qq@3x.png in Resources */,
+				9159FA2A21C532C8001A894C /* unselect@2x.png in Resources */,
 				91EA9397219998EE0075D801 /* LaunchScreen.storyboard in Resources */,
 				916F1845219D6ECA00F5BD3D /* logo@2x.png in Resources */,
 				916E542321BE886D00E88FB3 /* bridge.js in Resources */,
@@ -2776,6 +2840,7 @@
 				9199F77C21B40F17002B15A8 /* UnLockTokenViewController.xib in Resources */,
 				91A30F1B21A2B7020010E685 /* blackBack@2x.png in Resources */,
 				916F180B219D136E00F5BD3D /* refresh_loop_14@2x.png in Resources */,
+				9159FA4421C553A5001A894C /* contact@2x.png in Resources */,
 				91966EC5219C3DC50016F58F /* beginBg.png in Resources */,
 				915E128F21A12B1F002ECF8A /* LockTokenViewController.xib in Resources */,
 				916F1803219D136E00F5BD3D /* refresh_loop_7@2x.png in Resources */,
@@ -2790,12 +2855,14 @@
 				9199F7BD21B4F509002B15A8 /* UpdatePasswordViewController.xib in Resources */,
 				913976B521BD4AEB00103DF2 /* api@2x.png in Resources */,
 				91EA94622199A42E0075D801 /* StartViewController.xib in Resources */,
+				9159F9E521C4C6C2001A894C /* ResourceManagerViewController.xib in Resources */,
 				917FC79921BBF0BE000891DB /* goback@3x.png in Resources */,
 				91EA93F62199990F0075D801 /* secp256k1.table in Resources */,
 				913976B221BD4AEB00103DF2 /* resourceManager@2x.png in Resources */,
 				91966E94219C3B390016F58F /* ok@3x.png in Resources */,
 				916F1846219D6ECA00F5BD3D /* logo@3x.png in Resources */,
 				91966EA8219C3D050016F58F /* home_high@3x.png in Resources */,
+				9159FA4321C553A5001A894C /* contact@3x.png in Resources */,
 				916F180E219D136E00F5BD3D /* refresh_loop_16@2x.png in Resources */,
 				91966EB4219C3D2E0016F58F /* home@2x.png in Resources */,
 				9122CED2219B1F120014F790 /* pad-iso97971.js in Resources */,
@@ -2804,6 +2871,7 @@
 				9122CECD219B1F120014F790 /* aes.js in Resources */,
 				9122CEDA219B1F120014F790 /* sha3.js in Resources */,
 				9135C24A21ABF0B10089A746 /* QRScaneViewController.xib in Resources */,
+				9159F9E921C4CE4A001A894C /* CpuViewController.xib in Resources */,
 				9122CECB219B1F120014F790 /* sha1.js in Resources */,
 				916E542521BE899900E88FB3 /* sdk.js in Resources */,
 				915E126D21A10C50002ECF8A /* TokenSummaryViewController.xib in Resources */,
@@ -2840,17 +2908,20 @@
 				916F1870219DBF6300F5BD3D /* transfer@3x.png in Resources */,
 				916F1864219DB51400F5BD3D /* transfer@2x.png in Resources */,
 				9199F7AE21B4CAAA002B15A8 /* fibos@3x.png in Resources */,
+				9159FA3C21C53DF0001A894C /* unselect24@3x.png in Resources */,
 				915E126821A054D5002ECF8A /* hide@3x.png in Resources */,
 				9122CED3219B1F120014F790 /* sha512.js in Resources */,
 				91D4A26821B2E0F600821B4D /* LockTokenDetailViewController.xib in Resources */,
 				916F1850219D7F1300F5BD3D /* TokenTableViewCell.xib in Resources */,
 				917FC79821BBF0BE000891DB /* safari@2x.png in Resources */,
 				9199F7AF21B4CAAA002B15A8 /* fibos@2x.png in Resources */,
+				9159FA3A21C53DF0001A894C /* select24@3x.png in Resources */,
 				9122CED0219B1F120014F790 /* pad-iso10126.js in Resources */,
 				9150819721B13AD3002C117E /* left@3x.png in Resources */,
 				917FC7BE21BD09A2000891DB /* BannerCollectionViewCell.xib in Resources */,
 				917FC7A021BC0787000891DB /* resource@3x.png in Resources */,
 				9150819A21B13AD3002C117E /* right@2x.png in Resources */,
+				9159FA3B21C53DF0001A894C /* unselect24@2x.png in Resources */,
 				91966EBF219C3D9D0016F58F /* FOWallet.png in Resources */,
 				9199F79521B427E1002B15A8 /* wallet@2x.png in Resources */,
 				916E899E21B287CE00FC4C16 /* timeLine@2x.png in Resources */,
@@ -2863,10 +2934,13 @@
 				9135C32421AED93D0089A746 /* ExchangeViewController.xib in Resources */,
 				916E52C921BD693C00E88FB3 /* CollectionFooterCollectionReusableView.xib in Resources */,
 				916F1800219D136E00F5BD3D /* refresh_loop_0@2x.png in Resources */,
+				9159FA2C21C532C8001A894C /* unselect@3x.png in Resources */,
 				915E12A221A12F45002ECF8A /* forword@3x.png in Resources */,
+				9159F9ED21C4D140001A894C /* NetViewController.xib in Resources */,
 				9199F78D21B427E1002B15A8 /* wallet@3x.png in Resources */,
 				9150818E21B130CD002C117E /* empty@2x.png in Resources */,
 				91EA94792199C2610075D801 /* InfoPlist.strings in Resources */,
+				9159F9F121C4D14C001A894C /* RamViewController.xib in Resources */,
 				916E54BB21C0D3BA00E88FB3 /* AuthorizeTableViewCell.xib in Resources */,
 				917FC7B521BCFEBA000891DB /* moreArrow@3x.png in Resources */,
 				913976B121BD4AEB00103DF2 /* submitDApp@3x.png in Resources */,
@@ -2944,11 +3018,13 @@
 				917B8ED221B8362300EC101E /* ExportPKViewController.xib in Resources */,
 				9122CED7219B1F120014F790 /* pad-ansix923.js in Resources */,
 				9199F79D21B42F20002B15A8 /* WalletManagerTableViewCell.xib in Resources */,
+				9159FA2B21C532C8001A894C /* select@3x.png in Resources */,
 				91D4A26B21B2EA8200821B4D /* copy@3x.png in Resources */,
 				91966EAB219C3D050016F58F /* dapp@2x.png in Resources */,
 				916F17FF219D136E00F5BD3D /* refresh_loop_1@2x.png in Resources */,
 				91A30F1C21A2B7020010E685 /* blackBack@3x.png in Resources */,
 				9199F78B21B427E1002B15A8 /* system@3x.png in Resources */,
+				9159FA3921C53DF0001A894C /* select24@2x.png in Resources */,
 				916F1802219D136E00F5BD3D /* refresh_loop_3@2x.png in Resources */,
 				916F1832219D4FD300F5BD3D /* plus@3x.png in Resources */,
 				915E122E219FBCD9002ECF8A /* fo@3x.png in Resources */,
@@ -2960,6 +3036,7 @@
 				9135C31321AE7B700089A746 /* error@2x.png in Resources */,
 				915E12AB21A18486002ECF8A /* qr@2x.png in Resources */,
 				91143DDA21B3B19D00E0B6AD /* unlockTransfer@3x.png in Resources */,
+				9159FA2921C532C8001A894C /* select@2x.png in Resources */,
 				916F1831219D4FD300F5BD3D /* plus@2x.png in Resources */,
 				915E128921A128E6002ECF8A /* tokenDetail@3x.png in Resources */,
 				916F180D219D136E00F5BD3D /* refresh_loop_17@2x.png in Resources */,
@@ -3027,6 +3104,7 @@
 				9162B1C221A28CE000262970 /* QRModel.swift in Sources */,
 				91EA93FF2199990F0075D801 /* uECC.c in Sources */,
 				918CC8F421A5772700246DC1 /* GlobalInfoModel.swift in Sources */,
+				9159F9F321C4D529001A894C /* NetCpuPreview.swift in Sources */,
 				91EA948C219A9F7F0075D801 /* BaseButton.swift in Sources */,
 				91EA94AC219AAC9B0075D801 /* ZSProgressHUD.m in Sources */,
 				918CC8F221A575FC00246DC1 /* RamMarketModel.swift in Sources */,
@@ -3050,6 +3128,7 @@
 				91143E2221B3D0EB00E0B6AD /* PGDatePicker+DateHourMinute.m in Sources */,
 				91EA9568219AACC20075D801 /* UIImage+WebP.m in Sources */,
 				91966ED7219C6B520016F58F /* WhichModel.swift in Sources */,
+				9159F9F021C4D14C001A894C /* RamViewController.swift in Sources */,
 				91EA94182199990F0075D801 /* PrivateKey.swift in Sources */,
 				91EA94E3219AACAC0075D801 /* UIScrollView+MJExtension.m in Sources */,
 				9162B1BF21A288D500262970 /* QRViewController.swift in Sources */,
@@ -3068,6 +3147,7 @@
 				91EA9587219AACC20075D801 /* SDWebImageWebPCoder.m in Sources */,
 				91EA94142199990F0075D801 /* EOSRPC.swift in Sources */,
 				91966E65219BFCDA0016F58F /* MeViewController.swift in Sources */,
+				9159F9EC21C4D140001A894C /* NetViewController.swift in Sources */,
 				9160AE1321AFE5550008BB95 /* WithdrawViewController.swift in Sources */,
 				9199F7BC21B4F509002B15A8 /* UpdatePasswordViewController.swift in Sources */,
 				91EA945C2199A1370075D801 /* UIImage+Extension.swift in Sources */,
@@ -3082,6 +3162,7 @@
 				915E123C219FC1EA002ECF8A /* ColorTheme.swift in Sources */,
 				91143E1F21B3D0EB00E0B6AD /* NSBundle+PGDatePicker.m in Sources */,
 				91EA94F3219AACAC0075D801 /* MJRefreshComponent.m in Sources */,
+				9159FA1621C5276F001A894C /* NetCpuOperateView.swift in Sources */,
 				91EA93FE2199990F0075D801 /* ripemd160.c in Sources */,
 				91966E8E219C30FF0016F58F /* ModalViewController.swift in Sources */,
 				9199F79F21B4C651002B15A8 /* AccountListViewModel.swift in Sources */,
@@ -3091,6 +3172,7 @@
 				91EA94132199990F0075D801 /* HistoryRouter.swift in Sources */,
 				91EA944C2199A0AB0075D801 /* FatherViewController.swift in Sources */,
 				91A30FA821A3F0870010E685 /* UIImage+JCColor2Image.m in Sources */,
+				9159F9E421C4C6C2001A894C /* ResourceManagerViewController.swift in Sources */,
 				918CC8EA21A527A000246DC1 /* ToUnDelegateRamModel.swift in Sources */,
 				915081A621B183A4002C117E /* TransactionDetailModel.swift in Sources */,
 				91EA93FC2199990F0075D801 /* secp256k1.c in Sources */,
@@ -3215,6 +3297,7 @@
 				9122CEB5219B1E2A0014F790 /* CryptoJS.swift in Sources */,
 				91EA94612199A42E0075D801 /* StartViewController.swift in Sources */,
 				91EA957A219AACC20075D801 /* SDAnimatedImageRep.m in Sources */,
+				9159F9E821C4CE4A001A894C /* CpuViewController.swift in Sources */,
 				91EA9581219AACC20075D801 /* SDWebImageGIFCoder.m in Sources */,
 				91EA9484219A5C3C0075D801 /* InputItem.swift in Sources */,
 				91EA9583219AACC20075D801 /* UIView+WebCacheOperation.m in Sources */,
@@ -3268,6 +3351,7 @@
 				917FC7B121BCF735000891DB /* DAppCollectionReusableView.swift in Sources */,
 				915E12A621A1316A002ECF8A /* TokenDetailViewController.swift in Sources */,
 				91EA93F72199990F0075D801 /* bip39.c in Sources */,
+				9159FA1421C51BFD001A894C /* NetCpuUndelegateView.swift in Sources */,
 				9199F7B621B4DBF6002B15A8 /* WalletDetailTableViewCell.swift in Sources */,
 				91143E1521B3D0EB00E0B6AD /* PGDatePicker+MinuteAndSecond.m in Sources */,
 				916E54B521BFE9C700E88FB3 /* DAppUtils.swift in Sources */,

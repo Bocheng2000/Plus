@@ -20,33 +20,31 @@ class LockTokenHistoryTableViewCell: UITableViewCell {
     
     open var model: LockTokenHistoryModel! {
         didSet {
-            let quantity = HomeUtils.getQuantity(model.data.quantity.quantity)
             if model.isReceive {
                 typeImage.image = UIImage(named: "right")
                 nameLabel.setTitle(model.from_account, for: .normal)
-                quantityLabel.text = "+ \(quantity)"
+                quantityLabel.text = "+ \(model.nextQuantity)"
             } else {
                 typeImage.image = UIImage(named: "left")
                 nameLabel.setTitle(model.to_account, for: .normal)
-                quantityLabel.text = "- \(quantity)"
+                quantityLabel.text = "- \(model.nextQuantity)"
             }
-            cretedAtLabel.text = model.created.utcTime2Local(format: "yyyy/MM/dd HH:mm")
+            cretedAtLabel.text = model.utcCreated
         }
     }
     
     open var historyModel: TransactionHistoryModel! {
         didSet {
-            let quantity = HomeUtils.getQuantity(historyModel.quantity)
             if historyModel.isReceive {
                 typeImage.image = UIImage(named: "right")
                 nameLabel.setTitle(historyModel.from_account, for: .normal)
-                quantityLabel.text = "+ \(quantity)"
+                quantityLabel.text = "+ \(historyModel.nextQuantity)"
             } else {
                 typeImage.image = UIImage(named: "left")
                 nameLabel.setTitle(historyModel.to_account, for: .normal)
-                quantityLabel.text = "- \(quantity)"
+                quantityLabel.text = "- \(historyModel.nextQuantity)"
             }
-            cretedAtLabel.text = historyModel.created.utcTime2Local(format: "yyyy/MM/dd HH:mm")
+            cretedAtLabel.text = historyModel.utcCreated
         }
     }
     

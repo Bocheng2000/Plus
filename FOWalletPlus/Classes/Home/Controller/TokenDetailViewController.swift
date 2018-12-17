@@ -222,7 +222,7 @@ class TokenDetailViewController: FatherViewController, UITableViewDelegate, UITa
     // MARK: =========== 获取指定的合约的通证 ============
     @objc private func getTokenByContractOnChain() {
         ClientManager.shared.getTokenByContract(model.contract) { [weak self] (err, resp) in
-            if (self?.tableView.mj_header.isRefreshing)! {
+            if self?.tableView.mj_header.isRefreshing ?? false {
                 self?.tableView.mj_header.endRefreshing()
             }
             if resp != nil {

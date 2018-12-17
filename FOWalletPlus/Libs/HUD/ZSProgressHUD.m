@@ -18,7 +18,7 @@
 #define KEY_ANIMATION_TEXT @"KEY_ANIMATION_TEXT"
 #define SCREEN [UIScreen mainScreen].bounds.size
 #define RGB(r,g,b,a) ([UIColor colorWithRed:r green:g blue:b alpha:a])
-
+#define ANIMATE_DURATION 1
 
 
 @implementation ZSProgressHUD
@@ -37,7 +37,7 @@
     ZSProgressHUD *hud = [[self alloc] initWithFrame:[UIScreen mainScreen].bounds showText:ShowText HUDType:ZSHUDSuccessfulAnimatedType];
     [hud show:NO view:hud.toast];
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
-    [self performSelector:@selector(DelayHideHud) withObject:nil afterDelay:1.5];
+    [self performSelector:@selector(DelayHideHud) withObject:nil afterDelay:ANIMATE_DURATION];
     return hud;
 }
 #pragma mark 加载错误动画
@@ -46,7 +46,7 @@
     ZSProgressHUD *hud = [[self alloc] initWithFrame:[UIScreen mainScreen].bounds showText:ShowText HUDType:ZSHUDErrorAnimatedType];
     [hud show:YES view:hud.toast];
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
-    [self performSelector:@selector(DelayHideHud) withObject:nil afterDelay:1.5];
+    [self performSelector:@selector(DelayHideHud) withObject:nil afterDelay:ANIMATE_DURATION];
     return hud;
 }
 #pragma mark 文字提示
@@ -55,7 +55,7 @@
     ZSProgressHUD *hud = [[self alloc] initWithFrame:[UIScreen mainScreen].bounds showText:showText HUDType:ZSHUDpromptTextType];
     [hud show:YES view:hud.showTextLabel];
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
-    [self performSelector:@selector(DelayHideHud) withObject:nil afterDelay:1.5];
+    [self performSelector:@selector(DelayHideHud) withObject:nil afterDelay:ANIMATE_DURATION];
     return hud;
 }
 

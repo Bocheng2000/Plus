@@ -27,4 +27,14 @@ class TransactionHistoryModel: FatherModel {
     var memo: String = ""
     var isReceive: Bool = false
     var desc: String = ""
+    var nextQuantity: String {
+        get {
+            return HomeUtils.getQuantity(quantity)
+        }
+    }
+    var utcCreated: String {
+        get {
+            return created.utcTime2Local(format: "yyyy/MM/dd HH:mm")
+        }
+    }
 }

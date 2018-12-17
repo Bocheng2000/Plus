@@ -20,6 +20,16 @@ class LockTokenHistoryModel: FatherModel {
     var trx_id: String!
     var isReceive: Bool = false
     var block_num: Int64!
+    var nextQuantity: String {
+        get {
+            return HomeUtils.getQuantity(data.quantity.quantity)
+        }
+    }
+    var utcCreated: String {
+        get {
+            return created.utcTime2Local(format: "yyyy/MM/dd HH:mm")
+        }
+    }
 }
 
 
